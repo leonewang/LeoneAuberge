@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Web Design with JavaScript and the DOM - 原型对象的理解 · Leone Auberge</title><meta name="description" content="参考资料： http://www.liaoxuefeng.com/ 的面向对象编程章节。
+function PrimaryStudent(grade) {
+    this.grade = grade;
+}
+
+function Student(name) {
+    this.name = name;
+    this.hello = function() {
+        console.log(&amp;apos;Hello &amp;apos; + this.name);
+    }
+}
+
+PrimaryStudent.prototype = new Student(&amp;apos;xiaoming&amp;apos;);
+
+var xiaoming = new PrimaryStudent(&amp;apos;xiaoming&amp;apos;);
+
+xiaoming.hello();   // Hello xiaoming
+alert(Student.prototype.isPrototypeOf(xiaoming));   // true
+原型链如图所示：
+&lt;a href=&quot;http:"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/leonewang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">分享</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">关于</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Web Design with JavaScript and the DOM - 原型对象的理解</h1><div class="post-meta"><div class="post-time">2015年9月2日</div></div><div class="post-content"><p>参考资料： <a href="http://www.liaoxuefeng.com/" target="_blank" rel="external">http://www.liaoxuefeng.com/</a> 的面向对象编程章节。</p>
+<pre><code>function PrimaryStudent(grade) {
+    this.grade = grade;
+}
+
+function Student(name) {
+    this.name = name;
+    this.hello = function() {
+        console.log(&apos;Hello &apos; + this.name);
+    }
+}
+
+PrimaryStudent.prototype = new Student(&apos;xiaoming&apos;);
+
+var xiaoming = new PrimaryStudent(&apos;xiaoming&apos;);
+
+xiaoming.hello();   // Hello xiaoming
+alert(Student.prototype.isPrototypeOf(xiaoming));   // true
+</code></pre><p>原型链如图所示：</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/屏幕快照-2015-09-02-16.22.51.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/屏幕快照-2015-09-02-16.22.51.png" alt="屏幕快照 2015-09-02 16.22.51"></a></p>
+<p>之前在学习 JavaScript 的时候就对原型对象的理解就已步入误区，首先要明确 <code>[[prototype]]</code> 和 <code>prototype</code> 是两种不一样的东西。</p>
+<p>首先讲讲 <code>prototype</code>，每一个函数对象都有一个显式的 <code>prototype</code> 属性，代表了对象的原型，更具体的说是代表了函数对象<strong>（JavaScript 中没有构造函数这一说法）</strong>所创建的对象的原型。</p>
+<p>以上例为例，<code>PrimaryStudent.prototype</code> 就是 <code>xiaoming</code> 的原型，<code>xiaoming</code> 所引用的那个由 <code>new PrimaryStudent()</code> 创建出来的对象将从 <code>PrimaryStudent.prototype</code> 所引用的对象中继承其属性与方法。</p>
+<p>其次是 <code>[[prototype]]</code>，每一个对象都有一个隐藏的 <code>[[prototype]]</code> 内部属性，上例中，<code>xiaoming</code> 的 <code>[[prototype]]</code> 指向 <code>PrimaryStudent.prototype</code> ，而 <code>PrimaryStudent.prototype</code> 也是一个对象，所以它也有一个 <code>[[prototype]]</code> 属性指向它的原型对象，这便形成了一个 <strong>原型链</strong>。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/09/21/jiangxiwugong-mountain/" class="prev">上一篇</a><a href="/2015/08/17/ukulele/" class="next">下一篇</a></div></footer><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ed77053554825c09d2021287e3a25e51";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

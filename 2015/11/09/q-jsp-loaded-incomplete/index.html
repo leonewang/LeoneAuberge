@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 问题粉碎机：jsp页面加载不完整 · Leone Auberge</title><meta name="description" content="
+问题描述 jsp 页面加载不完整，把前面的代码删一点后面的就跟着多加载一点
+环境 Tomcat + MySQL
+直接原因 jsp 页面中调用的 java 代码出现了异常，java.lang.ArrayIndexOutOfBoundsException，数组下标越界错误，未考虑到某些因素导致数组初始值大小错误。
+归纳"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/leonewang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">分享</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">关于</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">问题粉碎机：jsp页面加载不完整</h1><div class="post-meta"><div class="post-time">2015年11月9日</div></div><div class="post-content"><p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12-1020x647.png" alt="2015-11-09 16.20.12"></a></p>
+<p><mark>问题描述</mark> <code>jsp</code> 页面加载不完整，把前面的代码删一点后面的就跟着多加载一点</p>
+<p><mark>环境</mark> <code>Tomcat</code> + <code>MySQL</code></p>
+<p><mark>直接原因</mark> <code>jsp</code> 页面中调用的 java 代码出现了异常，<strong>java.lang.ArrayIndexOutOfBoundsException</strong>，<strong>数组下标越界错误</strong>，未考虑到某些因素导致数组初始值大小错误。</p>
+<p><mark>归纳其他原因<mark></mark></mark></p>
+<ul>
+<li><p>jsp 缓存大小问题（在 tsp 页面中，默认是 autoFlush=”true”，也就是 <code>&amp;lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; autoFlush=&quot;true&quot;%&amp;gt;</code> 但通常情况下只用写成 <code>&amp;lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot;%&amp;gt;</code> 就默认为 <code>autoFlush=&quot;true&quot;</code>。）但也可能出现错误，这个时候很可能会报 <code>java.io.IOException: Error: JSP Buffer overflow</code> 的错误，表示 <strong>jsp 缓存大小</strong>不够，所以就必须设置增大 jsp 的缓存大小，也就是如 <code>buffer=&quot;300kb&quot;</code> ，完整的如下：</p>
+<p>&lt;%@ page contentType=”text/html;charset=UTF-8” autoFlush=”false” buffer=”300kb”%&gt;</p>
+</li>
+</ul>
+<p><strong>另外要注意</strong>的是：buffer 的值设置的如果不够大，那么在显示数据的时候，由于没有足够的缓存会抛出一些异常，比如 <code>NullPointer</code> 错误等，这个时候并不是你程序出了错，只要将 buffer 值再设置得大一些到不再出错即可。如果还有 <code>outOfMemery</code> 异常，那么就需要调整 JVM 的内存大小了。</p>
+<ul>
+<li>空指针异常。</li>
+</ul>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/12/31/hello-world/" class="prev">上一篇</a><a href="/2015/09/23/http-getpost-max-length/" class="next">下一篇</a></div></footer><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ed77053554825c09d2021287e3a25e51";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

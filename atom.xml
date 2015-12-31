@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Leone Auberge]]></title>
+  <subtitle><![CDATA[God is in the detail]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://leonewang.wang/"/>
+  <updated>2015-12-31T08:43:26.000Z</updated>
+  <id>http://leonewang.wang/</id>
+  
+  <author>
+    <name><![CDATA[LeoneWang]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://leonewang.wang/2015/12/31/hello-world/"/>
+    <id>http://leonewang.wang/2015/12/31/hello-world/</id>
+    <published>2015-12-31T08:43:26.000Z</published>
+    <updated>2015-12-31T08:43:26.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[问题粉碎机：jsp页面加载不完整]]></title>
+    <link href="http://leonewang.wang/2015/11/09/q-jsp-loaded-incomplete/"/>
+    <id>http://leonewang.wang/2015/11/09/q-jsp-loaded-incomplete/</id>
+    <published>2015-11-09T07:20:53.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12-1020x647.png" alt="2015-11-09 16.20.12"></a></p>
+<p><mark>问题描述</mark> <code>jsp</code> 页面加载不完整，把前面的代码删一点后面的就跟着多加载一点</p>
+<p><mark>环境</mark> <code>Tomcat</code> + <code>MySQL</code></p>
+<p><mark>直接原因</mark> <code>jsp</code> 页面中调用的 java 代码出现了异常，<strong>java.lang.ArrayIndexOutOfBoundsException</strong>，<strong>数组下标越界错误</strong>，未考虑到某些因素导致数组初始值大小错误。</p>
+<p><mark>归纳其他原因<mark></mark></mark></p>
+<ul>
+<li><p>jsp 缓存大小问题（在 tsp 页面中，默认是 autoFlush=”true”，也就是 <code>&amp;lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; autoFlush=&quot;true&quot;%&amp;gt;</code> 但通常情况下只用写成 <code>&amp;lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot;%&amp;gt;</code> 就默认为 <code>autoFlush=&quot;true&quot;</code>。）但也可能出现错误，这个时候很可能会报 <code>java.io.IOException: Error: JSP Buffer overflow</code> 的错误，表示 <strong>jsp 缓存大小</strong>不够，所以就必须设置增大 jsp 的缓存大小，也就是如 <code>buffer=&quot;300kb&quot;</code> ，完整的如下：</p>
+<p>&lt;%@ page contentType=”text/html;charset=UTF-8” autoFlush=”false” buffer=”300kb”%&gt;</p>
+</li>
+</ul>
+<p><strong>另外要注意</strong>的是：buffer 的值设置的如果不够大，那么在显示数据的时候，由于没有足够的缓存会抛出一些异常，比如 <code>NullPointer</code> 错误等，这个时候并不是你程序出了错，只要将 buffer 值再设置得大一些到不再出错即可。如果还有 <code>outOfMemery</code> 异常，那么就需要调整 JVM 的内存大小了。</p>
+<ul>
+<li>空指针异常。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12.png" target="_blank" rel="external"><i]]>
+    </summary>
+    
+      <category term="JSP" scheme="http://leonewang.wang/tags/JSP/"/>
+    
+      <category term="Question" scheme="http://leonewang.wang/tags/Question/"/>
+    
+      <category term="Develop" scheme="http://leonewang.wang/categories/Develop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[对 HTTP Get/Post 请求参数长度最大值的理解]]></title>
+    <link href="http://leonewang.wang/2015/09/23/http-getpost-max-length/"/>
+    <id>http://leonewang.wang/2015/09/23/http-getpost-max-length/</id>
+    <published>2015-09-23T15:27:56.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236"><a href="#GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236" class="headerlink" title="GET 方法长度限制"></a>GET 方法长度限制</h2><p>Http Get 方法提交的数据大小长度并没有限制，HTTP 协议规范没有对 URL 长度进行限制。这个限制是特定的浏览器及服务器对它的限制。</p>
+<p>如：IE 对 URL 长度的限制是 2083 字节(2K + 35)。</p>
+<p>下面就是对各种浏览器和服务器的最大处理能力做一些说明.</p>
+<p>Microsoft Internet Explorer (Browser)<br>IE 浏览器对 URL 的最大限制为 2,083 个字符，如果超过这个数字，提交按钮没有任何反应。</p>
+<p>Firefox (Browser)<br>对于 Firefox 浏览器 URL 的长度限制为 65,536 个字符。</p>
+<p>Safari (Browser)<br>URL 最大长度限制为 80,000 个字符。</p>
+<p>Opera (Browser)<br>UR L最大长度限制为 190,000 个字符。</p>
+<p>Google (chrome)<br>URL 最大长度限制为 8,182 个字符。</p>
+<p>Apache (Server)<br>能接受最大 url 长度为 8,192 个字符。</p>
+<p>Microsoft Internet Information Server(IIS)<br>能接受最大 url 的长度为 16,384 个字符。</p>
+<p>通过上面的数据可知，为了让所有的用户都能正常浏览， URL 最好不要超过 IE 的最大长度限制(2083 个字符），当然，如果 URL 不直接提供给用户，而是提供给程序调用，这时的长度就只受 Web 服务器影响了。</p>
+<p>注：对于中文的传递，最终会为 urlencode 后的编码形式进行传递，如果浏览器的编码为 UTF8 的话，一个汉字最终编码后的字符长度为 9 个字符。</p>
+<h2 id="POST__u65B9_u6CD5_u957F_u5EA6_u9650_u5236"><a href="#POST__u65B9_u6CD5_u957F_u5EA6_u9650_u5236" class="headerlink" title="POST 方法长度限制"></a>POST 方法长度限制</h2><p>理论上讲，POST 是没有大小限制的。HTTP协议规范也没有进行大小限制，起限制作用的是服务器的处理程序的处理能力。<br>如：在 Tomcat 下取消 POST 大小的限制（Tomcat 默认 2M）；</p>
+<p>打开 tomcat 目录下的 conf 目录，打开 server.xml 文件，修改</p>
+<p>debug=”0”<br>acceptCount=”100”<br>connectionTimeout=”20000”<br>disableUploadTimeout=”true”<br>port=”8080”<br>redirectPort=”8443”<br>enableLookups=”false”<br>minSpareThreads=”25”<br>maxSpareThreads=”75”<br>maxThreads=”150”<br><mark>maxPostSize=”0”</mark><br>URIEncoding=”GBK”</p>
+<p>增加绿色字体部分 maxPostSize=”0” (设为 0 是取消 POST 的大小限制)</p>
+<h2 id="HTTP__u534F_u8BAE_u4ECE_u672A_u9650_u5236GET/POST__u7684_u8BF7_u6C42_u957F_u5EA6"><a href="#HTTP__u534F_u8BAE_u4ECE_u672A_u9650_u5236GET/POST__u7684_u8BF7_u6C42_u957F_u5EA6" class="headerlink" title="HTTP 协议从未限制GET/POST 的请求长度"></a>HTTP 协议从未限制GET/POST 的请求长度</h2><pre><code>The HTTP protocol does not place any a priori limit on the length of a URI. Servers MUST be able to handle the URI of any resource they serve, and SHOULD be able to handle URIs of unbounded length if they provide GET-based forms that could generate such URIs. A server SHOULD return 414 (Request-URI Too Long) status if a URI is longer than the server can handle (see section 10.4.15).
+`&lt;/pre&gt;
+
+&lt;pre&gt;`Note: Servers ought to be cautious about depending on URI lengths above 255 bytes, because some older client or proxy implementations might not properly support these lengths.
+`&lt;/pre&gt;
+
+所谓的请求长度限制室友浏览器和 web 服务器决定和设置的，各种浏览器和 web 服务器的设定均不一样，这依赖于各个浏览器厂家的规定或者根据 web 服务器的处理能力来设定。
+
+&lt;pre&gt;`The limit is in MSIE and Safari about 2KB, in Opera about 4KB and in Firefox about 8KB, (255 bytes if we count very old browsers) . We may thus assume that 8KB is the maximum possible length and that 2KB is a more affordable length to rely on at the server side and that 255 bytes is the safest length to assume that the entire URL will come in.
+`&lt;/pre&gt;
+
+&lt;pre&gt;`If the limit is exceeded in either the browser or the server, most will just truncate the characters outside the limit without any warning. Some servers however may send a HTTP 414 error. If you need to send large data, then better use POST instead of GET. Its limit is much higher, but more dependent on the server used than the client. Usually up to around 2GB is allowed by the average webserver. This is also configureable somewhere in the server settings. The average server will display a server-specific error/exception when the POST limit is exceeded, usually as HTTP 500 error.
+`&lt;/pre&gt;
+
+&lt;pre&gt;`HTTP 1.1 defines Status Code 414 Request-URI Too Long for the cases where a server-defined limit is reached. You can see further details on RFC 2616\. For the case of client-defined limits, there is no sense on the server returning something, because the server won&apos;t receive the request at all.
+`&lt;/pre&gt;
+
+&lt;pre&gt;`The server is refusing to service the request because the Request-URI is longer than the server is willing to interpret. This rare condition is only likely to occur when a client has improperly converted a POST request to a GET request with long query information, when the client has descended into a URI &quot;black hole&quot; of redirection (e.g., a redirected URI prefix that points to a suffix of itself), or when the server is under attack by a client attempting to exploit security holes present in some servers using fixed-length buffers for reading or manipulating the Request-URI.
+</code></pre><h2 id="GET_VS_POST"><a href="#GET_VS_POST" class="headerlink" title="GET VS POST"></a>GET VS POST</h2><ol>
+<li>多数浏览器对于 POST 采用两阶段发送数据的，先发送请求头，再发送请求体，即使参数再少再短，也会被分成两个步骤来发送（相对于 GET），也就是第一步发送 header 数据，第二步再发送 body 部分。HTTP 是应用层的协议，而在传输层有些情况 TCP 会出现两次连结的过程，HTTP 协议本身不保存状态信息，一次请求一次响应。对于 TCP 而言，通信次数越多反而靠性越低，能在一次连结中传输完需要的消息是最可靠的，尽量使用 GET 请求来减少网络耗时。如果通信时间增加，这段时间客户端与服务器端一直保持连接状态，在服务器侧负载可能会增加，可靠性会下降。</li>
+</ol>
+<p><a href="http://blogread.cn/it/article/6100?f=wb" target="_blank" rel="external">YSLOW 法则中，为什么 yahoo 推荐用 GET 代替 POST ？</a></p>
+<ol>
+<li>GET 参数是带在 URL 后面，传统 IE 中 URL 的最大可用长度为 2048 字符，其他浏览器对 URL 长度限制实现上有所不同。POST 请求无长度限制（目前理论上是这样的）。<p></p></li>
+<li>由于 GET 参数是在 URL 后面，所以 GET 请求能够被 Cache，GET 请求能够缓存在浏览器的历史记录中，而 POST 不进行缓存，所以重要、私密数据的提交要避免使用 GET 请求。<p></p></li>
+<li>GET 提交的数据大小，不同浏览器的限制不同，一般在 2k-8K 之间，POST 提交数据比较大，大小靠服务器的设定值限制，而且某些数据只能用 POST 方法「携带」，比如 file。</li>
+</ol>
+<p></p><p><mark>REF</mark></p>
+<p><a href="http://blog.chinaunix.net/uid-26602509-id-4495786.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-26602509-id-4495786.html</a><br><a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="external">https://developer.yahoo.com/performance/rules.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236"><a href="#GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236" class="headerlink" title="GET 方法长度限制">]]>
+    </summary>
+    
+      <category term="GET/POST" scheme="http://leonewang.wang/tags/GET-POST/"/>
+    
+      <category term="HTTP" scheme="http://leonewang.wang/tags/HTTP/"/>
+    
+      <category term="Request" scheme="http://leonewang.wang/tags/Request/"/>
+    
+      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[远赴边陲？江西的北国 — 武功山]]></title>
+    <link href="http://leonewang.wang/2015/09/21/jiangxiwugong-mountain/"/>
+    <id>http://leonewang.wang/2015/09/21/jiangxiwugong-mountain/</id>
+    <published>2015-09-21T02:35:54.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0069.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0069-1020x366.jpg" alt="IMG_0069"></a></p>
+<p>自汉晋起，武功山被道佛两家择为修身养性之洞天福地，明朝时香火达到鼎盛时期，山南山北建进了庵、堂、寺、观达100多处，无数善男信女到此朝拜。自唐宋以来，诸多仰慕其名而登山游赏吟诗作赋的名人学士络绎不绝，留下了无数珍贵墨迹。</p>
+<p>武功山横跨江西萍乡市芦溪县、吉安市安福县、宜春市袁州区（萍乡市内武功山区称为萍乡武功山，安福县内称为安福武功山或福山，而宜春市内称为明月山或日月山），地处罗霄山脉北段，横亘湘赣两省，绵延起伏120余公里，总面积970多平方公里，主峰金顶白鹤峰海拔1918.3米，为江西省境内第一高峰。</p>
+<p>武功山有世界同纬度海拔最高、面积最大的高山草甸，还有上千处瀑布，非常适合户外露营和穿越，是全国驴友心中的户外天堂。武功山与庐山、 衡山，并称“江南三大名山”，其草甸绵绵于高山之巅，穿云入雾，春夏绿油油，秋季金灿灿，冬天白皑皑，无需远赴边陲，便可领略北国风光。</p>
+<p>徐霞客，早在377年前，就游览了武功山，留下了《游武功山日记》一文，并收录在《徐霞客游记》 一书中。现如今，越来越多的驴友关注武功山，每年有数以万计的驴友在界上驴行。在户外圈中有“北太白、南武功”一说，并被《中国国家地理杂志》，评为“中国十大非著名山峰”。</p>
+<p>初秋了，这时的武功山高山草甸想必也即将由绿转黄了，趁着天气不错叫上小伙伴带上帐篷开始了我们的武功山徒步之旅。因武功山目前还没有成熟的开发力度，许多驴友来武功山非常不便，当然了，正是人为开发力度较小，所以才有许多追求原生态的驴友想要去往体验一番，另外每年的九月份会在金顶举行帐篷节，非常壮观，所以下面为广大外地驴友提供一个线路以供参考。</p>
+<hr>
+<p><strong>提醒事项</strong></p>
+<ul>
+<li>户外饮水是大事，人多时上山水源的补给不是问题，但是<strong>如果你是淡季上山，那么要注意带些碘酒或者净水药片</strong>，因为淡季时山上许多客栈是没有人的，所以很有可能买不到水，这时就需要自己净化一些山泉水喝了，每家客栈门前的水龙头都是通的山上的山泉，水很干净但以防万一，1L 水加一片药片或3-4滴碘酒静置一段时间后饮用。<p></p></li>
+<li>行程的后三天都是走在山脊上，无数个上山下山在等着你，<strong>准备好双杖吧，注意脚下，一不小心可能就跌下山谷了</strong>。<p></p></li>
+<li>Day4 时需要穿越大量灌木丛，面容姣好的孩子<strong>带好遮阳帽和遮纱，我就无所谓了，尽情地被灌木打脸就好了</strong>。<p></p></li>
+<li><strong>山上风大，扎帐篷选好背风坡</strong>，避免风声太大睡不着。旅店老板人很好，让我们扎在旅店门口，让铁皮屋给挡挡风 <strong>&lt;(￣▽￣)&gt; 哇哈哈…</strong>。<p></p></li>
+<li><p>如<strong>冬季出行或遇阴雨天</strong>，请务必准备好<strong>冰爪</strong>。</p>
+</li>
+<li><p>山上天气阴冷潮湿，尽量<strong>带件厚些的冲锋衣</strong>。九月的夜晚温度会降至10℃以下。想<strong>在外扎帐篷的驴友要带1.5kg 及以上的睡袋</strong>才行，具体按温标0℃-5℃买吧。（针对夏秋季）</p>
+</li>
+<li><p>一路树枝上均有户外俱乐部绑的红蓝黄布条，不要怕迷路，<strong>跟着布条走就行</strong>。另外，<strong>跟着垃圾走，看到路边没垃圾，立马回撤到岔口</strong>。为什么？你懂的！</p>
+</li>
+<li><p>所以，<strong>朋友们带个垃圾袋随身吧</strong>。</p>
+</li>
+<li><p>上界前一定要看<strong>天气预报</strong>，雨太大或者气温特高的话，尽量不要上界。一定要上界的话，就做好充分的准备，毕竟身体健康是爬山重要的保障。</p>
+</li>
+<li><p>买<strong>户外登山保险</strong>很有必要。</p>
+</li>
+</ul>
+<hr>
+<p></p><p>###<code>Day1</code></p>
+<h4 id="u4ECA_u65E5_u884C_u7A0B_uFF1A_u5357_u660C__u2192__u840D_u4E61_u6C88_u5B50_u6751_u3002"><a href="#u4ECA_u65E5_u884C_u7A0B_uFF1A_u5357_u660C__u2192__u840D_u4E61_u6C88_u5B50_u6751_u3002" class="headerlink" title="今日行程：南昌 → 萍乡沈子村。"></a>今日行程：南昌 → 萍乡沈子村。</h4><p>从南昌出发，前往萍乡火车站，如果还有装备没有买齐的话，周围有许多户外店，山上可什么都没有。站前有汽车站，乘坐大巴直接前往武功山正门，如果人多的话，站前有许多的私家车，包车180RMB可以直接送到一个叫沈子村（萍乡市芦溪县新泉乡）的地方，我们这次选择的是后者，大约40分钟后，我们就到达了这次徒步的起点沈子村某旅社。休整一晚，第二天便可出发，走前建议向旅社老板问清路况。</p>
+<p>###<code>Day2</code></p>
+<h4 id="u4ECA_u65E5_u884C_u7A0B_uFF1A_u6C88_u5B50_u6751__u2192__u94C1_u8E44_u5CF0__u2192__u91D1_u9876_uFF08__u2192__u767D_u4E91_u5BA2_u6808_uFF09_u3002_u5168_u7A0B_u957F_u5EA6_u7EA610_u516C_u91CC_uFF0C_u62D4_u9AD8_u7EA61300m_u3002"><a href="#u4ECA_u65E5_u884C_u7A0B_uFF1A_u6C88_u5B50_u6751__u2192__u94C1_u8E44_u5CF0__u2192__u91D1_u9876_uFF08__u2192__u767D_u4E91_u5BA2_u6808_uFF09_u3002_u5168_u7A0B_u957F_u5EA6_u7EA610_u516C_u91CC_uFF0C_u62D4_u9AD8_u7EA61300m_u3002" class="headerlink" title="今日行程：沈子村 → 铁蹄峰 → 金顶（ → 白云客栈）。全程长度约10公里，拔高约1300m。"></a>今日行程：沈子村 → 铁蹄峰 → 金顶（ → 白云客栈）。全程长度约10公里，拔高约1300m。</h4><p>沈子村这个地方并不是武功山的大道，驴友常称这种地方叫做“野道”，但是从这个地方出发，背着厚重的行李，伴着雨点，累的气喘吁吁的同时也能欣赏到别样的风景，那山，那水，那田园风光，仿佛置身于世外桃源之中。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/1398413726699_0.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/1398413726699_0.jpg" alt="1398413726699_0"></a></p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/1398413688524_0.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/1398413688524_0.jpg" alt="1398413688524_0"></a></p>
+<p>如果运气好的话，在铁蹄峰上就可以看到传说中的云海了。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0069.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0069-1020x366.jpg" alt="IMG_0069"></a></p>
+<p>沈子村到金顶，需要攀爬两座高山和些许山坡，无水源，到金顶由于海拔拔高较快（海拔图中可看出），应控制速度，保持体力，到了中午找块平坦的石头就坐下吃点干粮补充体力，全程徒步时间约6-8小时，每人带2L水便可应付本路段。</p>
+<p>出发半小时后可以看见配电站，在配电站前有一间荒废的屋子，在屋子的右侧有非常隐蔽的贴墙小路，所幸这次我们碰到了两位来过多次的驴友，才找到了这个“桃园引道”。之后5-6小时后便能到达铁蹄峰，如果走岔道了，那么很有可能绕路经过九龙山，再到铁蹄峰，不过这段路的行程较直接前往铁蹄峰要相对平缓些，但是路程要延长3-5公里，且据沈子村的村民说风景不如前者，所以一般到了岔口就跟着布条走就不会走错。</p>
+<p>到达铁蹄峰客栈后再走一个小时就能到达最高峰金顶了，这次去的时候金顶上正在施工建游道，石碑也在某年被雷击碎了，所以没有看见石碑，但是碰到了一群欢乐的小伙伴。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0282.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0282-1020x863.jpg" alt="IMG_0282"></a></p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0293.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0293-1020x765.jpg" alt="IMG_0293"></a></p>
+<p>如果赶上帐篷节，可以继续前往白云客栈入住，此处为帐篷节的大本营。</p>
+<p>由金顶至白云客栈全程约3公里，有近1公里的游道，还有约2公里的简易便道（以松木为台阶边缘，以大石头和泥土混合压平成台阶形状，以楠竹做护栏）。从金顶至吊马桩全程游道，吊马桩口有岔路，沿游道下至中庵，沿简易便道可到达白云客栈。</p>
+<p>###<code>Day3</code></p>
+<h4 id="u4ECA_u65E5_u884C_u7A0B_uFF1A_u91D1_u9876_uFF08__u2192__u767D_u4E91_u5BA2_u6808_uFF09__u2192__u7EDD_u671B_u5761__u2192__u597D_u6C49_u5761__u2192__u6B66_u53D1_u5C71_u5E84__u2192__u98CE_u8F66_u53E3__u2192__u53D1_u4E91_u754C_u3002_u5168_u7A0B_u957F_u5EA6_u7EA612_u516C_u91CC_u3002"><a href="#u4ECA_u65E5_u884C_u7A0B_uFF1A_u91D1_u9876_uFF08__u2192__u767D_u4E91_u5BA2_u6808_uFF09__u2192__u7EDD_u671B_u5761__u2192__u597D_u6C49_u5761__u2192__u6B66_u53D1_u5C71_u5E84__u2192__u98CE_u8F66_u53E3__u2192__u53D1_u4E91_u754C_u3002_u5168_u7A0B_u957F_u5EA6_u7EA612_u516C_u91CC_u3002" class="headerlink" title="今日行程：金顶（ → 白云客栈） → 绝望坡 → 好汉坡 → 武发山庄 → 风车口 → 发云界。全程长度约12公里。"></a>今日行程：金顶（ → 白云客栈） → 绝望坡 → 好汉坡 → 武发山庄 → 风车口 → 发云界。全程长度约12公里。</h4><p>没错，今天的行程很 ~ 折磨人。全程耗时5-8小时，1700m以上的大山需要翻越3座，除了这3座大山之外还有很多小山，故不要期望靠着数山来捱完行程，会越数越失望，别忘了绝望坡还在等着你。</p>
+<p>没关系，虽然今天很折磨人，但还是要生活不是，早上裹着睡袋、躺在帐篷里和小伙伴们看日出，一天的开始还是很惬意的。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0113.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0113-1020x486.jpg" alt="IMG_0113"></a></p>
+<p>金顶至发云界均在山脊线上行走，故客栈较多，可利用客栈门前的水龙头中的山泉水补给水源（提醒事项中有净化水源事项）。全线海拔起伏大，每座大山山峰山谷海拔落差均大于300m，而且每一个垭口缓冲较长，是考验意志力的路程，这一段风景亦是武功山的精华，各种矮松树，各种红黄绿的植被分外养眼，给力的是老天做美，时而起雾，时而散开，又时而半雾半晴，这些若隐若现的浓雾、薄雾穿插在金黄色的高山草甸中，人行走在此景此处，各种美感淋漓尽致，如同漫步在童话的世界里面，如梦如幻，需要你慢慢品味。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0129.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0129-1020x1360.jpg" alt="IMG_0129"></a></p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0156.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0156-1020x765.jpg" alt="IMG_0156"></a></p>
+<p>另外，如果感觉第二天已经体力不支了，可以选择经过吊马桩后前往红岩谷（此处收门票）方向下山，于是在这里忍痛和小伙伴们分开，有缘再会。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0281.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0281-1020x1038.jpg" alt="IMG_0281"></a></p>
+<p>###<code>Day4</code></p>
+<h4 id="u4ECA_u65E5_u884C_u7A0B_uFF1A_u53D1_u4E91_u754C__u2192__u63D0_u4ED9_u5BFA__u2192__u6C88_u5BB6_u5927_u9662__u2192__u7F8A_u72EE_u5E55__u2192__u660E_u6708_u5C71_uFF08__u2192__u5B9C_u6625_uFF09_u3002_u5168_u7A0B_u957F_u5EA6_u7EA617_u516C_u91CC_u3002"><a href="#u4ECA_u65E5_u884C_u7A0B_uFF1A_u53D1_u4E91_u754C__u2192__u63D0_u4ED9_u5BFA__u2192__u6C88_u5BB6_u5927_u9662__u2192__u7F8A_u72EE_u5E55__u2192__u660E_u6708_u5C71_uFF08__u2192__u5B9C_u6625_uFF09_u3002_u5168_u7A0B_u957F_u5EA6_u7EA617_u516C_u91CC_u3002" class="headerlink" title="今日行程：发云界 → 提仙寺 → 沈家大院 → 羊狮幕 → 明月山（ → 宜春）。全程长度约17公里。"></a>今日行程：发云界 → 提仙寺 → 沈家大院 → 羊狮幕 → 明月山（ → 宜春）。全程长度约17公里。</h4><p>今天的路线很适合像我这种害怕蜘蛛等多足类昆虫的人来克服恐惧，反正我走完后回来敢打蟑螂了。</p>
+<p>全程下坡居多，起伏较大，基本无危险地段。发云界出发1小时左右山地地貌突变，高山草甸强转成了灌木荆棘，之后将全线在灌木丛中穿行，身体裸露部分易划伤，建议长袖、长裤或者短袖带上防晒袖套、腿套。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0178.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0178-1020x765.jpg" alt="IMG_0178"></a></p>
+<p>腿上扎进去的倒刺。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0168.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0168-1020x1360.jpg" alt="IMG_0168"></a></p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0170.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0170-1020x1360.jpg" alt="IMG_0170"></a></p>
+<p>比人高的灌木丛，道路非常窄，需要穿越大约2.5小时，遇到岔口后直走几分钟看到如下的石阶，恭喜，成功穿越灌木丛。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0172.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0172-1020x1360.jpg" alt="IMG_0172"></a></p>
+<p>下一段石阶后便是三岔路口，有块木牌上写着“羊狮幕景区”左转后上一段石阶即是报仙寺。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0176.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0176-1020x765.jpg" alt="IMG_0176"></a></p>
+<p>沿着报仙寺前的小路一路向前，之后很快便可到达沈家大院，往两个房子之间的缝隙穿过，右边有一木桥，上石阶上山。到达三岔路口后走大路，原本想走右边小路抄近路，但是灌木过于密集，已经走不通。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0186.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0186-1020x1360.jpg" alt="IMG_0186"></a></p>
+<p>登山杖在此路段就很难发挥作用，可以使用一根做探路用，另外可带上手套，便于下坡时抓树枝借力。<strong>登山杖的正确姿势，抡起在面前画圈，竹林里蜘蛛网实在太多，不然糊满脸。</strong></p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0179.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0179-1020x1360.jpg" alt="IMG_0179"></a></p>
+<p>由发云界到沈家大院全程约4-5小时，此路段无水源，提前备足。</p>
+<p>从发云界到沈家大院的穿越线路可以用经典二个字来形容！既有深山峡谷的壮观，又有辽阔草原般的气势。山间小路时而弯入深谷，时而直上云霄，恍入天上人间，白云和薄雾就在脚边缓缓流动，入目之处是满山的青翠和映山红的娇艳。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0191.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0191-1020x1360.jpg" alt="IMG_0191"></a></p>
+<p>离开沈家大院后有一段当时看来非常漫长的竹栏石阶游步道，之后便到达了羊狮幕景区的东福门入口，此处售门票，成人票100，学生票50，正处于开发中期，许多景点设施都不完善，但是景区风光还是很好的。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0201.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0201-1020x642.jpg" alt="IMG_0201"></a></p>
+<p>下面是噱头之一的悬空栈道。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0221.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0221-1020x1360.jpg" alt="IMG_0221"></a></p>
+<p>游览完羊狮幕景区后前往地图中的流云台,询问此处的工作人员如何去搭乘羊狮幕到明月山的小火车。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0237.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0237-1020x1360.jpg" alt="IMG_0237"></a></p>
+<p>之后沿着工作人员指的道路下山走上公路，此段大约1小时。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0263.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0263-1020x1360.jpg" alt="IMG_0263"></a></p>
+<p>出了羊狮幕景区就可以看到小火车站了。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0234.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0234-1020x765.jpg" alt="IMG_0234"></a></p>
+<p>因为是淡季，于是乎100RMB包了辆火车╰(￣▽￣)╮。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0256.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0256-1020x1360.jpg" alt="IMG_0256"></a></p>
+<p>咔咔咔，20分钟到达明月山索道站上站，明月山至大门为盘山公路或石台阶，走公路无趣无风景，走台阶伤膝盖，可以选择乘坐索道下山，40分钟左右即可到达山脚，反正我从来没正常过，这次也没正常点坐索道，反正快结束了，和室友一路从游步道飞奔下山，两个小时到达大门。还是建议腿力、膝盖不好的朋友做索道下山，避免膝盖受伤，毕竟今天的徒步路程也比较远，下山游步道台阶数大约6000级，正常速度2-3小时。</p>
+<p>这里有必要吐槽一下，明月山索道的上下行索道票竟然<strong>没有学生票！没有军人票！没有老弱孕票！</strong>连羊狮幕景区这刚开发的景区都有考虑到特殊人群，而明月山景区开发早已超过五年，却没有考虑到这点，而让人奇怪的是，明月山的门票却又考虑到了特殊人群，难道索道承包商有种劳资一家独大，你们爱做不做的心态？</p>
+<ul>
+<li>[x] 武功山</li>
+</ul>
+<p>整个行程结束，接下来就是前往火车站，准备回家。如果下山后比较早，直接乘坐公交车即可前往市区，如果下山时天色已晚，那么可以去附近的天沐泡泡温泉，休整一晚后打道回府。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0069.jpg" target="_blank" rel="external"><img src="http://7]]>
+    </summary>
+    
+      <category term="Mountaineering" scheme="http://leonewang.wang/tags/Mountaineering/"/>
+    
+      <category term="Journey" scheme="http://leonewang.wang/categories/Journey/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Web Design with JavaScript and the DOM - 原型对象的理解]]></title>
+    <link href="http://leonewang.wang/2015/09/02/web-design-with-javascript-and-the-dom/"/>
+    <id>http://leonewang.wang/2015/09/02/web-design-with-javascript-and-the-dom/</id>
+    <published>2015-09-02T08:19:04.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<p>参考资料： <a href="http://www.liaoxuefeng.com/" target="_blank" rel="external">http://www.liaoxuefeng.com/</a> 的面向对象编程章节。</p>
+<pre><code>function PrimaryStudent(grade) {
+    this.grade = grade;
+}
+
+function Student(name) {
+    this.name = name;
+    this.hello = function() {
+        console.log(&apos;Hello &apos; + this.name);
+    }
+}
+
+PrimaryStudent.prototype = new Student(&apos;xiaoming&apos;);
+
+var xiaoming = new PrimaryStudent(&apos;xiaoming&apos;);
+
+xiaoming.hello();   // Hello xiaoming
+alert(Student.prototype.isPrototypeOf(xiaoming));   // true
+</code></pre><p>原型链如图所示：</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/屏幕快照-2015-09-02-16.22.51.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/屏幕快照-2015-09-02-16.22.51.png" alt="屏幕快照 2015-09-02 16.22.51"></a></p>
+<p>之前在学习 JavaScript 的时候就对原型对象的理解就已步入误区，首先要明确 <code>[[prototype]]</code> 和 <code>prototype</code> 是两种不一样的东西。</p>
+<p>首先讲讲 <code>prototype</code>，每一个函数对象都有一个显式的 <code>prototype</code> 属性，代表了对象的原型，更具体的说是代表了函数对象<strong>（JavaScript 中没有构造函数这一说法）</strong>所创建的对象的原型。</p>
+<p>以上例为例，<code>PrimaryStudent.prototype</code> 就是 <code>xiaoming</code> 的原型，<code>xiaoming</code> 所引用的那个由 <code>new PrimaryStudent()</code> 创建出来的对象将从 <code>PrimaryStudent.prototype</code> 所引用的对象中继承其属性与方法。</p>
+<p>其次是 <code>[[prototype]]</code>，每一个对象都有一个隐藏的 <code>[[prototype]]</code> 内部属性，上例中，<code>xiaoming</code> 的 <code>[[prototype]]</code> 指向 <code>PrimaryStudent.prototype</code> ，而 <code>PrimaryStudent.prototype</code> 也是一个对象，所以它也有一个 <code>[[prototype]]</code> 属性指向它的原型对象，这便形成了一个 <strong>原型链</strong>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考资料： <a href="http://www.liaoxuefeng.com/" target="_blank" rel="external">http://www.liaoxuefeng.com/</a> 的面向对象编程章节。</p>
+<pre><code>func]]>
+    </summary>
+    
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+    
+      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Ukulele]]></title>
+    <link href="http://leonewang.wang/2015/08/17/ukulele/"/>
+    <id>http://leonewang.wang/2015/08/17/ukulele/</id>
+    <published>2015-08-17T08:59:56.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/08/aqua.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/08/aqua-632x787.jpg" alt="aqua"></a></p>
+<blockquote>
+<p>自从去年欣赏了 <a href="http://walkofftheearth.com" target="_blank" rel="external">Walk off the Earth</a> 各种天马行空的 MV 之后，就一直觉得 Ukulele 弹奏有一种魔性的声音，欢快轻松，也是我非常喜欢的民谣风格，甚至摇滚风。</p>
+</blockquote>
+<p>昨天黄昏，和朋友们去曾厝垵步行街逛逛，结果发现了好几家 <mark>Ukulele</mark> 小店，瞬间就魔障了，心里痒痒的，想要淘一只来玩玩，虽说谈不上老鸟，但还是玩过会吉他，小U上手应该也很快，某猫买的彩虹人 ANueNue 子品牌 AQUA 23”</p>
+<p>All right，科普 Ukulele 文化中…</p>
+<hr>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/08/aqua.jpg" target="_blank" rel="external"><img src="http://7xkj8]]>
+    </summary>
+    
+      <category term="Ukulele" scheme="http://leonewang.wang/tags/Ukulele/"/>
+    
+      <category term="Music" scheme="http://leonewang.wang/categories/Music/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[问题粉碎机：Node.js]]></title>
+    <link href="http://leonewang.wang/2015/08/13/q-node-js/"/>
+    <id>http://leonewang.wang/2015/08/13/q-node-js/</id>
+    <published>2015-08-13T09:28:01.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<p><mark>问题描述</mark> <code>node.js</code> 创建基本 <code>HTTP</code> 服务器，<code>request</code> 请求执行多次。</p>
+<p><mark>详细描述</mark> 代码如下：</p>
+<pre><code>var http = require(&apos;http&apos;);
+var count = 0;
+http.createServer(function (req, res) {
+console.log(&apos;Running...&apos;);
+
+res.writeHead(200, {&apos;Content-Type&apos;: &apos;text/plain&apos;});
+res.end(&apos;Hello World&apos;);
+}).listen(1337, &apos;127.0.0.1&apos;);
+console.log(&apos;Server running at http://127.0.0.1:1337/&apos;);
+
+// 控制台输出
+// Running...
+// Running...
+`&lt;/pre&gt;
+
+&lt;mark&gt;解决方案&lt;/mark&gt; 控制台输出表明内部方法被执行了两次，原因可能是 `request` 请求了两次，于是输出**请求路径**查看。
+
+&lt;pre&gt;`var http = require(&apos;http&apos;);
+var count = 0;
+http.createServer(function (req, res) {
+count ++;
+console.log(&apos;Runtime: &apos; + count + &apos;. Request: &apos; + req.url);
+
+res.writeHead(200, {&apos;Content-Type&apos;: &apos;text/plain&apos;});
+res.end(&apos;Hello World&apos;);
+}).listen(1337, &apos;127.0.0.1&apos;);
+console.log(&apos;Server running at http://127.0.0.1:1337/&apos;);
+
+// 控制台输出
+// Runtime: 1\. Request: /
+// Runtime: 2\. Request: /favicon.ico
+</code></pre><p>所以原因是自身页面请求一次，而 <code>/favicon.ico</code> 获取站点图标也是一次请求，问题解决。</p>
+<hr>
+<p>而将 <code>req.end()</code> 方法<strong>删除</strong>又会发生奇怪的事，请求数量又变为 1 ，并且 <code>/favicon.ico</code> 不发出请求，所有请求都变为 <code>padding</code> 状态。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><mark>问题描述</mark> <code>node.js</code> 创建基本 <code>HTTP</code> 服务器，<code>request</code> 请求执行多次。</p>
+<p><mark>详细描述</mark> 代码如下：</p>
+<pre><c]]>
+    </summary>
+    
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+    
+      <category term="Node.js" scheme="http://leonewang.wang/tags/Node-js/"/>
+    
+      <category term="Question" scheme="http://leonewang.wang/tags/Question/"/>
+    
+      <category term="Develop" scheme="http://leonewang.wang/categories/Develop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript Notes]]></title>
+    <link href="http://leonewang.wang/2015/08/09/javascript-notes/"/>
+    <id>http://leonewang.wang/2015/08/09/javascript-notes/</id>
+    <published>2015-08-09T12:01:58.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="JavaScript_1"><a href="#JavaScript_1" class="headerlink" title="JavaScript 1"></a>JavaScript <sup id="fnref-202-book"><a href="/#fn-202-book">1</a></sup></h1><h2 id="Based_grammer"><a href="#Based_grammer" class="headerlink" title="Based grammer"></a>Based grammer</h2><h3 id="string_methods"><a href="#string_methods" class="headerlink" title="string methods"></a>string methods</h3><p><code>charAt()</code>    返回指定索引位置的字符<br><code>charCodeAt()</code>    返回指定索引位置字符的 Unicode 值<br><code>concat()</code>    连接两个或多个字符串，返回连接后的字符串<br><code>fromCharCode()</code>    将字符转换为 Unicode 值<br><code>indexOf()</code>    返回字符串中检索指定字符第一次出现的位置<br><code>lastIndexOf()</code>    返回字符串中检索指定字符最后一次出现的位置<br><code>localeCompare()</code>    用本地特定的顺序来比较两个字符串<br><code>match()</code>    找到一个或多个正则表达式的匹配<br><code>replace()</code>    替换与正则表达式匹配的子串<br><code>search()</code>    检索与正则表达式相匹配的值<br><code>slice()</code>    提取字符串的片断，并在新的字符串中返回被提取的部分<br><code>split()</code>    把字符串分割为子字符串数组<br><code>substr()</code>    从起始索引号提取字符串中指定数目的字符<br><code>substring()</code>    提取字符串中两个指定的索引号之间的字符<br><code>toLocaleLowerCase()</code>    根据主机的语言环境把字符串转换为小写，只有几种语言（如土耳其语）具有地方特有的大小写映射<br><code>toLocaleUpperCase()</code>    根据主机的语言环境把字符串转换为大写，只有几种语言（如土耳其语）具有地方特有的大小写映射<br><code>toLowerCase()</code>    把字符串转换为小写<br><code>toString()</code>    返回字符串对象值<br><code>toUpperCase()</code>    把字符串转换为大写<br><code>trim()</code>    移除字符串首尾空白<br><code>valueOf()</code>    返回某个字符串对象的原始值</p>
+<p>例：字符转换数字</p>
+<pre><code>function string2int(s) {
+ return s.split(&apos;&apos;)
+    .map(function(x) { return x.charCodeAt(0) - &apos;0&apos;.charCodeAt(0)})
+    .reduce(function(x,y) { return 10 * x + y});
+}
+`&lt;/pre&gt;
+
+例：把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字
+
+&lt;pre&gt;`function normalize(arr) {
+    return arr.map(function(x) { 
+        return x[0].toUpperCase() + x.slice(1).toLowerCase() });
+}
+`&lt;/pre&gt;
+
+### push and pop
+
+push()向Array的末尾添加若干元素，pop()则把Array的最后一个元素删除掉：
+
+&lt;pre&gt;`var arr = [1, 2];
+arr.push(&apos;A&apos;, &apos;B&apos;); // 返回Array新的长度: 4
+arr; // [1, 2, &apos;A&apos;, &apos;B&apos;]
+arr.pop(); // pop()返回&apos;B&apos;
+arr; // [1, 2, &apos;A&apos;]
+arr.pop(); arr.pop(); arr.pop(); // 连续pop 3次
+arr; // []
+arr.pop(); // 空数组继续pop不会报错，而是返回undefined
+arr; // []
+`&lt;/pre&gt;
+
+### unshift and shift
+
+如果要往Array的头部添加若干元素，使用unshift()方法，shift()方法则把Array的第一个元素删掉：
+
+&lt;pre&gt;`var arr = [1, 2];
+arr.unshift(&apos;A&apos;, &apos;B&apos;); // 返回Array新的长度: 4
+arr; // [&apos;A&apos;, &apos;B&apos;, 1, 2]
+arr.shift(); // &apos;A&apos;
+arr; // [&apos;B&apos;, 1, 2]
+arr.shift(); arr.shift(); arr.shift(); // 连续shift 3次
+arr; // []
+arr.shift(); // 空数组继续shift不会报错，而是返回undefined
+arr; // []
+`&lt;/pre&gt;
+
+### splice
+
+splice() 方法是修改Array的“万能方法”，它可以从指定的索引开始删除若干元素，然后再从该位置添加若干元素：
+
+&lt;pre&gt;`var arr = [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Yahoo&apos;, &apos;AOL&apos;, &apos;Excite&apos;, &apos;Oracle&apos;];
+// 从索引2开始删除3个元素,然后再添加两个元素:
+arr.splice(2, 3, &apos;Google&apos;, &apos;Facebook&apos;); // 返回删除的元素 [&apos;Yahoo&apos;, &apos;AOL&apos;, &apos;Excite&apos;]
+arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Google&apos;, &apos;Facebook&apos;, &apos;Oracle&apos;]
+// 只删除,不添加:
+arr.splice(2, 2); // [&apos;Google&apos;, &apos;Facebook&apos;]
+arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Oracle&apos;]
+// 只添加,不删除:
+arr.splice(2, 0, &apos;Google&apos;, &apos;Facebook&apos;); // 返回[],因为没有删除任何元素
+arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Google&apos;, &apos;Facebook&apos;, &apos;Oracle&apos;]
+`&lt;/pre&gt;
+
+### concat
+
+concat()方法把当前的Array和另一个Array连接起来，并返回一个新的Array：
+
+&lt;pre&gt;`var arr = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
+var added = arr.concat([1, 2, 3]);
+added; // [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, 1, 2, 3]
+arr; // [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;]
+`&lt;/pre&gt;
+
+请注意，concat()方法并没有修改当前Array，而是返回了一个新的Array。
+
+实际上，concat()方法可以接收任意个元素和Array，并且自动把Array拆开，然后全部添加到新的Array里：
+
+&lt;pre&gt;`var arr = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
+arr.concat(1, 2, [3, 4]); // [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, 1, 2, 3, 4]
+`&lt;/pre&gt;
+
+### join
+
+join()方法是一个非常实用的方法，它把当前Array的每个元素都用指定的字符串连接起来，然后返回连接后的字符串：
+
+&lt;pre&gt;`var arr = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, 1, 2, 3];
+arr.join(&apos;-&apos;); // &apos;A-B-C-1-2-3&apos;
+`&lt;/pre&gt;
+
+如果Array的元素不是字符串，将自动转换为字符串后再连接。
+
+## Object
+
+由于JavaScript的对象是动态类型，你可以自由地给一个对象添加或删除属性：
+
+&lt;pre&gt;`var xiaoming = {
+    name: &apos;小明&apos;
+};
+xiaoming.age; // undefined
+xiaoming.age = 18; // 新增一个age属性
+xiaoming.age; // 18
+delete xiaoming.age; // 删除age属性
+`&lt;/pre&gt;
+
+如果我们要检测xiaoming是否拥有某一属性，可以用in操作符：
+
+&lt;pre&gt;`var xiaoming = {
+    name: &apos;小明&apos;,
+    birth: 1990,
+    school: &apos;No.1 Middle School&apos;,
+    height: 1.70,
+    weight: 65,
+    score: null
+};
+&apos;name&apos; in xiaoming; // true
+&apos;grade&apos; in xiaoming; // false
+`&lt;/pre&gt;
+
+不过要小心，如果in判断一个属性存在，这个属性不一定是xiaoming的，它可能是xiaoming继承得到的：
+
+&lt;pre&gt;`&apos;toString&apos; in xiaoming; // true
+`&lt;/pre&gt;
+
+因为toString定义在object对象中，而所有对象最终都会在原型链上指向object，所以xiaoming也拥有toString属性。
+
+要判断一个属性是否是xiaoming自身拥有的，而不是继承得到的，可以用hasOwnProperty()方法：
+
+&lt;pre&gt;`var xiaoming = {
+    name: &apos;小明&apos;
+};
+xiaoming.hasOwnProperty(&apos;name&apos;); // true
+xiaoming.hasOwnProperty(&apos;toString&apos;); // false
+`&lt;/pre&gt;
+
+## Map
+
+JavaScript的默认对象表示方式{}可以视为其他语言中的Map或Dictionary的数据结构，即一组键值对。
+
+但是JavaScript的对象有个小问题，就是键必须是字符串。但实际上Number或者其他数据类型作为键也是非常合理的。
+
+为了解决这个问题，最新的ES6规范引入了新的数据类型Map。
+
+Map是一组键值对的结构，具有极快的查找速度。
+
+初始化Map需要一个二维数组，或者直接初始化一个空Map。Map具有以下方法：
+
+&lt;pre&gt;`var m = new Map(); // 空Map
+m.set(&apos;Adam&apos;, 67); // 添加新的key-value
+m.set(&apos;Bob&apos;, 59);
+m.has(&apos;Adam&apos;); // 是否存在key &apos;Adam&apos;: true
+m.get(&apos;Adam&apos;); // 67
+m.delete(&apos;Adam&apos;); // 删除key &apos;Adam&apos;
+m.get(&apos;Adam&apos;); // undefined
+`&lt;/pre&gt;
+
+由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：
+
+&lt;pre&gt;`var m = new Map();
+m.set(&apos;Adam&apos;, 67);
+m.set(&apos;Adam&apos;, 88);
+m.get(&apos;Adam&apos;); // 88
+`&lt;/pre&gt;
+
+## Set
+
+Set和Map类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在Set中，没有重复的key。
+
+要创建一个Set，需要提供一个Array作为输入，或者直接创建一个空Set：
+
+&lt;pre&gt;`var s1 = new Set(); // 空Set
+var s2 = new Set([1, 2, 3]); // 含1, 2, 3
+`&lt;/pre&gt;
+
+重复元素在Set中自动被过滤：
+
+&lt;pre&gt;`var s = new Set([1, 2, 3, 3, &apos;3&apos;]);
+s; // Set {1, 2, 3, &quot;3&quot;}
+`&lt;/pre&gt;
+
+通过`add(key)`方法可以添加到`Set`中，通过`delete(key)`方法可以删除元素。
+
+## iterable
+
+你可能会有疑问，for ... of循环和for ... in循环有何区别？
+
+for ... in循环由于历史遗留问题，它遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，它的每个元素的索引被视为一个属性。
+
+当我们手动给Array对象添加了额外的属性后，for ... in循环将带来意想不到的意外效果：
+
+&lt;pre&gt;`var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
+a.name = &apos;Hello&apos;;
+for (var x in a) {
+    alert(x); // &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;name&apos;
+}
+for ... in循环将把name包括在内，但Array的length属性却不包括在内。
+
+for ... of循环则完全修复了这些问题，它只循环集合本身的元素：
+
+var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
+a.name = &apos;Hello&apos;;
+for (var x of a) {
+    alert(x); &apos;A&apos;, &apos;B&apos;, &apos;C&apos;
+}
+`&lt;/pre&gt;
+
+这就是为什么要引入新的for ... of循环。
+
+然而，更好的方式是直接使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。以Array为例：
+
+&lt;pre&gt;`var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
+a.forEach(function (element, index, array) {
+    // element: 指向当前元素的值
+    // index: 指向当前索引
+    // array: 指向Array对象本身
+    alert(element);
+});
+`&lt;/pre&gt;
+
+注意，forEach()方法是ES5.1标准引入的，你需要测试浏览器是否支持。
+
+Set与Array类似，但Set没有索引，因此回调函数最多两个参数：
+
+&lt;pre&gt;`var s = new Set([&apos;A&apos;, &apos;B&apos;, &apos;C&apos;]);
+s.forEach(function (element, set) {
+    alert(element);
+});
+`&lt;/pre&gt;
+
+Map的回调函数参数依次为value、key和map本身：
+
+&lt;pre&gt;`var m = new Map([[1, &apos;x&apos;], [2, &apos;y&apos;], [3, &apos;z&apos;]]);
+m.forEach(function (value, key, map) {
+    alert(value);
+});
+`&lt;/pre&gt;
+
+## Function
+
+### arguments
+
+JavaScript还有一个免费赠送的关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。arguments类似Array但它不是一个Array：
+
+&lt;pre&gt;`function foo(x) {
+    alert(x); // 10
+    for (var i=0; i&amp;lt;arguments.length; i++) {
+        alert(arguments[i]); // 10, 20, 30
+    }
+}
+foo(10, 20, 30);
+`&lt;/pre&gt;
+
+### rest
+
+ES6标准引入了rest参数
+
+&lt;pre&gt;`function foo(a, b, ...rest) {
+    console.log(&apos;a = &apos; + a);
+    console.log(&apos;b = &apos; + b);
+    console.log(rest);
+}
+
+foo(1, 2, 3, 4, 5);
+// 结果:
+// a = 1
+// b = 2
+// Array [ 3, 4, 5 ]
+
+foo(1);
+// 结果:
+// a = 1
+// b = undefined
+// Array []
+`&lt;/pre&gt;
+
+rest参数只能写在最后，前面用...标识，从运行结果可知，传入的参数先绑定a、b，多余的参数以数组形式交给变量rest，所以，不再需要arguments我们就获取了全部参数。
+
+如果传入的参数连正常定义的参数都没填满，也不要紧，rest参数会接收一个空数组（注意不是undefined）。
+
+### apply
+
+要指定函数的this指向哪个对象，可以用函数本身的apply方法，它接收两个参数，第一个参数就是需要绑定的this变量，第二个参数是Array，表示函数本身的参数。
+
+apply 还有更为有用的使用方式**装饰器**
+
+利用apply()，我们还可以动态改变函数的行为。
+
+JavaScript的所有对象都是动态的，即使内置的函数，我们也可以重新指向新的函数。
+
+现在假定我们想统计一下代码一共调用了多少次parseInt()，可以把所有的调用都找出来，然后手动加上count += 1，不过这样做太傻了。最佳方案是用我们自己的函数替换掉默认的parseInt()：
+
+&lt;pre&gt;`var count = 0;
+var oldParseInt = parseInt; // 保存原函数
+
+window.parseInt = function () {
+    count += 1;
+    return oldParseInt.apply(null, arguments); // 调用原函数
+};
+
+// 测试:
+parseInt(&apos;10&apos;);
+parseInt(&apos;20&apos;);
+parseInt(&apos;30&apos;);
+count; // 3
+`&lt;/pre&gt;
+
+另一个与apply()类似的方法是call()，唯一区别是：
+
+apply()把参数打包成Array再传入；
+
+call()把参数按顺序传入。
+
+比如调用Math.max(3, 5, 4)，分别用apply()和call()实现如下：
+
+&lt;pre&gt;`Math.max.apply(null, [3, 5, 4]); // 5
+Math.max.call(null, 3, 5, 4); // 5
+`&lt;/pre&gt;
+
+对普通函数调用，我们通常把this绑定为null。
+
+## Higher-order function
+
+### map
+
+举例说明，比如我们有一个函数f(x)=x2，要把这个函数作用在一个数组[1, 2, 3, 4, 5, 6, 7, 8, 9]上，就可以用map实现如下：
+
+由于map()方法定义在JavaScript的Array中，我们调用Array的map()方法，传入我们自己的函数，就得到了一个新的Array作为结果：
+
+&lt;pre&gt;`function pow(x) {
+    return x * x;
+}
+
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
+`&lt;/pre&gt;
+
+### reduce
+
+reduce 的用法
+
+Array 的 reduce() 方法中的函数必须接受两个参数， reduce() 将结果继续和序列中的下一个元素做累积运算。
+
+比方说对一个 Array 进行求和：
+
+&lt;pre&gt;`var arr = [1, 3, 5, 7, 9];
+arr.reduce(function (x, y) {
+    return x + y;
+}); // 25
+`&lt;/pre&gt;
+
+### filter
+
+filter也是一个常用的操作，它用于把Array的某些元素过滤掉，然后返回剩下的元素。
+
+和map()类似，Array的filter()也接收一个函数。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。
+
+例如，在一个Array中，删掉偶数，只保留奇数，可以这么写：
+
+&lt;pre&gt;`var arr = [1, 2, 4, 5, 6, 9, 10, 15];
+arr.filter(function (x) {
+    return x % 2 === 1;
+}); // [1, 5, 9, 15]
+`&lt;/pre&gt;
+
+请尝试用filter()筛选出素数：
+
+&lt;pre&gt;`&apos;use strict&apos;;
+
+function get_primes(arr) {
+    return arr.filter(function(x) { 
+        if(x == 1) { return false; }
+        for(var i = 2; i &amp;lt;= Math.sqrt(x); i ++ ) {
+             if(x % i == 0) { 
+                return false; 
+             }
+        }
+        return true;
+    });
+}
+`&lt;/pre&gt;
+
+### sort
+
+&lt;pre&gt;`var arr = [&apos;Google&apos;, &apos;apple&apos;, &apos;Microsoft&apos;];
+arr.sort(function (s1, s2) {
+    x1 = s1.toUpperCase();
+    x2 = s2.toUpperCase();
+    if (x1 &amp;lt; x2) {
+        return -1;
+    }
+    if (x1 &amp;gt; x2) {
+        return 1;
+    }
+    return 0;
+}); // [&apos;apple&apos;, &apos;Google&apos;, &apos;Microsoft&apos;]
+`&lt;/pre&gt;
+
+## Closure （闭包）
+
+&lt;pre&gt;`function lazy_sum(arr) {
+    var sum = function () {
+        return arr.reduce(function (x, y) {
+            return x + y;
+        });
+    }
+    return sum;
+}
+`&lt;/pre&gt;
+
+当我们调用lazy_sum()时，返回的并不是求和结果，而是求和函数：
+
+&lt;pre&gt;`    var f = lazy_sum([1, 2, 3, 4, 5]); // function sum()
+`&lt;/pre&gt;
+
+调用函数f时，才真正计算求和的结果：
+
+&lt;pre&gt;`    f(); // 15
+`&lt;/pre&gt;
+
+在这个例子中，我们在函数`lazy_sum`中又定义了函数`sum`，并且，内部函数sum可以引用外部函数`lazy_sum`的参数和局部变量，当`lazy_sum`返回函数`sum`时，相关参数和变量都保存在返回的函数中，这种称为“闭包（Closure）”的程序结构拥有极大的威力。
+
+闭包就是携带状态的函数，并且它的状态可以完全对外隐藏起来。
+
+闭包还可以把多参数的函数变成单参数的函数。例如，要计算xy可以用`Math.pow(x, y)`函数，不过考虑到经常计算$x^2$或$x^3$，我们可以利用闭包创建新的函数pow2和pow3：
+
+&lt;pre&gt;`function make_pow(n) {
+    return function (x) {
+        return Math.pow(x, n);
+    }
+}
+
+// 创建两个新函数:
+var pow2 = make_pow(2);
+var pow3 = make_pow(3);
+
+pow2(5); // 25
+pow3(7); // 343
+`&lt;/pre&gt;
+
+&gt; 需加强对闭包的理解
+
+## 标准对象
+
+特别注意`null`的类型是`object`，`Array`的类型也是`object`，如果我们用`typeof`将无法区分出`null`、`Array`和通常意义上的object——`{}`
+
+总结一下，有这么几条规则需要遵守：
+</code></pre><ul>
+<li>不要使用new Number()、new Boolean()、new String()创建包装对象；</li>
+<li>用parseInt()或parseFloat()来转换任意类型到number</li>
+<li>用String()来转换任意类型到string，或者直接调用某个对象的toString()方法；</li>
+<li>通常不必把任意类型转换为boolean再判断，因为可以直接写if (myVar) {…}；</li>
+<li>typeof操作符可以判断出number、boolean、string、function和undefined；</li>
+<li>判断Array要使用Array.isArray(arr)；</li>
+<li>判断null请使用myVar === null；</li>
+<li>判断某个全局变量是否存在用typeof window.myVar === ‘undefined’；</li>
+<li><p>函数内部判断某个变量是否存在用typeof myVar === ‘undefined’。</p>
+<p>最后有细心的同学指出，任何对象都有toString()方法吗？null和undefined就没有！确实如此，这两个特殊值要除外，虽然null还伪装成了object类型。</p>
+<p>更细心的同学指出，number对象调用toString()报SyntaxError：</p>
+<pre>`123.toString(); // SyntaxError
+`</pre>
+
+<p>遇到这种情况，要特殊处理一下：</p>
+<pre>`123..toString(); // '123', 注意是两个点！
+(123).toString(); // '123'
+`</pre>
+
+<p>因为 JavaScript 中只有一种数字类型：基于 IEEE 754 标准的双精度 。它并没有为整数给出一种特定的类型。所以所有的数字都是小数。<br><code>123.toString()</code> 等价于 <code>123.0toString()</code><br>除非使用 <code>(123).toString()</code><br><code>(123).toString()</code> 等价于 <code>123.0.toString()</code> 和 <code>123..toString()</code><br>因为 <code>123\. === 123.0 //true</code></p>
+<h2 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h2><h3 id="u8D2A_u5A6A_u5339_u914D"><a href="#u8D2A_u5A6A_u5339_u914D" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h3><p>需要特别指出的是，正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。举例如下，匹配出数字后面的0：</p>
+<pre>`var re = /^(\d+)(0*)$/;
+re.exec('102300'); // ['102300', '102300', '']
+`</pre>
+
+<p>由于\d+采用贪婪匹配，直接把后面的0全部匹配了，结果0*只能匹配空字符串了。</p>
+<p>必须让\d+采用非贪婪匹配（也就是尽可能少匹配），才能把后面的0匹配出来，加个?就可以让\d+采用非贪婪匹配：</p>
+<pre>`var re = /^(\d+?)(0*)$/;
+re.exec('102300'); // ['102300', '1023', '00']
+`</pre>
+
+<p>全局搜索</p>
+<p>JavaScript的正则表达式还有几个特殊的标志，最常用的是g，表示全局匹配：</p>
+<pre>`var r1 = /test/g;
+// 等价于:
+var r2 = new RegExp('test', 'g');
+`</pre>
+
+<p>全局匹配可以多次执行exec()方法来搜索一个匹配的字符串。当我们指定g标志后，每次运行exec()，正则表达式本身会更新lastIndex属性，表示上次匹配到的最后索引：</p>
+<pre>`var s = 'JavaScript, VBScript, JScript and ECMAScript';
+var re=/[a-zA-Z]+Script/g;
+
+// 使用全局匹配:
+re.exec(s); // ['JavaScript']
+re.lastIndex; // 10
+
+re.exec(s); // ['VBScript']
+re.lastIndex; // 20
+
+re.exec(s); // ['JScript']
+re.lastIndex; // 29
+
+re.exec(s); // ['ECMAScript']
+re.lastIndex; // 44
+
+re.exec(s); // null，直到结束仍没有匹配到
+`</pre>
+
+<p>全局匹配类似搜索，因此不能使用/^…$/，那样只会最多匹配一次。</p>
+<p>正则表达式还可以指定i标志，表示忽略大小写，m标志，表示执行多行匹配。</p>
+<h2 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h2><h3 id="insertBefore"><a href="#insertBefore" class="headerlink" title="insertBefore"></a>insertBefore</h3><p>如果我们要把子节点插入到指定的位置怎么办？可以使用parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。</p>
+<p>还是以上面的HTML为例，假定我们要把Haskell插入到Python之前：</p>
+<pre>`&lt;!-- HTML结构 --&gt;
+&lt;div id="list"&gt;
+    &lt;p id="java"&gt;Java&lt;/p&gt;
+    &lt;p id="python"&gt;Python&lt;/p&gt;
+    &lt;p id="scheme"&gt;Scheme&lt;/p&gt;
+&lt;/div&gt;
+`</pre>
+
+<p>可以这么写：</p>
+<pre>`var
+    list = document.getElementById('list'),
+    ref = document.getElementById('python'),
+    haskell = document.createElement('p');
+haskell.id = 'haskell';
+haskell.innerText = 'Haskell';
+list.insertBefore(haskell, ref);
+`</pre>
+
+<h2 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h2><h3 id="24_u7B26_u53F7"><a href="#24_u7B26_u53F7" class="headerlink" title="$符号"></a>$符号</h3><p><code>$</code>是著名的jQuery符号。实际上，jQuery把所有功能全部封装在一个全局变量jQuery中，而$也是一个合法的变量名，它是变量jQuery的别名：</p>
+<pre>`window.jQuery; // jQuery(selector, context)
+window.$; // jQuery(selector, context)
+$ === jQuery; // true
+typeof($); // 'function'
+`</pre>
+
+<p><code>$</code>本质上就是一个函数，但是函数也是对象，于是$除了可以直接调用外，也可以有很多其他属性。</p>
+<p>注意，你看到的<code>$</code>函数名可能不是<code>jQuery(selector, context)</code>，因为很多JavaScript压缩工具可以对函数名和参数改名，所以压缩过的jQuery源码<code>$</code>函数可能变成<code>a(b, c)</code>。</p>
+<p>绝大多数时候，我们都直接用<code>$</code>（因为写起来更简单嘛）。但是，如果<code>$</code>这个变量不幸地被占用了，而且还不能改，那我们就只能让<code>jQuery</code>把<code>$</code>变量交出来，然后就只能使用jQuery这个变量：</p>
+<pre>`$; // jQuery(selector, context)
+jQuery.noConflict();
+$; // undefined
+jQuery; // jQuery(selector, context)
+`</pre>
+
+<p>这种黑魔法的原理是jQuery在占用<code>$</code>之前，先在内部保存了原来的<code>$</code>,调用<code>jQuery.noConflict()</code>时会把原来保存的变量还原。</p>
+<h3 id="u67E5_u627E_u548C_u8FC7_u6EE4"><a href="#u67E5_u627E_u548C_u8FC7_u6EE4" class="headerlink" title="查找和过滤"></a>查找和过滤</h3><p>map()方法把一个jQuery对象包含的若干DOM节点转化为其他对象：</p>
+<pre>`var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
+var arr = langs.map(function () {
+    return this.innerHTML;
+}).get(); // 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']
+`</pre>
+
+<h3 id="u7EC3_u4E60"><a href="#u7EC3_u4E60" class="headerlink" title="练习"></a>练习</h3><p>对如下的Form表单：</p>
+<pre>`&lt;!-- HTML结构 --&gt;
+&lt;form id="test-form" action="test"&gt;
+    &lt;legend&gt;请选择想要学习的编程语言：&lt;/legend&gt;
+    &lt;fieldset&gt;
+        &lt;p&gt;&lt;label class="selectAll"&gt;&lt;input type="checkbox"&gt; &lt;span class="selectAll"&gt;全选&lt;/span&gt;&lt;span class="deselectAll"&gt;全不选&lt;/span&gt;&lt;/label&gt; &lt;a href="#0" class="invertSelect"&gt;反选&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="javascript"&gt; JavaScript&lt;/label&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="python"&gt; Python&lt;/label&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="ruby"&gt; Ruby&lt;/label&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="haskell"&gt; Haskell&lt;/label&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="scheme"&gt; Scheme&lt;/label&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;button type="submit"&gt;Submit&lt;/button&gt;&lt;/p&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;
+`</pre>
+
+<form id="test-form" action="test"><br>    <legend>请选择想要学习的编程语言：</legend><br>    <fieldset><br>        <label class="selectAll"><input type="checkbox"> <span class="selectAll">全选</span><span class="deselectAll">全不选</span></label> <a href="/#0">反选</a><br>        <label><input type="checkbox" name="lang" value="javascript"> JavaScript</label><br>        <label><input type="checkbox" name="lang" value="python"> Python</label><br>        <label><input type="checkbox" name="lang" value="ruby"> Ruby</label><br>        <label><input type="checkbox" name="lang" value="haskell"> Haskell</label><br>        <label><input type="checkbox" name="lang" value="scheme"> Scheme</label><br>        <button type="submit">Submit</button><br>    </fieldset><br></form>
+
+<p>绑定合适的事件处理函数，实现以下逻辑：</p>
+</li>
+<li><p>当用户勾上“全选”时，自动选中所有语言，并把“全选”变成“全不选”；</p><p></p>
+</li>
+<li>当用户去掉“全不选”时，自动不选中所有语言；</li>
+<li>当用户点击“反选”时，自动把所有语言状态反转（选中的变为未选，未选的变为选中）；</li>
+<li>当用户把所有语言都手动勾上时，“全选”被自动勾上，并变为“全不选”；</li>
+<li><p>当用户手动去掉选中至少一种语言时，“全不选”自动被去掉选中，并变为“全选”。</p>
+<pre>`'use strict';
+
+var
+    form = $('#test-form'),
+    langs = form.find('[name=lang]'),
+    selectAll = form.find('label.selectAll :checkbox'),
+    selectAllLabel = form.find('label.selectAll span.selectAll'),
+    deselectAllLabel = form.find('label.selectAll span.deselectAll'),
+    invertSelect = form.find('a.invertSelect');
+
+// 重置初始化状态:
+form.find('*').show().off();
+form.find(':checkbox').prop('checked', false).off();
+deselectAllLabel.hide();
+// 拦截form提交事件:
+form.off().submit(function (e) {
+    e.preventDefault();
+    alert(form.serialize());
+});
+
+selectAll.click(function(){
+    langs.prop('checked',this.checked);
+    selectAllLabel.toggle(!this.checked);
+    deselectAllLabel.toggle(this.checked);
+});
+
+invertSelect.click(function(){
+    langs.map(function(k,v){
+        $(v).prop('checked',!v.checked);
+    });
+    langs.change();
+});
+
+langs.change(function(){
+    var count = 0;
+    langs.map(function(k,v) {
+        if(v.checked) {count++;}
+    });
+    selectAll.prop('checked',count===langs.length);
+    selectAllLabel.toggle(!(count===langs.length));
+    deselectAllLabel.toggle(count===langs.length);
+});
+`</pre>
+
+<h3 id="jQuery__u63D2_u4EF6"><a href="#jQuery__u63D2_u4EF6" class="headerlink" title="jQuery 插件"></a>jQuery 插件</h3><p></p><p>当我们使用jQuery对象的方法时，由于jQuery对象可以操作一组DOM，而且支持链式操作，所以用起来非常方便。</p>
+<p>给jQuery对象绑定一个新方法是通过扩展$.fn对象实现的。让我们来编写第一个扩展——highlight1()：</p>
+<pre>`$.fn.highlight1 = function () {
+    // this已绑定为当前jQuery对象:
+    this.css('backgroundColor', '#fffceb').css('color', '#d85030');
+    return this;
+}
+`</pre>
+
+<p>注意到函数内部的this在调用时被绑定为jQuery对象，所以函数内部代码可以正常调用所有jQuery对象的方法。</p>
+<p>细心的童鞋可能发现了，为什么最后要return this;？因为jQuery对象支持链式操作，我们自己写的扩展方法也要能继续链式下去：</p>
+<pre>`$('span.hl').highlight1().slideDown();
+`</pre>
+
+<p>不然，用户调用的时候，就不得不把上面的代码拆成两行。</p>
+<p>但是这个版本并不完美。有的用户希望高亮的颜色能自己来指定，怎么办？</p>
+<p>我们可以给方法加个参数，让用户自己把参数用对象传进去。于是我们有了第二个版本的highlight2()：</p>
+<pre>`$.fn.highlight2 = function (options) {
+    // 要考虑到各种情况:
+    // options为undefined
+    // options只有部分key
+    var bgcolor = options &amp;&amp; options.backgroundColor || '#fffceb';
+    var color = options &amp;&amp; options.color || '#d85030';
+    this.css('backgroundColor', bgcolor).css('color', color);
+    return this;
+}
+`</pre>
+
+<p>紧接着用户对<code>highlight2()</code>提出了意见：每次调用都需要传入自定义的设置，能不能让我自己设定一个缺省值，以后的调用统一使用无参数的<code>highlight2()</code>？</p>
+<p>也就是说，我们设定的默认值应该能允许用户修改。</p>
+<p>那默认值放哪比较合适？放全局变量肯定不合适，最佳地点是<code>$.fn.highlight2</code>这个函数对象本身。</p>
+<p>于是最终版的<code>highlight()</code>终于诞生了：</p>
+<pre>`$.fn.highlight = function (options) {
+    // 合并默认值和用户设定值:
+    var opts = $.extend({}, $.fn.highlight.defaults, options);
+    this.css('backgroundColor', opts.backgroundColor).css('color', opts.color);
+    return this;
+}
+
+// 设定默认值:
+$.fn.highlight.defaults = {
+    color: '#d85030',
+    backgroundColor: '#fff8de'
+}
+`</pre>
+
+<p>这次用户终于满意了。用户使用时，只需一次性设定默认值：</p>
+<p><pre>`$.fn.highlight.defaults.color = ‘#fff’;<br>$.fn.highlight.defaults.backgroundColor = ‘#000’;</pre></p>
+</li>
+</ul>
+<p>然后就可以非常简单地调用<code>highlight()</code>了。</p>
+<p>最终，我们得出编写一个jQuery插件的原则：</p>
+<ol>
+<li>给<code>$.fn</code>绑定函数，实现插件的代码逻辑；</li>
+<li>插件函数最后要<code>return this;</code>以支持链式调用；</li>
+<li>插件函数要有默认值，绑定在<code>$.fn.&amp;lt;pluginName&amp;gt;.defaults</code>上；</li>
+<li>用户在调用时可传入设定值以便覆盖默认值。</li>
+</ol>
+<div class="footnotes"><br><br><em> </em> *<br><br>1.  学习主要来自<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖雪峰官方网站 JavaScript 教程</a>，从中记录较为重要的、易于遗忘的部分。&#160;<a href="/#fnref-202-book">&#8617;</a><br></div>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="JavaScript_1"><a href="#JavaScript_1" class="headerlink" title="JavaScript 1"></a>JavaScript <sup id="fnref-202-book"><a href="/#fn-]]>
+    </summary>
+    
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+    
+      <category term="Notes" scheme="http://leonewang.wang/categories/Notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[问题粉碎机：Intellij IDEA 14]]></title>
+    <link href="http://leonewang.wang/2015/08/04/q-intellij-idea-14/"/>
+    <id>http://leonewang.wang/2015/08/04/q-intellij-idea-14/</id>
+    <published>2015-08-04T07:04:48.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Tomcat_7__u63A7_u5236_u53F0_u8F93_u51FA_u65E5_u5FD7_u4E71_u7801"><a href="#Tomcat_7__u63A7_u5236_u53F0_u8F93_u51FA_u65E5_u5FD7_u4E71_u7801" class="headerlink" title="Tomcat 7 控制台输出日志乱码"></a>Tomcat 7 控制台输出日志乱码</h1><p>Intellij IDEA 中设置 Web Server 的虚拟机编码，这样 IDE 的编码（控制台编码受IDE影响）和 Web Server 输出的编码一致，问题解决。</p>
+<p><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/08/屏幕快照-2015-08-04-14.59.16-632x252.png" alt="屏幕快照 2015-08-04 14.59.16"></p>
+<p>启动 Web Server之后再分析 JVM 的参数可以看到 -Dfile.encoding=UTF-8。</p>
+<blockquote>
+<p>遇见性更新</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Tomcat_7__u63A7_u5236_u53F0_u8F93_u51FA_u65E5_u5FD7_u4E71_u7801"><a href="#Tomcat_7__u63A7_u5236_u53F0_u8F93_u51FA_u65E5_u5FD7_u4E71]]>
+    </summary>
+    
+      <category term="IDE" scheme="http://leonewang.wang/tags/IDE/"/>
+    
+      <category term="Question" scheme="http://leonewang.wang/tags/Question/"/>
+    
+      <category term="Develop" scheme="http://leonewang.wang/categories/Develop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[问题粉碎机：$(window).height()]]></title>
+    <link href="http://leonewang.wang/2015/08/02/q-jquery-window-height-document-height/"/>
+    <id>http://leonewang.wang/2015/08/02/q-jquery-window-height-document-height/</id>
+    <published>2015-08-02T02:05:33.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<p>这周遇到的一个小问题，弹出框的显示位置莫名偏下，其位置是由 CSS 的 left 与 top 属性决定，top 的值又根据浏览器视口（viewport）高度和弹出框（popup）的高度计算决定：<mark>top = ($(window).height() - popup.height()) / 2;</mark></p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.03.30.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.03.30-632x404.png" alt="qiestion163 jquery windowWidth = documentWidth d"></a></p>
+<p>由于弹出款明显偏低，<strong>猜测视口高度并非真正的视口高度</strong>，于是输出视口高度 $(window).height() 与文档高度 $(document).height() 进行对比。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.01.21.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.01.21-632x315.png" alt="屏幕快照 2015-08-02 09.01.21"></a></p>
+<p>结果表明，<strong>页面视口高度与文档高度竟然一致</strong>，即 $(window).height() = $(document).height()。于是乎调试模式开启发现 jsp 解析出得页面中并没有文档声明 &lt;!DOCTYPE html&gt; （我好像知道了点什么），返回代码一查看。如下图，有没有发现什么端倪？</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-07-30-15.02.00.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-07-30-15.02.00-632x166.png" alt="屏幕快照 2015-07-30 15.02.00"></a></p>
+<p>&nbsp;</p>
+<p>没错，头部引用了某个 jsp 文件，导致之后的文档声明没有被解析，所以咯，大家以后都要仔细些。将引用放至 head 标签中，问题解决。</p>
+<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.00.58.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.00.58-632x315.png" alt="屏幕快照 2015-08-02 09.00.58"></a><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-10.05.11.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-10.05.11-632x404.png" alt="屏幕快照 2015-08-02 10.05.11"></a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这周遇到的一个小问题，弹出框的显示位置莫名偏下，其位置是由 CSS 的 left 与 top 属性决定，top 的值又根据浏览器视口（viewport）高度和弹出框（popup）的高度计算决定：<mark>top = ($(window).height() - popup.]]>
+    </summary>
+    
+      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+    
+      <category term="JQuery" scheme="http://leonewang.wang/tags/JQuery/"/>
+    
+      <category term="Question" scheme="http://leonewang.wang/tags/Question/"/>
+    
+      <category term="Develop" scheme="http://leonewang.wang/categories/Develop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Web Design with JavaScript and the DOM - DOM 编程艺术]]></title>
+    <link href="http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/"/>
+    <id>http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/</id>
+    <published>2015-07-26T13:32:27.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<div id="preview-column" class="pull-right"><br><div id="wmd-panel-preview" class="wmd-panel-preview preview-container"><br><div id="wmd-preview" class="wmd-preview" data-medium-element="true"><br><div id="wmd-preview-section-6" class="wmd-preview-section preview-content"><br><br>## 最佳实践<br><br><div class="md-section-divider"></div>
+
+<h3 id="u4E0D_u8981_u602A_u7F6A_JavaScript_5B1_5D"><a href="#u4E0D_u8981_u602A_u7F6A_JavaScript_5B1_5D" class="headerlink" title="不要怪罪 JavaScript[1]"></a>不要怪罪 JavaScript<a href="/#book" title="查看注脚">[1]</a></h3><p>HTML 之所以会呈现爆炸性的增长，HTML 语言易学易用的特点就是其中不可否认的一个原因。很多人花很少的时间就可以掌握 HTML 语言的基本知识，并快速做出各种各样的网页。事实上，也许很多没有写过代码的人们在‘可视化’网页制作工具的帮助下成为了网页设计大军中的一员。</p>
+<p>因此产生的不良后果就是，许多网页的编写很糟糕，甚至没有做标记合法性检查，忽略规范，所以浏览器不得不以较为宽松的方式去处理网页。这也使得 CSS，JavaScript 等新技术在 Web 上推广收到了很大的阻力。</p>
+<p>与 HTML 语言相比，Javascript 语言的生存环境要严苛的多，如果 JavaScript 代码不符合语法规范，浏览器将无法执行，而在碰到不符合语法规范的 HTML 代码时，浏览器却又千方百计的把它呈现出来。尽管如此，网络上依旧充斥着许多质量低下的 JavaScript 代码。</p>
+<p>许多网页设计者并不舍得花大量的时间来学习 JavaScript，而是把一些现成的代码直接复制到文档中，这依旧得益于‘可视化’的网页设计工具。其实这些现成的 JavaScript 代码里有许多问题考虑的并不周全，从表面上看，似乎这些代码确实帮助我们完成了一些新颖动人的交互效果，但是，他们却很少有能够在禁用 JavaScript 的情况下对网页的行为作出正确地响应。一旦 JavaScript 被禁用，那些质量低劣的代码将在浏览器中得不到很好的解释，甚至完全没法使用。这就让许多人认为 <span id="MathJax-Element-7-Frame" class="MathJax"><span id="MathJax-Span-187" class="math"><span id="MathJax-Span-188" class="mrow"><span id="MathJax-Span-189" class="mi">J</span><span id="MathJax-Span-190" class="mi">a</span><span id="MathJax-Span-191" class="mi">v</span><span id="MathJax-Span-192" class="mi">a</span><span id="MathJax-Span-193" class="mi">S</span><span id="MathJax-Span-194" class="mi">c</span><span id="MathJax-Span-195" class="mi">r</span><span id="MathJax-Span-196" class="mi">i</span><span id="MathJax-Span-197" class="mi">p</span><span id="MathJax-Span-198" class="mi">t</span><span id="MathJax-Span-199" class="mo">=</span><span id="MathJax-Span-200" class="texatom"><span id="MathJax-Span-201" class="mrow"><span id="MathJax-Span-202" class="mo">网</span></span></span><span id="MathJax-Span-203" class="texatom"><span id="MathJax-Span-204" class="mrow"><span id="MathJax-Span-205" class="mo">页</span></span></span><span id="MathJax-Span-206" class="texatom"><span id="MathJax-Span-207" class="mrow"><span id="MathJax-Span-208" class="mo">无</span></span></span><span id="MathJax-Span-209" class="texatom"><span id="MathJax-Span-210" class="mrow"><span id="MathJax-Span-211" class="mo">法</span></span></span><span id="MathJax-Span-212" class="texatom"><span id="MathJax-Span-213" class="mrow"><span id="MathJax-Span-214" class="mo">访</span></span></span><span id="MathJax-Span-215" class="texatom"><span id="MathJax-Span-216" class="mrow"><span id="MathJax-Span-217" class="mo">问</span></span></span></span></span></span>。</p>
+<div class="md-section-divider"></div>
+
+<h3 id="u5E73_u7A33_u9000_u5316"><a href="#u5E73_u7A33_u9000_u5316" class="headerlink" title="平稳退化"></a>平稳退化</h3><blockquote>
+<p>也许你会说，禁用 JavaScript 的用户已经是少数了，何必耗费大量的时间来优化这些代码呢？</p>
+</blockquote>
+<p>先说内在因素，请想象一下，有个访问者来到了你的网站，他在浏览 Web 的同时禁用了 JavaScript 和图片，我敢肯定这样的用户现在已近非常少见，但是，这个用户却非常重要，因为他是 —— <strong>Searchbot</strong>（搜索机器人）。其次外在因素，现在的网页的用户体验越来越受到人们的关注，那些不遵循‘用户至上’原则的网站从长远来看都是自取灭亡，况且<code>不追求完美的程序员不是好程序员</code>，你说呢？</p>
+<p>如果正确的使用了 JavaScript 脚本，就可以让访问者在禁用了 JavaScript 的情况下仍能继续顺利的浏览你的网站，这就是 <strong>平稳退化</strong> ，就是虽然某些功能无法使用，但最基本的操作仍能顺利完成。</p>
+<ul>
+<li>分离 javascript</li>
+<li>向后兼容（与现代并无必要，大多浏览器足够健壮）</li>
+<li><p>性能考虑</p>
+<ol>
+<li>尽量减少标记和访问 DOM</li>
+<li>脚本合并</li>
+<li>脚本压缩（工具）<br>A. Douglas Crockford 的 JSMin<br>B. Yahoo 的 YUI Compressor<br>C. Google 的 Closure Compiler<div class="footnotes" data-anchor-id="xfa0">
+
+</div></li>
+</ol>
+</li>
+</ul>
+<hr>
+<p><small><span id="book">[1] </span>学习并参考自《DOM Scripting Web Design with JavaScript and the Document Object Model》</small></p>
+<p></p></div><br></div><br></div><br></div><br><p></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<div id="preview-column" class="pull-right"><br><div id="wmd-panel-preview" class="wmd-panel-preview preview-container"><br><div id="wmd-pre]]>
+    </summary>
+    
+      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+    
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+    
+      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[响应式 Web 设计 - Responsive Web Design (Two)]]></title>
+    <link href="http://leonewang.wang/2015/07/20/responsive-web-design-two/"/>
+    <id>http://leonewang.wang/2015/07/20/responsive-web-design-two/</id>
+    <published>2015-07-20T14:36:10.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-panel"><br><div class="preview-container"><br><div id="preview-contents" class="note-content"><br><div id="wmd-preview-section-82" class="wmd-preview-section preview-content"><br><div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-panel"><br><div class="preview-container"><br><div id="preview-contents" class="note-content"><br><div id="wmd-preview-section-270" class="wmd-preview-section preview-content"><br><div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-panel"><br><div class="preview-container"><br><div id="preview-contents" class="note-content"><br><div id="wmd-preview-section-369" class="wmd-preview-section preview-content"></div><br><div id="wmd-preview-section-222" class="wmd-preview-section preview-content"></div><br><div id="wmd-preview-section-355" class="wmd-preview-section preview-content"><br><br>## 私有前缀<br><br>在 CSS3 模块标准尚未被 W3C 批准或者标准所提议的特性尚未被浏览器完全实现时，浏览器厂商会使用所谓的 “私有前缀” 来测试 “试验性” 的 CSS3 特性。开发 CSS3 时，要记住添加相关的浏览器前缀以保证最广泛的浏览器兼容。<a href="/#rebook"> [1]</a><br><br></div><br><div id="wmd-preview-section-224" class="wmd-preview-section preview-content"><br><br>    <span class="hljs-class">.main</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">-ms-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;    <span class="hljs-comment">/<em> Microsoft </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">-o-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;     <span class="hljs-comment">/<em>Opera </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">-moz-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;   <span class="hljs-comment">/<em> Mozilla (Firefox) </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">-webkit-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;    <span class="hljs-comment">/<em> Webkit (Safari,Chrome) </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;    <span class="hljs-comment">/<em> W3C 标准 </em>/</span><br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
+    我知道你在想什么，对同一个属性写多个私有前缀声明是否会造成代码臃肿？确实会有那么一点。但无论追加多少属性，相对于使用图片完成类似效果，这仍然是一个快速、优雅而健壮的解决方案。这里推荐给大家一个相关网站[caniuse.com](http://caniuse.com/)，在这里可以知道当前浏览器对特定 HTML5 和 CSS3 特性的支持程度（可按特性搜索）。
+
+    当然了，私有前缀实在是太长了，我想没有一个人愿意手工敲上去，所以也有可以为 CSS 文件自动追加私有前缀的 JavaScript 方案，如 [-prefix-free](http:)，这样在样式表中就可以只写 W3C 规定的标准代码。
+
+    * * *
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-225&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    ## CSS3
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-226&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    #### 新增选择器
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-227&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    ###### 子字符串匹配属性选择器
+
+1.  “匹配开头” 的属性选择器
+    语法</code>Element [attribute^=”value”]<code>例：选择所有 class 属性以 large 开头的图片:
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-228&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">img</span> <span class="hljs-attr_selector">[class^=”large”]</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;<br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
+
+1.  “匹配包含内容” 的属性选择器
+    语法</code>Element [attribute<em>=”value”]<code>例：选择所有 class 属性包含 large 的图片:
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-229&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">img</span> <span class="hljs-attr_selector">[class</span></em>=”large”] <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;<br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
+
+1.  “匹配结尾” 的属性选择器
+    语法</code>Element [attribute$=”value”]<code>例：选择所有 class 属性以 large 结尾的图片:
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-230&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">img</span> <span class="hljs-attr_selector">[class$=”large”]</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;<br>    <span class="hljs-rule">}</span></span><br><br></div><br><div id="wmd-preview-section-231" class="wmd-preview-section preview-content"><br><br>###### CSS结构伪类<br><br>1.  <code>:last-child</code> 选择器<br>&gt; 例：<code>li :last-child</code> 用以匹配最后一项列表项。<br><br>2.  <code>:nth-child</code> 选择器<br>&gt; 例：<code>li :nth-child(even)</code> 用以匹配偶数项 <code>li</code> 元素（可选参数 even, odd, 自定义）。主要说说自定义，比如 <code>li :nth-child(2n+1)</code> 用以匹配第 1、3、5 … 项列表项。<br>&gt; <strong>注意：n 从 0 开始</strong><br><br>3.  <code>:nth-last-of-type</code> 选择器<br>&gt; 例：<code>li .list :nth-last-of-type(n+2)</code> 表示从第二个匹配元素<code>li</code> 开始，匹配每一个类名为 list 的列表项。<br><br>4.  <code>:not</code> 选择器<br>&gt; 例：<code>li :not(.list)</code> 用以匹配类名不是 list 的列表项。<br></div><br><div id="wmd-preview-section-232" class="wmd-preview-section preview-content"><br><br>#### 动画过渡的局限性<br><br>在使用 CSS3 制作动画时，有些属性无法过渡，尽管规范说它应该可以。例如：background-gradient 属性就无法过渡，但理论上所有的 CSS 属性都是可以过渡的。<br><br></div><br><div id="wmd-preview-section-233" class="wmd-preview-section preview-content"><br><br>#### 元素透明<br><br><strong>为什么不使用 opacity？</strong> 这个问题在初学时困扰了我 long long time。原因在于 opacity 设置的透明度会对整个元素产生影响，而使用 RGBA 或 HSLA 则可以仅让部分有透明效果，这样一个元素就可以拥有透明背景，但内部的文字仍不透明。<br><br></div><br><div id="wmd-preview-section-234" class="wmd-preview-section preview-content"><br><br>#### 用 HSL 代替 RGB、HEX<br><br><strong>为什么要用 HSL 呢？</strong> 首先要知道 HSL 是由色相（Hue）、饱和度（Saturation）、明度（Lightness）所组成的，而 RGB 是由 R（Red）、G（Green）、B（Blue）所组成。在我们使用颜色标准时，我相信没有几个人能够看到 <code>RGB(12,12,12)</code> 就知道这是什么颜色，但是当看到 <code>HSL(12,12,12)</code>时，我却能知道这大概是什么颜色——介于红色与橘红色之间的颜色。不要太崇拜 <code>&amp;lt;(￣▽￣)&amp;gt;</code> 哇哈哈…你也可以：<br><br><em>   <strong>H (Hue)</strong> 分量<br>&gt; 代表的是人眼所能感知的颜色范围，这些颜色分布在一个平面的色相环上，取值范围是0°到360°的圆心角，每个角度可以代表一种颜色。色相值的意义在于，我们可以在不改变光感的情况下，通过旋转色相环来改变颜色。在实际应用中，我们需要记住色相环上的六大主色，用作基本参照：360°/0°红、60°黄、120°绿、180°青、240°蓝、300°洋红，它们在色相环上按照60°圆心角的间隔排列。
+
+</em>   <strong>S (Saturation)</strong> 分量<br>&gt; 指的是色彩的饱和度，它用0%至100%的值描述了相同色相、明度下色彩纯度的变化。数值越大，颜色中的灰色越少，颜色越鲜艳，呈现一种从理性(灰度)到感性(纯色)的变化。<br><br><em>   <strong>L (lightness)</strong> 分量<br>&gt; 指的是色彩的明度，作用是控制色彩的明暗变化。它同样使用了0%至100%的取值范围。数值越小，色彩越暗，越接近于黑色；数值越大，色彩越亮，越接近于白色。
+
+</em> <em> </em><br><br></div><br><div id="wmd-preview-section-235" class="wmd-preview-section preview-content"><br><br>## 离线 Web 应用<br><br>必须在每一个准备离线使用的页面的 HTML 标签中都追加 <code>manifest = &quot;/offline.manifest&quot;</code> 属性。当然这仅适用于不需要与服务器端打交道的页面，这点我想你应该明白。<br><br></div><br><div id="wmd-preview-section-footnotes" class="preview-content"><br><div class="footnotes"><br><br>1.  以上均为学习 Responsive Web Design with HTML5 and CSS3 后的个人总结，如有错误欢迎指出。 <a href="/#book" title="Return">↩</a><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div>]]></content>
+    <summary type="html">
+    <![CDATA[<div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-p]]>
+    </summary>
+    
+      <category term="CSS3" scheme="http://leonewang.wang/tags/CSS3/"/>
+    
+      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+    
+      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[响应式 Web 设计 - Responsive Web Design (One)]]></title>
+    <link href="http://leonewang.wang/2015/07/19/responsive-web-design-one/"/>
+    <id>http://leonewang.wang/2015/07/19/responsive-web-design-one/</id>
+    <published>2015-07-19T08:45:49.000Z</published>
+    <updated>2015-12-31T09:17:55.000Z</updated>
+    <content type="html"><![CDATA[<div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-panel"><br><div class="preview-container"><br><div id="preview-contents" class="note-content"><br><div id="wmd-preview-section-270" class="wmd-preview-section preview-content"><br><br>来自 <a href="http://gs.statcounter.com/" target="_blank" rel="external">gs.statcounter.com</a> 的统计数据表明产品从 2010 年 7 月到 2011 年 7 月的 12 个月中，全球手机浏览器的使用量中 2.86% 上升至 7.02%。Internet Explorer 6 的使用率则是从 8.76% 下降到 3.42%。i到 2015 年 7 月，Internet Explorer 6、7、8 三个版本加起来也只不过 10% 的使用率。<br><br>越来越多的人使用小屏幕设备上网。这些设备上的浏览器在设计时都考虑到了如何显示好现有网站，手机浏览器会将一个标准网页缩放至与设备可视区域恰好匹配，然后用户在自己需要的内容区域上放大浏览，为了看清楚页面内容，就需要不停的放大、缩小页面，然后为了看到视口外的文字，又要左右拖动，你说讨不讨厌？<br><br>于是 <strong>响应式 Web 设计</strong> <a href="/#rebook"> [1]</a> 就应运而生，使页面能够根据视口宽度的改变而进行自由缩放，例如，先针对大视口设计（用户大多数情况下使用鼠标），将页面宽度加宽、导航链接设计成简单地文字连接，然后使用媒体查询重写样式，为拇指一族提供更大的点击区域并将页面宽度适当减小。<br><br></div><br><div id="wmd-preview-section-205" class="wmd-preview-section preview-content"><br><br>## 使用媒体查询<br><br>创建媒体查询时，最常用的是设备的视口宽度（ width ）和屏幕宽度（ device-width ）。下面列出一些比较好玩的特性。<br><div class="checklist"><br><div class="checklist-item"><input checked="checked" type="checkbox"> width: 视口宽度</div><br><div class="checklist-item"><input checked="checked" type="checkbox"> height: 视口高度</div><br><div class="checklist-item"><input checked="checked" type="checkbox"> device-width: 视口宽度</div><br><div class="checklist-item"><input checked="checked" type="checkbox"> device-height: 视口高度</div><br><div class="checklist-item"><input checked="checked" type="checkbox"> orientation: 检测设备处于横向还是纵向</div><br><div class="checklist-item"><input checked="checked" type="checkbox"> aspect-ratio: 基于视口宽度和高度的宽高比。一个 16:9 比例的显示屏可以这样定义 aspect-ratio: 16/9。</div><br><div class="checklist-item"><input checked="checked" type="checkbox"> resolution: 检测屏幕或打印机分辨率，如 min-resolution: 300dpi。还可以接受每厘米像素点数的度量值，如 min-resolution: 118dpcm。</div><br><div class="checklist-item"><input checked="checked" type="checkbox"> grid: 检测输出设备室网格设备还是位图设备。</div><br></div>
+
+<hr>
+<p></p></div><p></p>
+<div id="wmd-preview-section-206" class="wmd-preview-section preview-content"><br><br>## 加载媒体的最佳方法<br><br>现代浏览器虽然可以智能地忽略与自身不匹配的样式文件，但它却不一定不下载这些文件。因此，将不同媒体查询的样式保存到独立的文件中没有太大的好处，使用多个独立的文件会增加用于页面渲染的 HTTP 请求的数量，从而导致页面加载变慢。使用如下语法即可在已有样式表中加入媒体查询：<br><br></div><br><div id="wmd-preview-section-207" class="wmd-preview-section preview-content"><br><br>    <span class="hljs-comment">// 当视口宽度小于 768px 时，页面的宽度将变为 700px；</span><br>    @media screen and (<span class="hljs-built_in">max</span>-<span class="hljs-variable">width</span>: <span class="hljs-number">768</span>px) {<br>        body {<br>            <span class="hljs-variable">width</span>: <span class="hljs-number">700</span>px;<br>        }<br>    }<br><br>    <span class="hljs-comment">// 当视口宽度大于 768px 小于 992px 时，页面宽度将变为 768px；</span><br>    @media screen and (<span class="hljs-built_in">min</span>-<span class="hljs-variable">width</span>: <span class="hljs-number">768</span>px) and (<span class="hljs-built_in">max</span>-<span class="hljs-variable">width</span>: <span class="hljs-number">992</span>px) {<br>        body {<br>            <span class="hljs-variable">width</span>: <span class="hljs-number">768</span>px;<br>        }<br>    }<code>&lt;/pre&gt;
+    当然除了上面的媒体查询外还可以使用 CSS 的</code>@import<code>指令在当前样式表中按条件引入其他样式表。例如下面的代码会给视口最大宽度为 768 像素的显示屏设备加载一个名为 mobile.css 的样式表。
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-208&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-at_rule">@<span class="hljs-keyword">import</span> <span class="hljs-function">url</span>(<span class="hljs-string">“mobile.css”</span>) screen and (max-width: <span class="hljs-number">768px</span>)</span>;<code>&lt;/pre&gt;
+    &gt; 切记，使用 CSS 的</code>@import<code>方法会增加 HTTP 请求（这会影响加载速度），所以请谨慎使用该方法。
+
+    * * *
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-209&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    ## 拥抱流式布局
+
+    现在来讲讲布局的问题，我们经常需要根据情况对元素宽度、字体大小进行修改，于是乎我们就要对所有的使用了像素点作为单位的属性进行修改，然后便是一项浩大的工程，所以固定布局禁不起未来的考验。
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-210&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-comment">/<em> 示例 1 </em>/</span><br>    <span class="hljs-tag">body</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">768px</span></span></span>;<br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">16px</span></span></span>;<br>    <span class="hljs-rule">}</span></span><br>    <span class="hljs-class">.left</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">450px</span></span></span>;<br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">17px</span></span></span>;<br>    <span class="hljs-rule">}</span></span><br>    <span class="hljs-class">.right</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">300px</span></span></span>;<br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">15px</span></span></span>;<br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-211&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    #### 百分比布局
+
+    首先来看看元素宽度，如果我们需要将整个页面的宽度加宽 100 px，那么就要将页面的其他各个部分也进行宽度上的调整，使用百分比布局能让我们修改宽度来的更高效。记住百分比转换公式一切迎刃而解，貌似你我数学不至于差到这种程度：
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-212&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;div class=&quot;&quot;&gt;
+    &lt;div class=&quot;MathJax_SVG_Display&quot;&gt;&lt;span id=&quot;MathJax-Element-1-Frame&quot; class=&quot;MathJax_SVG&quot;&gt;百分比宽度目标元素宽度上下文元素宽度&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    现在我们就将 **示例 1 **修改为百分比布局:
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-213&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-comment">/<em> 示例 2 </em>/</span><br>    <span class="hljs-tag">body</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">768px</span></span></span>;   <span class="hljs-comment">/<em> 仅需修改上下文元素宽度即可完成调整 </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">16px</span></span></span>;<br>    <span class="hljs-rule">}</span></span><br>    <span class="hljs-class">.left</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">58.59375%</span></span></span>;   <span class="hljs-comment">/<em> 450 ÷ 768 </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">17px</span></span></span>;<br>    <span class="hljs-rule">}</span></span><br>    <span class="hljs-class">.right</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">39.0625%</span></span></span>;    <span class="hljs-comment">/<em> 300 ÷ 768 </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">15px</span></span></span>;<br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-214&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    #### 用 em 替换 px
+
+    过去的几年里，网页设计师使用 em 代替 px 主要是为了文字缩放。因为老版本的 IE 无法缩放像素单位的字体。不过现代浏览器很久以前就支持缩放以像素为单位的文字了。那用 ex 替换 px 还用什么必要性和优越性吗？有两点毋庸置疑的理由：
+
+1.  那些使用了 IE6 的用户也能缩放文字。
+2.  可以使设计师和开发人员的生活更加简单。
+    &gt; **em** 的实际大小是相对于其上下文的字体大小而言的。如果我们给</code>&lt;body&gt;<code>标签设置文字大小为 100%，给其他文字都是用相对单位 em，那这些文字都会受 body 上的初始声明的影响。这样做的好处就是，如果在完成了所有的文字排版后，客户又提出将页面文字统一放大一点，我们就可以只修改 body 的文字大小，其他所有的文字大小也会相应变大。
+    在这样的情况下，我们如果采用了相对大小，一切就来的简单得多了，依旧使用万能的公式 &lt;span class=&quot;&quot;&gt;&lt;span id=&quot;MathJax-Element-2-Frame&quot; class=&quot;MathJax_SVG&quot;&gt;百分比尺寸目标元素尺寸上下文元素尺寸&lt;/span&gt;&lt;/span&gt; 我们只需要修改</code>body<code>的</code>font-size<code>属性即可。将 **示例 2** 字体更改为相对大小，如下：
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-215&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-comment">/<em> 示例 3 </em>/</span><br>    <span class="hljs-tag">body</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">768px</span></span></span>;<br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">16px</span></span></span>;    <span class="hljs-comment">/<em> 修改此处即可 </em>/</span><br>    <span class="hljs-rule">}</span></span><br>    <span class="hljs-class">.left</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">58.59375%</span></span></span>;<br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">1.0625em</span></span></span>;    <span class="hljs-comment">/<em> 17 ÷ 16 </em>/</span><br>    <span class="hljs-rule">}</span></span><br>    <span class="hljs-class">.right</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">39.0625%</span></span></span>;<br>        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> .<span class="hljs-number">9375em</span></span></span>; <span class="hljs-comment">/<em> 15 ÷ 16 </em>/</span><br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
+
+    * * *
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-216&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    ## 添加响应式媒体
+
+    对于很多人来说，可能第一次听说 HTML5 是在 Apple 公司拒绝在 iOS 设备上支持 Flash 的时候，Flash 作为浏览器的视频服务插件已经占据了主导地位，而其发热的特性也已经是众所周知了，所以 Apple 并没有使用 Adobe 的专有技术，而是决定依靠 HTML5 来处理富媒体渲染。HTML5 本身在这一领域已经有了长足进步，Apple 公司对 HTML5 的公开支持又极大促进了他的发展，并使其媒体工具在公众中赢得了更广泛的青睐（够了，我再也不要听到风扇的声音！）。
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-217&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    #### 用 HTML5 的方法为页面添加视频
+
+    看到下面的一行代码，你我会心一笑，简直就像是插入了一张图片，不说了，我要偷着乐会儿。
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-218&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">&lt;<span class="hljs-title">video</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">“myVideo.ogg”</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">video</span>&gt;</span><code>&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-219&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    #### 提供备用的媒体源文件
+
+    果然我还是太年轻，请把刀给我。最初的 HTML5 规范呼吁所有浏览器内置支持使用 Ogg 格式直接播放视频或音频，但是由于 HTML5 工作组的内部争议，曾经作为基线标准的支持 Ogg 的主张在最近的更新的 HTML5 规范中被放弃。因此，目前一些浏览器支持某一套视频和音频的文件格，而另一些浏览器则支持其他格式。例如，Safari 只允许使用 MP4/H.264/AAC 媒体文件，而 Firefox 和 Opera 则只支持 Ogg 和 WebM。
+
+    不过好在有一种方法能够在一个标签内支持多种媒体类型：
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-220&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code>&lt;video <span class="hljs-variable">width=</span><span class="hljs-string">“640”</span> <span class="hljs-variable">height=</span><span class="hljs-string">“480”</span> controls autoplay <span class="hljs-variable">preload=</span><span class="hljs-string">“auto”</span> loop <span class="hljs-variable">poster=</span><span class="hljs-string">“myVideoPoster.jpg”</span>&gt;<br>        &lt;source <span class="hljs-variable">src=</span><span class="hljs-string">“myVideo.ogg”</span> <span class="hljs-variable">type=</span><span class="hljs-string">“video/ogg”</span>&gt;<br>        &lt;source <span class="hljs-variable">src=</span><span class="hljs-string">“myVideo.mp4”</span> <span class="hljs-variable">type=</span><span class="hljs-string">“video/mp4”</span>&gt;<br>        Oops, you need a new browser<br>    &lt;/video&gt;<code>&lt;/pre&gt;
+    如果浏览器支持 Ogg 格式，则使用第一个文件，否则它会继续往下解析下一个</code>&lt;source&gt;<code>标签。
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-221&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+
+    #### 响应式视频
+
+    对于 HTML5 式嵌入视频，修正方法很简单，删除视频标签中的 height 和 width 属性，然后再 CSS 中追加：
+
+    &lt;/div&gt;
+    &lt;div id=&quot;wmd-preview-section-222&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
+    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">video</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;<br>        <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> auto</span></span>;<br>    <span class="hljs-rule">}</span></span><br><br>但是有时候我们会想要嵌入 Youtube 的视频，而 HTML5 并不能解决嵌入 iframe 视频的响应问题，最简单的方法是用一个 jQuery 小插件：<a href="http://fitvidsjs.com/" target="_blank" rel="external">FitVids</a>。<br><br><em> </em> *<br><br></div><br><div id="wmd-preview-section-223" class="wmd-preview-section preview-content"></div><br><div id="wmd-preview-section-footnotes" class="preview-content"><br><div class="footnotes"><br><br>1.  以上均为学习 Responsive Web Design with HTML5 and CSS3 后的个人总结，如有错误欢迎指出。 <a href="/#book" title="Return">↩</a><br></div><br></div><br></div><br></div><br></div><br></div><br><div class="extension-preview-buttons closed animate"></div><br></div><br></div>]]></content>
+    <summary type="html">
+    <![CDATA[<div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-p]]>
+    </summary>
+    
+      <category term="CSS3" scheme="http://leonewang.wang/tags/CSS3/"/>
+    
+      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+    
+      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+    
+  </entry>
+  
+</feed>

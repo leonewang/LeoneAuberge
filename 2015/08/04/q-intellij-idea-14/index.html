@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 问题粉碎机：Intellij IDEA 14 · Leone Auberge</title><meta name="description" content="Tomcat 7 控制台输出日志乱码Intellij IDEA 中设置 Web Server 的虚拟机编码，这样 IDE 的编码（控制台编码受IDE影响）和 Web Server 输出的编码一致，问题解决。
+
+启动 Web Server之后再分析 JVM 的参数可以看到 -Dfile.encoding=UTF-8。
+
+遇见性更新
+
+"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a href="https://github.com/leonewang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">分享</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">关于</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">问题粉碎机：Intellij IDEA 14</h1><div class="post-meta"><div class="post-time">2015年8月4日</div></div><div class="post-content"><h1 id="Tomcat_7__u63A7_u5236_u53F0_u8F93_u51FA_u65E5_u5FD7_u4E71_u7801"><a href="#Tomcat_7__u63A7_u5236_u53F0_u8F93_u51FA_u65E5_u5FD7_u4E71_u7801" class="headerlink" title="Tomcat 7 控制台输出日志乱码"></a>Tomcat 7 控制台输出日志乱码</h1><p>Intellij IDEA 中设置 Web Server 的虚拟机编码，这样 IDE 的编码（控制台编码受IDE影响）和 Web Server 输出的编码一致，问题解决。</p>
+<p><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/08/屏幕快照-2015-08-04-14.59.16-632x252.png" alt="屏幕快照 2015-08-04 14.59.16"></p>
+<p>启动 Web Server之后再分析 JVM 的参数可以看到 -Dfile.encoding=UTF-8。</p>
+<blockquote>
+<p>遇见性更新</p>
+</blockquote>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/08/09/javascript-notes/" class="prev">上一篇</a><a href="/2015/08/02/q-jquery-window-height-document-height/" class="next">下一篇</a></div></footer><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ed77053554825c09d2021287e3a25e51";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
