@@ -4,7 +4,7 @@
   <subtitle><![CDATA[God is in the detail]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://leonewang.wang/"/>
-  <updated>2015-12-31T08:43:26.000Z</updated>
+  <updated>2015-12-31T09:17:55.000Z</updated>
   <id>http://leonewang.wang/</id>
   
   <author>
@@ -13,28 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://leonewang.wang/2015/12/31/hello-world/"/>
-    <id>http://leonewang.wang/2015/12/31/hello-world/</id>
-    <published>2015-12-31T08:43:26.000Z</published>
-    <updated>2015-12-31T08:43:26.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.]]>
-    </summary>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[问题粉碎机：jsp页面加载不完整]]></title>
@@ -74,10 +52,11 @@
     <link href="http://leonewang.wang/2015/09/23/http-getpost-max-length/"/>
     <id>http://leonewang.wang/2015/09/23/http-getpost-max-length/</id>
     <published>2015-09-23T15:27:56.000Z</published>
-    <updated>2015-12-31T09:17:55.000Z</updated>
+    <updated>2015-12-31T18:27:47.000Z</updated>
     <content type="html"><![CDATA[<h2 id="GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236"><a href="#GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236" class="headerlink" title="GET 方法长度限制"></a>GET 方法长度限制</h2><p>Http Get 方法提交的数据大小长度并没有限制，HTTP 协议规范没有对 URL 长度进行限制。这个限制是特定的浏览器及服务器对它的限制。</p>
 <p>如：IE 对 URL 长度的限制是 2083 字节(2K + 35)。</p>
 <p>下面就是对各种浏览器和服务器的最大处理能力做一些说明.</p>
+<a id="more"></a>
 <p>Microsoft Internet Explorer (Browser)<br>IE 浏览器对 URL 的最大限制为 2,083 个字符，如果超过这个数字，提交按钮没有任何反应。</p>
 <p>Firefox (Browser)<br>对于 Firefox 浏览器 URL 的长度限制为 65,536 个字符。</p>
 <p>Safari (Browser)<br>URL 最大长度限制为 80,000 个字符。</p>
@@ -122,7 +101,10 @@
 <p><a href="http://blog.chinaunix.net/uid-26602509-id-4495786.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-26602509-id-4495786.html</a><br><a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="external">https://developer.yahoo.com/performance/rules.html</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236"><a href="#GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236" class="headerlink" title="GET 方法长度限制">]]>
+    <![CDATA[<h2 id="GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236"><a href="#GET__u65B9_u6CD5_u957F_u5EA6_u9650_u5236" class="headerlink" title="GET 方法长度限制"></a>GET 方法长度限制</h2><p>Http Get 方法提交的数据大小长度并没有限制，HTTP 协议规范没有对 URL 长度进行限制。这个限制是特定的浏览器及服务器对它的限制。</p>
+<p>如：IE 对 URL 长度的限制是 2083 字节(2K + 35)。</p>
+<p>下面就是对各种浏览器和服务器的最大处理能力做一些说明.</p>]]>
+    
     </summary>
     
       <category term="GET/POST" scheme="http://leonewang.wang/tags/GET-POST/"/>
