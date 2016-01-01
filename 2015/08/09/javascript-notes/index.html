@@ -1,449 +1,112 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JavaScript Notes · Leone Auberge</title><meta name="description" content="JavaScript 1Based grammerstring methodscharAt()    返回指定索引位置的字符charCodeAt()    返回指定索引位置字符的 Unicode 值concat()    连接两个或多个字符串，返回连接后的字符串fromCharCode()    将字符转换为 Unicode 值index"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">分享</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/leonewang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">SITEMAP</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">JavaScript Notes</h1><div class="post-meta"><div class="post-time">2015年8月9日</div></div><div class="post-content"><h1 id="JavaScript_1"><a href="#JavaScript_1" class="headerlink" title="JavaScript 1"></a>JavaScript <sup id="fnref-202-book"><a href="/#fn-202-book">1</a></sup></h1><h2 id="Based_grammer"><a href="#Based_grammer" class="headerlink" title="Based grammer"></a>Based grammer</h2><h3 id="string_methods"><a href="#string_methods" class="headerlink" title="string methods"></a>string methods</h3><p><code>charAt()</code>    返回指定索引位置的字符<br><code>charCodeAt()</code>    返回指定索引位置字符的 Unicode 值<br><code>concat()</code>    连接两个或多个字符串，返回连接后的字符串<br><code>fromCharCode()</code>    将字符转换为 Unicode 值<br><code>indexOf()</code>    返回字符串中检索指定字符第一次出现的位置<br><code>lastIndexOf()</code>    返回字符串中检索指定字符最后一次出现的位置<br><code>localeCompare()</code>    用本地特定的顺序来比较两个字符串<br><code>match()</code>    找到一个或多个正则表达式的匹配<br><code>replace()</code>    替换与正则表达式匹配的子串<br><code>search()</code>    检索与正则表达式相匹配的值<br><code>slice()</code>    提取字符串的片断，并在新的字符串中返回被提取的部分<br><code>split()</code>    把字符串分割为子字符串数组<br><code>substr()</code>    从起始索引号提取字符串中指定数目的字符<br><code>substring()</code>    提取字符串中两个指定的索引号之间的字符<br><code>toLocaleLowerCase()</code>    根据主机的语言环境把字符串转换为小写，只有几种语言（如土耳其语）具有地方特有的大小写映射<br><code>toLocaleUpperCase()</code>    根据主机的语言环境把字符串转换为大写，只有几种语言（如土耳其语）具有地方特有的大小写映射<br><code>toLowerCase()</code>    把字符串转换为小写<br><code>toString()</code>    返回字符串对象值<br><code>toUpperCase()</code>    把字符串转换为大写<br><code>trim()</code>    移除字符串首尾空白<br><code>valueOf()</code>    返回某个字符串对象的原始值</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JavaScript Notes · Leone Auberge</title><meta name="description" content="
+笔记修改自廖雪峰官方网站，从中记录较为重要的、易于遗忘的部分。
+
+Based grammerstring methodscharAt()    返回指定索引位置的字符charCodeAt()    返回指定索引位置字符的Unicode值concat()    连接两个或多个字符串，返回连接后的字符串fromCharCode()    将字符转换"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">分享</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/leonewang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">SITEMAP</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">JavaScript Notes</h1><div class="post-meta"><div class="post-time">2015年8月9日</div></div><div class="post-content"><blockquote>
+<p>笔记修改自<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖雪峰官方网站</a>，从中记录较为重要的、易于遗忘的部分。</p>
+</blockquote>
+<h2 id="Based_grammer"><a href="#Based_grammer" class="headerlink" title="Based grammer"></a>Based grammer</h2><h3 id="string_methods"><a href="#string_methods" class="headerlink" title="string methods"></a>string methods</h3><p><code>charAt()</code>    返回指定索引位置的字符<br><code>charCodeAt()</code>    返回指定索引位置字符的Unicode值<br><code>concat()</code>    连接两个或多个字符串，返回连接后的字符串<br><code>fromCharCode()</code>    将字符转换为Unicode值<br><code>indexOf()</code>    返回字符串中检索指定字符第一次出现的位置<br><code>lastIndexOf()</code>    返回字符串中检索指定字符最后一次出现的位置<br><code>localeCompare()</code>    用本地特定的顺序来比较两个字符串<br><code>match()</code>    找到一个或多个正则表达式的匹配<br><code>replace()</code>    替换与正则表达式匹配的子串<br><code>search()</code>    检索与正则表达式相匹配的值<br><code>slice()</code>    提取字符串的片断，并在新的字符串中返回被提取的部分<br><code>split()</code>    把字符串分割为子字符串数组<br><code>substr()</code>    从起始索引号提取字符串中指定数目的字符<br><code>substring()</code>    提取字符串中两个指定的索引号之间的字符<br><code>toLocaleLowerCase()</code>    根据主机的语言环境把字符串转换为小写，只有几种语言（如土耳其语）具有地方特有的大小写映射<br><code>toLocaleUpperCase()</code>    根据主机的语言环境把字符串转换为大写，只有几种语言（如土耳其语）具有地方特有的大小写映射<br><code>toLowerCase()</code>    把字符串转换为小写<br><code>toString()</code>    返回字符串对象值<br><code>toUpperCase()</code>    把字符串转换为大写<br><code>trim()</code>    移除字符串首尾空白<br><code>valueOf()</code>    返回某个字符串对象的原始值</p>
+<a id="more"></a>
 <p>例：字符转换数字</p>
-<pre><code>function string2int(s) {
- return s.split(&apos;&apos;)
-    .map(function(x) { return x.charCodeAt(0) - &apos;0&apos;.charCodeAt(0)})
-    .reduce(function(x,y) { return 10 * x + y});
-}
-`&lt;/pre&gt;
-
-例：把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字
-
-&lt;pre&gt;`function normalize(arr) {
-    return arr.map(function(x) { 
-        return x[0].toUpperCase() + x.slice(1).toLowerCase() });
-}
-`&lt;/pre&gt;
-
-### push and pop
-
-push()向Array的末尾添加若干元素，pop()则把Array的最后一个元素删除掉：
-
-&lt;pre&gt;`var arr = [1, 2];
-arr.push(&apos;A&apos;, &apos;B&apos;); // 返回Array新的长度: 4
-arr; // [1, 2, &apos;A&apos;, &apos;B&apos;]
-arr.pop(); // pop()返回&apos;B&apos;
-arr; // [1, 2, &apos;A&apos;]
-arr.pop(); arr.pop(); arr.pop(); // 连续pop 3次
-arr; // []
-arr.pop(); // 空数组继续pop不会报错，而是返回undefined
-arr; // []
-`&lt;/pre&gt;
-
-### unshift and shift
-
-如果要往Array的头部添加若干元素，使用unshift()方法，shift()方法则把Array的第一个元素删掉：
-
-&lt;pre&gt;`var arr = [1, 2];
-arr.unshift(&apos;A&apos;, &apos;B&apos;); // 返回Array新的长度: 4
-arr; // [&apos;A&apos;, &apos;B&apos;, 1, 2]
-arr.shift(); // &apos;A&apos;
-arr; // [&apos;B&apos;, 1, 2]
-arr.shift(); arr.shift(); arr.shift(); // 连续shift 3次
-arr; // []
-arr.shift(); // 空数组继续shift不会报错，而是返回undefined
-arr; // []
-`&lt;/pre&gt;
-
-### splice
-
-splice() 方法是修改Array的“万能方法”，它可以从指定的索引开始删除若干元素，然后再从该位置添加若干元素：
-
-&lt;pre&gt;`var arr = [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Yahoo&apos;, &apos;AOL&apos;, &apos;Excite&apos;, &apos;Oracle&apos;];
-// 从索引2开始删除3个元素,然后再添加两个元素:
-arr.splice(2, 3, &apos;Google&apos;, &apos;Facebook&apos;); // 返回删除的元素 [&apos;Yahoo&apos;, &apos;AOL&apos;, &apos;Excite&apos;]
-arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Google&apos;, &apos;Facebook&apos;, &apos;Oracle&apos;]
-// 只删除,不添加:
-arr.splice(2, 2); // [&apos;Google&apos;, &apos;Facebook&apos;]
-arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Oracle&apos;]
-// 只添加,不删除:
-arr.splice(2, 0, &apos;Google&apos;, &apos;Facebook&apos;); // 返回[],因为没有删除任何元素
-arr; // [&apos;Microsoft&apos;, &apos;Apple&apos;, &apos;Google&apos;, &apos;Facebook&apos;, &apos;Oracle&apos;]
-`&lt;/pre&gt;
-
-### concat
-
-concat()方法把当前的Array和另一个Array连接起来，并返回一个新的Array：
-
-&lt;pre&gt;`var arr = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
-var added = arr.concat([1, 2, 3]);
-added; // [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, 1, 2, 3]
-arr; // [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;]
-`&lt;/pre&gt;
-
-请注意，concat()方法并没有修改当前Array，而是返回了一个新的Array。
-
-实际上，concat()方法可以接收任意个元素和Array，并且自动把Array拆开，然后全部添加到新的Array里：
-
-&lt;pre&gt;`var arr = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
-arr.concat(1, 2, [3, 4]); // [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, 1, 2, 3, 4]
-`&lt;/pre&gt;
-
-### join
-
-join()方法是一个非常实用的方法，它把当前Array的每个元素都用指定的字符串连接起来，然后返回连接后的字符串：
-
-&lt;pre&gt;`var arr = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, 1, 2, 3];
-arr.join(&apos;-&apos;); // &apos;A-B-C-1-2-3&apos;
-`&lt;/pre&gt;
-
-如果Array的元素不是字符串，将自动转换为字符串后再连接。
-
-## Object
-
-由于JavaScript的对象是动态类型，你可以自由地给一个对象添加或删除属性：
-
-&lt;pre&gt;`var xiaoming = {
-    name: &apos;小明&apos;
-};
-xiaoming.age; // undefined
-xiaoming.age = 18; // 新增一个age属性
-xiaoming.age; // 18
-delete xiaoming.age; // 删除age属性
-`&lt;/pre&gt;
-
-如果我们要检测xiaoming是否拥有某一属性，可以用in操作符：
-
-&lt;pre&gt;`var xiaoming = {
-    name: &apos;小明&apos;,
-    birth: 1990,
-    school: &apos;No.1 Middle School&apos;,
-    height: 1.70,
-    weight: 65,
-    score: null
-};
-&apos;name&apos; in xiaoming; // true
-&apos;grade&apos; in xiaoming; // false
-`&lt;/pre&gt;
-
-不过要小心，如果in判断一个属性存在，这个属性不一定是xiaoming的，它可能是xiaoming继承得到的：
-
-&lt;pre&gt;`&apos;toString&apos; in xiaoming; // true
-`&lt;/pre&gt;
-
-因为toString定义在object对象中，而所有对象最终都会在原型链上指向object，所以xiaoming也拥有toString属性。
-
-要判断一个属性是否是xiaoming自身拥有的，而不是继承得到的，可以用hasOwnProperty()方法：
-
-&lt;pre&gt;`var xiaoming = {
-    name: &apos;小明&apos;
-};
-xiaoming.hasOwnProperty(&apos;name&apos;); // true
-xiaoming.hasOwnProperty(&apos;toString&apos;); // false
-`&lt;/pre&gt;
-
-## Map
-
-JavaScript的默认对象表示方式{}可以视为其他语言中的Map或Dictionary的数据结构，即一组键值对。
-
-但是JavaScript的对象有个小问题，就是键必须是字符串。但实际上Number或者其他数据类型作为键也是非常合理的。
-
-为了解决这个问题，最新的ES6规范引入了新的数据类型Map。
-
-Map是一组键值对的结构，具有极快的查找速度。
-
-初始化Map需要一个二维数组，或者直接初始化一个空Map。Map具有以下方法：
-
-&lt;pre&gt;`var m = new Map(); // 空Map
-m.set(&apos;Adam&apos;, 67); // 添加新的key-value
-m.set(&apos;Bob&apos;, 59);
-m.has(&apos;Adam&apos;); // 是否存在key &apos;Adam&apos;: true
-m.get(&apos;Adam&apos;); // 67
-m.delete(&apos;Adam&apos;); // 删除key &apos;Adam&apos;
-m.get(&apos;Adam&apos;); // undefined
-`&lt;/pre&gt;
-
-由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：
-
-&lt;pre&gt;`var m = new Map();
-m.set(&apos;Adam&apos;, 67);
-m.set(&apos;Adam&apos;, 88);
-m.get(&apos;Adam&apos;); // 88
-`&lt;/pre&gt;
-
-## Set
-
-Set和Map类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在Set中，没有重复的key。
-
-要创建一个Set，需要提供一个Array作为输入，或者直接创建一个空Set：
-
-&lt;pre&gt;`var s1 = new Set(); // 空Set
-var s2 = new Set([1, 2, 3]); // 含1, 2, 3
-`&lt;/pre&gt;
-
-重复元素在Set中自动被过滤：
-
-&lt;pre&gt;`var s = new Set([1, 2, 3, 3, &apos;3&apos;]);
-s; // Set {1, 2, 3, &quot;3&quot;}
-`&lt;/pre&gt;
-
-通过`add(key)`方法可以添加到`Set`中，通过`delete(key)`方法可以删除元素。
-
-## iterable
-
-你可能会有疑问，for ... of循环和for ... in循环有何区别？
-
-for ... in循环由于历史遗留问题，它遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，它的每个元素的索引被视为一个属性。
-
-当我们手动给Array对象添加了额外的属性后，for ... in循环将带来意想不到的意外效果：
-
-&lt;pre&gt;`var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
-a.name = &apos;Hello&apos;;
-for (var x in a) {
-    alert(x); // &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;name&apos;
-}
-for ... in循环将把name包括在内，但Array的length属性却不包括在内。
-
-for ... of循环则完全修复了这些问题，它只循环集合本身的元素：
-
-var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
-a.name = &apos;Hello&apos;;
-for (var x of a) {
-    alert(x); &apos;A&apos;, &apos;B&apos;, &apos;C&apos;
-}
-`&lt;/pre&gt;
-
-这就是为什么要引入新的for ... of循环。
-
-然而，更好的方式是直接使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。以Array为例：
-
-&lt;pre&gt;`var a = [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;];
-a.forEach(function (element, index, array) {
-    // element: 指向当前元素的值
-    // index: 指向当前索引
-    // array: 指向Array对象本身
-    alert(element);
-});
-`&lt;/pre&gt;
-
-注意，forEach()方法是ES5.1标准引入的，你需要测试浏览器是否支持。
-
-Set与Array类似，但Set没有索引，因此回调函数最多两个参数：
-
-&lt;pre&gt;`var s = new Set([&apos;A&apos;, &apos;B&apos;, &apos;C&apos;]);
-s.forEach(function (element, set) {
-    alert(element);
-});
-`&lt;/pre&gt;
-
-Map的回调函数参数依次为value、key和map本身：
-
-&lt;pre&gt;`var m = new Map([[1, &apos;x&apos;], [2, &apos;y&apos;], [3, &apos;z&apos;]]);
-m.forEach(function (value, key, map) {
-    alert(value);
-});
-`&lt;/pre&gt;
-
-## Function
-
-### arguments
-
-JavaScript还有一个免费赠送的关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。arguments类似Array但它不是一个Array：
-
-&lt;pre&gt;`function foo(x) {
-    alert(x); // 10
-    for (var i=0; i&amp;lt;arguments.length; i++) {
-        alert(arguments[i]); // 10, 20, 30
-    }
-}
-foo(10, 20, 30);
-`&lt;/pre&gt;
-
-### rest
-
-ES6标准引入了rest参数
-
-&lt;pre&gt;`function foo(a, b, ...rest) {
-    console.log(&apos;a = &apos; + a);
-    console.log(&apos;b = &apos; + b);
-    console.log(rest);
-}
-
-foo(1, 2, 3, 4, 5);
-// 结果:
-// a = 1
-// b = 2
-// Array [ 3, 4, 5 ]
-
-foo(1);
-// 结果:
-// a = 1
-// b = undefined
-// Array []
-`&lt;/pre&gt;
-
-rest参数只能写在最后，前面用...标识，从运行结果可知，传入的参数先绑定a、b，多余的参数以数组形式交给变量rest，所以，不再需要arguments我们就获取了全部参数。
-
-如果传入的参数连正常定义的参数都没填满，也不要紧，rest参数会接收一个空数组（注意不是undefined）。
-
-### apply
-
-要指定函数的this指向哪个对象，可以用函数本身的apply方法，它接收两个参数，第一个参数就是需要绑定的this变量，第二个参数是Array，表示函数本身的参数。
-
-apply 还有更为有用的使用方式**装饰器**
-
-利用apply()，我们还可以动态改变函数的行为。
-
-JavaScript的所有对象都是动态的，即使内置的函数，我们也可以重新指向新的函数。
-
-现在假定我们想统计一下代码一共调用了多少次parseInt()，可以把所有的调用都找出来，然后手动加上count += 1，不过这样做太傻了。最佳方案是用我们自己的函数替换掉默认的parseInt()：
-
-&lt;pre&gt;`var count = 0;
-var oldParseInt = parseInt; // 保存原函数
-
-window.parseInt = function () {
-    count += 1;
-    return oldParseInt.apply(null, arguments); // 调用原函数
-};
-
-// 测试:
-parseInt(&apos;10&apos;);
-parseInt(&apos;20&apos;);
-parseInt(&apos;30&apos;);
-count; // 3
-`&lt;/pre&gt;
-
-另一个与apply()类似的方法是call()，唯一区别是：
-
-apply()把参数打包成Array再传入；
-
-call()把参数按顺序传入。
-
-比如调用Math.max(3, 5, 4)，分别用apply()和call()实现如下：
-
-&lt;pre&gt;`Math.max.apply(null, [3, 5, 4]); // 5
-Math.max.call(null, 3, 5, 4); // 5
-`&lt;/pre&gt;
-
-对普通函数调用，我们通常把this绑定为null。
-
-## Higher-order function
-
-### map
-
-举例说明，比如我们有一个函数f(x)=x2，要把这个函数作用在一个数组[1, 2, 3, 4, 5, 6, 7, 8, 9]上，就可以用map实现如下：
-
-由于map()方法定义在JavaScript的Array中，我们调用Array的map()方法，传入我们自己的函数，就得到了一个新的Array作为结果：
-
-&lt;pre&gt;`function pow(x) {
-    return x * x;
-}
-
-var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-arr.map(pow); // [1, 4, 9, 16, 25, 36, 49, 64, 81]
-`&lt;/pre&gt;
-
-### reduce
-
-reduce 的用法
-
-Array 的 reduce() 方法中的函数必须接受两个参数， reduce() 将结果继续和序列中的下一个元素做累积运算。
-
-比方说对一个 Array 进行求和：
-
-&lt;pre&gt;`var arr = [1, 3, 5, 7, 9];
-arr.reduce(function (x, y) {
-    return x + y;
-}); // 25
-`&lt;/pre&gt;
-
-### filter
-
-filter也是一个常用的操作，它用于把Array的某些元素过滤掉，然后返回剩下的元素。
-
-和map()类似，Array的filter()也接收一个函数。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。
-
-例如，在一个Array中，删掉偶数，只保留奇数，可以这么写：
-
-&lt;pre&gt;`var arr = [1, 2, 4, 5, 6, 9, 10, 15];
-arr.filter(function (x) {
-    return x % 2 === 1;
-}); // [1, 5, 9, 15]
-`&lt;/pre&gt;
-
-请尝试用filter()筛选出素数：
-
-&lt;pre&gt;`&apos;use strict&apos;;
-
-function get_primes(arr) {
-    return arr.filter(function(x) { 
-        if(x == 1) { return false; }
-        for(var i = 2; i &amp;lt;= Math.sqrt(x); i ++ ) {
-             if(x % i == 0) { 
-                return false; 
-             }
-        }
-        return true;
-    });
-}
-`&lt;/pre&gt;
-
-### sort
-
-&lt;pre&gt;`var arr = [&apos;Google&apos;, &apos;apple&apos;, &apos;Microsoft&apos;];
-arr.sort(function (s1, s2) {
-    x1 = s1.toUpperCase();
-    x2 = s2.toUpperCase();
-    if (x1 &amp;lt; x2) {
-        return -1;
-    }
-    if (x1 &amp;gt; x2) {
-        return 1;
-    }
-    return 0;
-}); // [&apos;apple&apos;, &apos;Google&apos;, &apos;Microsoft&apos;]
-`&lt;/pre&gt;
-
-## Closure （闭包）
-
-&lt;pre&gt;`function lazy_sum(arr) {
-    var sum = function () {
-        return arr.reduce(function (x, y) {
-            return x + y;
-        });
-    }
-    return sum;
-}
-`&lt;/pre&gt;
-
-当我们调用lazy_sum()时，返回的并不是求和结果，而是求和函数：
-
-&lt;pre&gt;`    var f = lazy_sum([1, 2, 3, 4, 5]); // function sum()
-`&lt;/pre&gt;
-
-调用函数f时，才真正计算求和的结果：
-
-&lt;pre&gt;`    f(); // 15
-`&lt;/pre&gt;
-
-在这个例子中，我们在函数`lazy_sum`中又定义了函数`sum`，并且，内部函数sum可以引用外部函数`lazy_sum`的参数和局部变量，当`lazy_sum`返回函数`sum`时，相关参数和变量都保存在返回的函数中，这种称为“闭包（Closure）”的程序结构拥有极大的威力。
-
-闭包就是携带状态的函数，并且它的状态可以完全对外隐藏起来。
-
-闭包还可以把多参数的函数变成单参数的函数。例如，要计算xy可以用`Math.pow(x, y)`函数，不过考虑到经常计算$x^2$或$x^3$，我们可以利用闭包创建新的函数pow2和pow3：
-
-&lt;pre&gt;`function make_pow(n) {
-    return function (x) {
-        return Math.pow(x, n);
-    }
-}
-
-// 创建两个新函数:
-var pow2 = make_pow(2);
-var pow3 = make_pow(3);
-
-pow2(5); // 25
-pow3(7); // 343
-`&lt;/pre&gt;
-
-&gt; 需加强对闭包的理解
-
-## 标准对象
-
-特别注意`null`的类型是`object`，`Array`的类型也是`object`，如果我们用`typeof`将无法区分出`null`、`Array`和通常意义上的object——`{}`
-
-总结一下，有这么几条规则需要遵守：
-</code></pre><ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">string2int</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> s.split(<span class="string">''</span>)</span><br><span class="line">    .map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x.charCodeAt(<span class="number">0</span>) - <span class="string">'0'</span>.charCodeAt(<span class="number">0</span>)&#125;)</span><br><span class="line">    .reduce(<span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>) </span>&#123; <span class="keyword">return</span> <span class="number">10</span> * x + y&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例：把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">normalize</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x[<span class="number">0</span>].toUpperCase() + x.slice(<span class="number">1</span>).toLowerCase() &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="push_and_pop"><a href="#push_and_pop" class="headerlink" title="push and pop"></a>push and pop</h3><p>push()向Array的末尾添加若干元素，pop()则把Array的最后一个元素删除掉：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">arr.push(<span class="string">'A'</span>, <span class="string">'B'</span>); <span class="comment">// 返回Array新的长度: 4</span></span><br><span class="line">arr; <span class="comment">// [1, 2, 'A', 'B']</span></span><br><span class="line">arr.pop(); <span class="comment">// pop()返回'B'</span></span><br><span class="line">arr; <span class="comment">// [1, 2, 'A']</span></span><br><span class="line">arr.pop(); arr.pop(); arr.pop(); <span class="comment">// 连续pop 3次</span></span><br><span class="line">arr; <span class="comment">// []</span></span><br><span class="line">arr.pop(); <span class="comment">// 空数组继续pop不会报错，而是返回undefined</span></span><br><span class="line">arr; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<h3 id="unshift_and_shift"><a href="#unshift_and_shift" class="headerlink" title="unshift and shift"></a>unshift and shift</h3><p>如果要往Array的头部添加若干元素，使用unshift()方法，shift()方法则把Array的第一个元素删掉：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">arr.unshift(<span class="string">'A'</span>, <span class="string">'B'</span>); <span class="comment">// 返回Array新的长度: 4</span></span><br><span class="line">arr; <span class="comment">// ['A', 'B', 1, 2]</span></span><br><span class="line">arr.shift(); <span class="comment">// 'A'</span></span><br><span class="line">arr; <span class="comment">// ['B', 1, 2]</span></span><br><span class="line">arr.shift(); arr.shift(); arr.shift(); <span class="comment">// 连续shift 3次</span></span><br><span class="line">arr; <span class="comment">// []</span></span><br><span class="line">arr.shift(); <span class="comment">// 空数组继续shift不会报错，而是返回undefined</span></span><br><span class="line">arr; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<h3 id="splice"><a href="#splice" class="headerlink" title="splice"></a>splice</h3><p>splice() 方法是修改Array的“万能方法”，它可以从指定的索引开始删除若干元素，然后再从该位置添加若干元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'Microsoft'</span>, <span class="string">'Apple'</span>, <span class="string">'Yahoo'</span>, <span class="string">'AOL'</span>, <span class="string">'Excite'</span>, <span class="string">'Oracle'</span>];</span><br><span class="line"><span class="comment">// 从索引2开始删除3个元素,然后再添加两个元素:</span></span><br><span class="line">arr.splice(<span class="number">2</span>, <span class="number">3</span>, <span class="string">'Google'</span>, <span class="string">'Facebook'</span>); <span class="comment">// 返回删除的元素 ['Yahoo', 'AOL', 'Excite']</span></span><br><span class="line">arr; <span class="comment">// ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']</span></span><br><span class="line"><span class="comment">// 只删除,不添加:</span></span><br><span class="line">arr.splice(<span class="number">2</span>, <span class="number">2</span>); <span class="comment">// ['Google', 'Facebook']</span></span><br><span class="line">arr; <span class="comment">// ['Microsoft', 'Apple', 'Oracle']</span></span><br><span class="line"><span class="comment">// 只添加,不删除:</span></span><br><span class="line">arr.splice(<span class="number">2</span>, <span class="number">0</span>, <span class="string">'Google'</span>, <span class="string">'Facebook'</span>); <span class="comment">// 返回[],因为没有删除任何元素</span></span><br><span class="line">arr; <span class="comment">// ['Microsoft', 'Apple', 'Google', 'Facebook', 'Oracle']</span></span><br></pre></td></tr></table></figure>
+<h3 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h3><p>concat()方法把当前的Array和另一个Array连接起来，并返回一个新的Array：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line"><span class="keyword">var</span> added = arr.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">added; <span class="comment">// ['A', 'B', 'C', 1, 2, 3]</span></span><br><span class="line">arr; <span class="comment">// ['A', 'B', 'C']</span></span><br></pre></td></tr></table></figure>
+<p>请注意，concat()方法并没有修改当前Array，而是返回了一个新的Array。</p>
+<p>实际上，concat()方法可以接收任意个元素和Array，并且自动把Array拆开，然后全部添加到新的Array里：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line">arr.concat(<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]); <span class="comment">// ['A', 'B', 'C', 1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>join()方法是一个非常实用的方法，它把当前Array的每个元素都用指定的字符串连接起来，然后返回连接后的字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.join(<span class="string">'-'</span>); <span class="comment">// 'A-B-C-1-2-3'</span></span><br></pre></td></tr></table></figure>
+<p>如果Array的元素不是字符串，将自动转换为字符串后再连接。</p>
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p>由于JavaScript的对象是动态类型，你可以自由地给一个对象添加或删除属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xiaoming = &#123;</span><br><span class="line">    name: <span class="string">'小明'</span></span><br><span class="line">&#125;;</span><br><span class="line">xiaoming.age; <span class="comment">// undefined</span></span><br><span class="line">xiaoming.age = <span class="number">18</span>; <span class="comment">// 新增一个age属性</span></span><br><span class="line">xiaoming.age; <span class="comment">// 18</span></span><br><span class="line"><span class="keyword">delete</span> xiaoming.age; <span class="comment">// 删除age属性</span></span><br></pre></td></tr></table></figure>
+<p>如果我们要检测xiaoming是否拥有某一属性，可以用in操作符：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xiaoming = &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    birth: <span class="number">1990</span>,</span><br><span class="line">    school: <span class="string">'No.1 Middle School'</span>,</span><br><span class="line">    height: <span class="number">1.70</span>,</span><br><span class="line">    weight: <span class="number">65</span>,</span><br><span class="line">    score: <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="string">'name'</span> <span class="keyword">in</span> xiaoming; <span class="comment">// true</span></span><br><span class="line"><span class="string">'grade'</span> <span class="keyword">in</span> xiaoming; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>不过要小心，如果in判断一个属性存在，这个属性不一定是xiaoming的，它可能是xiaoming继承得到的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'toString'</span> <span class="keyword">in</span> xiaoming; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>因为toString定义在object对象中，而所有对象最终都会在原型链上指向object，所以xiaoming也拥有toString属性。</p>
+<p>要判断一个属性是否是xiaoming自身拥有的，而不是继承得到的，可以用hasOwnProperty()方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xiaoming = &#123;</span><br><span class="line">    name: <span class="string">'小明'</span></span><br><span class="line">&#125;;</span><br><span class="line">xiaoming.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// true</span></span><br><span class="line">xiaoming.hasOwnProperty(<span class="string">'toString'</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>JavaScript的默认对象表示方式{}可以视为其他语言中的Map或Dictionary的数据结构，即一组键值对。</p>
+<p>但是JavaScript的对象有个小问题，就是键必须是字符串。但实际上Number或者其他数据类型作为键也是非常合理的。</p>
+<p>为了解决这个问题，最新的ES6规范引入了新的数据类型Map。</p>
+<p>Map是一组键值对的结构，具有极快的查找速度。</p>
+<p>初始化Map需要一个二维数组，或者直接初始化一个空Map。Map具有以下方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">// 空Map</span></span><br><span class="line">m.set(<span class="string">'Adam'</span>, <span class="number">67</span>); <span class="comment">// 添加新的key-value</span></span><br><span class="line">m.set(<span class="string">'Bob'</span>, <span class="number">59</span>);</span><br><span class="line">m.has(<span class="string">'Adam'</span>); <span class="comment">// 是否存在key 'Adam': true</span></span><br><span class="line">m.get(<span class="string">'Adam'</span>); <span class="comment">// 67</span></span><br><span class="line">m.delete(<span class="string">'Adam'</span>); <span class="comment">// 删除key 'Adam'</span></span><br><span class="line">m.get(<span class="string">'Adam'</span>); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值冲掉：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">m.set(<span class="string">'Adam'</span>, <span class="number">67</span>);</span><br><span class="line">m.set(<span class="string">'Adam'</span>, <span class="number">88</span>);</span><br><span class="line">m.get(<span class="string">'Adam'</span>); <span class="comment">// 88</span></span><br></pre></td></tr></table></figure>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>Set和Map类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在Set中，没有重复的key。</p>
+<p>要创建一个Set，需要提供一个Array作为输入，或者直接创建一个空Set：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> <span class="built_in">Set</span>(); <span class="comment">// 空Set</span></span><br><span class="line"><span class="keyword">var</span> s2 = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]); <span class="comment">// 含1, 2, 3</span></span><br></pre></td></tr></table></figure>
+<p>重复元素在Set中自动被过滤：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="string">'3'</span>]);</span><br><span class="line">s; <span class="comment">// Set &#123;1, 2, 3, "3"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>通过<code>add(key)</code>方法可以添加到Set中，通过<code>delete(key)</code>方法可以删除元素。</p>
+<h2 id="iterable"><a href="#iterable" class="headerlink" title="iterable"></a>iterable</h2><p>你可能会有疑问，for … of循环和for … in循环有何区别？</p>
+<p>for … in循环由于历史遗留问题，它遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，它的每个元素的索引被视为一个属性。</p>
+<p>当我们手动给Array对象添加了额外的属性后，for … in循环将带来意想不到的意外效果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line">a.name = <span class="string">'Hello'</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x <span class="keyword">in</span> a) &#123;</span><br><span class="line">    alert(x); <span class="comment">// '0', '1', '2', 'name'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>for … in循环将把name包括在内，但Array的length属性却不包括在内。<br>for … of循环则完全修复了这些问题，它只循环集合本身的元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line">a.name = <span class="string">'Hello'</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> x <span class="keyword">of</span> a) &#123;</span><br><span class="line">    alert(x); <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这就是为什么要引入新的for … of循环。</p>
+<p>然而，更好的方式是直接使用iterable内置的forEach方法，它接收一个函数，每次迭代就自动回调该函数。以Array为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>];</span><br><span class="line">a.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element, index, array</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// element: 指向当前元素的值</span></span><br><span class="line">    <span class="comment">// index: 指向当前索引</span></span><br><span class="line">    <span class="comment">// array: 指向Array对象本身</span></span><br><span class="line">    alert(element);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Set与Array类似，但Set没有索引，因此回调函数最多两个参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>]);</span><br><span class="line">s.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element, set</span>) </span>&#123;</span><br><span class="line">    alert(element);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Map的回调函数参数依次为value、key和map本身：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="keyword">new</span> <span class="built_in">Map</span>([[<span class="number">1</span>, <span class="string">'x'</span>], [<span class="number">2</span>, <span class="string">'y'</span>], [<span class="number">3</span>, <span class="string">'z'</span>]]);</span><br><span class="line">m.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">value, key, map</span>) </span>&#123;</span><br><span class="line">    alert(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><p>JavaScript还有一个免费赠送的关键字arguments，它只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。arguments类似Array但它不是一个Array：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    alert(x); <span class="comment">// 10</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">        alert(<span class="built_in">arguments</span>[i]); <span class="comment">// 10, 20, 30</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="rest"><a href="#rest" class="headerlink" title="rest"></a>rest</h3><p>ES6标准引入了rest参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a, b, ...rest</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a = '</span> + a);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'b = '</span> + b);</span><br><span class="line">    <span class="built_in">console</span>.log(rest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// 结果:</span></span><br><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="comment">// b = 2</span></span><br><span class="line"><span class="comment">// Array [ 3, 4, 5 ]</span></span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// 结果:</span></span><br><span class="line"><span class="comment">// a = 1</span></span><br><span class="line"><span class="comment">// b = undefined</span></span><br><span class="line"><span class="comment">// Array []</span></span><br></pre></td></tr></table></figure>
+<p>rest参数只能写在最后，前面用<code>...</code>标识，从运行结果可知，传入的参数先绑定a、b，多余的参数以数组形式交给变量rest，所以，不再需要arguments我们就获取了全部参数。</p>
+<p>如果传入的参数连正常定义的参数都没填满，也不要紧，rest参数会接收一个空数组（注意不是undefined）。</p>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><p>要指定函数的this指向哪个对象，可以用函数本身的apply方法，它接收两个参数，第一个参数就是需要绑定的this变量，第二个参数是Array，表示函数本身的参数。</p>
+<p>apply 还有更为有用的使用方式<strong>装饰器</strong></p>
+<p>利用apply()，我们还可以动态改变函数的行为。</p>
+<p>JavaScript的所有对象都是动态的，即使内置的函数，我们也可以重新指向新的函数。</p>
+<p>现在假定我们想统计一下代码一共调用了多少次parseInt()，可以把所有的调用都找出来，然后手动加上count += 1，不过这样做太傻了。最佳方案是用我们自己的函数替换掉默认的parseInt()：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> oldParseInt = <span class="built_in">parseInt</span>; <span class="comment">// 保存原函数</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.parseInt = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    count += <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> oldParseInt.apply(<span class="literal">null</span>, <span class="built_in">arguments</span>); <span class="comment">// 调用原函数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试:</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'10'</span>);</span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'20'</span>);</span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'30'</span>);</span><br><span class="line">count; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>另一个与apply()类似的方法是call()，唯一区别是：</p>
+<p>apply()把参数打包成Array再传入；</p>
+<p>call()把参数按顺序传入。</p>
+<p>比如调用Math.max(3, 5, 4)，分别用apply()和call()实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, [<span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>]); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">Math</span>.max.call(<span class="literal">null</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">4</span>); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<p>对普通函数调用，我们通常把this绑定为null。</p>
+<h2 id="Higher-order_function"><a href="#Higher-order_function" class="headerlink" title="Higher-order function"></a>Higher-order function</h2><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>举例说明，比如我们有一个函数f(x)=x2，要把这个函数作用在一个数组[1, 2, 3, 4, 5, 6, 7, 8, 9]上，就可以用map实现如下：</p>
+<p>由于map()方法定义在JavaScript的Array中，我们调用Array的map()方法，传入我们自己的函数，就得到了一个新的Array作为结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pow</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];</span><br><span class="line">arr.map(pow); <span class="comment">// [1, 4, 9, 16, 25, 36, 49, 64, 81]</span></span><br></pre></td></tr></table></figure>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>reduce 的用法</p>
+<p>Array 的 reduce() 方法中的函数必须接受两个参数， reduce() 将结果继续和序列中的下一个元素做累积运算。</p>
+<p>比方说对一个 Array 进行求和：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>];</span><br><span class="line">arr.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;); <span class="comment">// 25</span></span><br></pre></td></tr></table></figure>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>filter也是一个常用的操作，它用于把Array的某些元素过滤掉，然后返回剩下的元素。</p>
+<p>和map()类似，Array的filter()也接收一个函数。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是true还是false决定保留还是丢弃该元素。</p>
+<p>例如，在一个Array中，删掉偶数，只保留奇数，可以这么写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">15</span>];</span><br><span class="line">arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x % <span class="number">2</span> === <span class="number">1</span>;</span><br><span class="line">&#125;); <span class="comment">// [1, 5, 9, 15]</span></span><br></pre></td></tr></table></figure>
+<p>请尝试用filter()筛选出素数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_primes</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x == <span class="number">1</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">Math</span>.sqrt(x); i ++ ) &#123;</span><br><span class="line">             <span class="keyword">if</span>(x % i == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">             &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'Google'</span>, <span class="string">'apple'</span>, <span class="string">'Microsoft'</span>];</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">s1, s2</span>) </span>&#123;</span><br><span class="line">    x1 = s1.toUpperCase();</span><br><span class="line">    x2 = s2.toUpperCase();</span><br><span class="line">    <span class="keyword">if</span> (x1 &lt; x2) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x1 &gt;; x2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;); <span class="comment">// ['apple', 'Google', 'Microsoft']</span></span><br></pre></td></tr></table></figure>
+<h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazy_sum</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> x + y;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们调用lazy_sum()时，返回的并不是求和结果，而是求和函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = lazy_sum([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]); <span class="comment">// function sum()</span></span><br></pre></td></tr></table></figure>
+<p>调用函数f时，才真正计算求和的结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(); <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，我们在函数<code>lazy_sum</code>中又定义了函数<code>sum</code>，并且，内部函数sum可以引用外部函数<code>lazy_sum</code>的参数和局部变量，当<code>lazy_sum</code>返回函数<code>sum</code>时，相关参数和变量都保存在返回的函数中，这种称为“闭包（Closure）”的程序结构拥有极大的威力。</p>
+<p>闭包就是携带状态的函数，并且它的状态可以完全对外隐藏起来。</p>
+<p>闭包还可以把多参数的函数变成单参数的函数。例如，要计算xy可以用<code>Math.pow(x, y)</code>函数，不过考虑到经常计算x^2或x^3，我们可以利用闭包创建新的函数pow2和pow3：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">make_pow</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.pow(x, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建两个新函数:</span></span><br><span class="line"><span class="keyword">var</span> pow2 = make_pow(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">var</span> pow3 = make_pow(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">pow2(<span class="number">5</span>); <span class="comment">// 25</span></span><br><span class="line">pow3(<span class="number">7</span>); <span class="comment">// 343</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需加强对闭包的理解</p>
+</blockquote>
+<h2 id="u6807_u51C6_u5BF9_u8C61"><a href="#u6807_u51C6_u5BF9_u8C61" class="headerlink" title="标准对象"></a>标准对象</h2><p>特别注意<code>null</code>的类型是<code>object</code>，<code>Array</code>的类型也是<code>object</code>，如果我们用<code>typeof</code>将无法区分出<code>null</code>、<code>Array</code>和通常意义上的object——<code>{}</code></p>
+<p>总结一下，有这么几条规则需要遵守：</p>
+<ul>
 <li>不要使用new Number()、new Boolean()、new String()创建包装对象；</li>
 <li>用parseInt()或parseFloat()来转换任意类型到number</li>
 <li>用String()来转换任意类型到string，或者直接调用某个对象的toString()方法；</li>
@@ -452,228 +115,74 @@ pow3(7); // 343
 <li>判断Array要使用Array.isArray(arr)；</li>
 <li>判断null请使用myVar === null；</li>
 <li>判断某个全局变量是否存在用typeof window.myVar === ‘undefined’；</li>
-<li><p>函数内部判断某个变量是否存在用typeof myVar === ‘undefined’。</p>
+<li>函数内部判断某个变量是否存在用typeof myVar === ‘undefined’。</li>
+</ul>
 <p>最后有细心的同学指出，任何对象都有toString()方法吗？null和undefined就没有！确实如此，这两个特殊值要除外，虽然null还伪装成了object类型。</p>
 <p>更细心的同学指出，number对象调用toString()报SyntaxError：</p>
-<pre>`123.toString(); // SyntaxError
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123.</span>toString(); <span class="comment">// SyntaxError</span></span><br></pre></td></tr></table></figure>
 <p>遇到这种情况，要特殊处理一下：</p>
-<pre>`123..toString(); // '123', 注意是两个点！
-(123).toString(); // '123'
-`</pre>
-
-<p>因为 JavaScript 中只有一种数字类型：基于 IEEE 754 标准的双精度 。它并没有为整数给出一种特定的类型。所以所有的数字都是小数。<br><code>123.toString()</code> 等价于 <code>123.0toString()</code><br>除非使用 <code>(123).toString()</code><br><code>(123).toString()</code> 等价于 <code>123.0.toString()</code> 和 <code>123..toString()</code><br>因为 <code>123\. === 123.0 //true</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123.</span>.toString(); <span class="comment">// '123', 注意是两个点！</span></span><br><span class="line">(<span class="number">123</span>).toString(); <span class="comment">// '123'</span></span><br></pre></td></tr></table></figure>
+<p>因为JavaScript中只有一种数字类型：基于IEEE 754标准的双精度。它并没有为整数给出一种特定的类型。所以所有的数字都是小数。<code>123.toString()</code>等价于<code>123.0toString()</code>，除非使用<code>(123).toString()</code>，<code>(123).toString()</code>等价于<code>123.0.toString()</code> 和 <code>123..toString()</code>。<br>因为 <code>123\. === 123.0 //true</code>。</p>
 <h2 id="RegExp"><a href="#RegExp" class="headerlink" title="RegExp"></a>RegExp</h2><h3 id="u8D2A_u5A6A_u5339_u914D"><a href="#u8D2A_u5A6A_u5339_u914D" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h3><p>需要特别指出的是，正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符。举例如下，匹配出数字后面的0：</p>
-<pre>`var re = /^(\d+)(0*)$/;
-re.exec('102300'); // ['102300', '102300', '']
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="regexp">/^(\d+)(0*)$/</span>;</span><br><span class="line">re.exec(<span class="string">'102300'</span>); <span class="comment">// ['102300', '102300', '']</span></span><br></pre></td></tr></table></figure>
 <p>由于\d+采用贪婪匹配，直接把后面的0全部匹配了，结果0*只能匹配空字符串了。</p>
 <p>必须让\d+采用非贪婪匹配（也就是尽可能少匹配），才能把后面的0匹配出来，加个?就可以让\d+采用非贪婪匹配：</p>
-<pre>`var re = /^(\d+?)(0*)$/;
-re.exec('102300'); // ['102300', '1023', '00']
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="regexp">/^(\d+?)(0*)$/</span>;</span><br><span class="line">re.exec(<span class="string">'102300'</span>); <span class="comment">// ['102300', '1023', '00']</span></span><br></pre></td></tr></table></figure>
 <p>全局搜索</p>
 <p>JavaScript的正则表达式还有几个特殊的标志，最常用的是g，表示全局匹配：</p>
-<pre>`var r1 = /test/g;
-// 等价于:
-var r2 = new RegExp('test', 'g');
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> r1 = <span class="regexp">/test/g</span>;</span><br><span class="line"><span class="comment">// 等价于:</span></span><br><span class="line"><span class="keyword">var</span> r2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'test'</span>, <span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
 <p>全局匹配可以多次执行exec()方法来搜索一个匹配的字符串。当我们指定g标志后，每次运行exec()，正则表达式本身会更新lastIndex属性，表示上次匹配到的最后索引：</p>
-<pre>`var s = 'JavaScript, VBScript, JScript and ECMAScript';
-var re=/[a-zA-Z]+Script/g;
-
-// 使用全局匹配:
-re.exec(s); // ['JavaScript']
-re.lastIndex; // 10
-
-re.exec(s); // ['VBScript']
-re.lastIndex; // 20
-
-re.exec(s); // ['JScript']
-re.lastIndex; // 29
-
-re.exec(s); // ['ECMAScript']
-re.lastIndex; // 44
-
-re.exec(s); // null，直到结束仍没有匹配到
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'JavaScript, VBScript, JScript and ECMAScript'</span>;</span><br><span class="line"><span class="keyword">var</span> re=<span class="regexp">/[a-zA-Z]+Script/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用全局匹配:</span></span><br><span class="line">re.exec(s); <span class="comment">// ['JavaScript']</span></span><br><span class="line">re.lastIndex; <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line">re.exec(s); <span class="comment">// ['VBScript']</span></span><br><span class="line">re.lastIndex; <span class="comment">// 20</span></span><br><span class="line"></span><br><span class="line">re.exec(s); <span class="comment">// ['JScript']</span></span><br><span class="line">re.lastIndex; <span class="comment">// 29</span></span><br><span class="line"></span><br><span class="line">re.exec(s); <span class="comment">// ['ECMAScript']</span></span><br><span class="line">re.lastIndex; <span class="comment">// 44</span></span><br><span class="line"></span><br><span class="line">re.exec(s); <span class="comment">// null，直到结束仍没有匹配到</span></span><br></pre></td></tr></table></figure>
 <p>全局匹配类似搜索，因此不能使用/^…$/，那样只会最多匹配一次。</p>
 <p>正则表达式还可以指定i标志，表示忽略大小写，m标志，表示执行多行匹配。</p>
 <h2 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h2><h3 id="insertBefore"><a href="#insertBefore" class="headerlink" title="insertBefore"></a>insertBefore</h3><p>如果我们要把子节点插入到指定的位置怎么办？可以使用parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。</p>
-<p>还是以上面的HTML为例，假定我们要把Haskell插入到Python之前：</p>
-<pre>`&lt;!-- HTML结构 --&gt;
-&lt;div id="list"&gt;
-    &lt;p id="java"&gt;Java&lt;/p&gt;
-    &lt;p id="python"&gt;Python&lt;/p&gt;
-    &lt;p id="scheme"&gt;Scheme&lt;/p&gt;
-&lt;/div&gt;
-`</pre>
-
+<p>假定我们要把Haskell插入到Python之前：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML结构 --&gt;</span>;</span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"list"</span>&gt;</span>;</span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"java"</span>&gt;</span>;Java<span class="tag">&lt;/<span class="title">p</span>&gt;</span>;</span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"python"</span>&gt;</span>;Python<span class="tag">&lt;/<span class="title">p</span>&gt;</span>;</span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">id</span>=<span class="value">"scheme"</span>&gt;</span>;Scheme<span class="tag">&lt;/<span class="title">p</span>&gt;</span>;</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span>;</span><br></pre></td></tr></table></figure>
 <p>可以这么写：</p>
-<pre>`var
-    list = document.getElementById('list'),
-    ref = document.getElementById('python'),
-    haskell = document.createElement('p');
-haskell.id = 'haskell';
-haskell.innerText = 'Haskell';
-list.insertBefore(haskell, ref);
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>),</span><br><span class="line">    ref = <span class="built_in">document</span>.getElementById(<span class="string">'python'</span>),</span><br><span class="line">    haskell = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">haskell.id = <span class="string">'haskell'</span>;</span><br><span class="line">haskell.innerText = <span class="string">'Haskell'</span>;</span><br><span class="line">list.insertBefore(haskell, ref);</span><br></pre></td></tr></table></figure>
 <h2 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h2><h3 id="24_u7B26_u53F7"><a href="#24_u7B26_u53F7" class="headerlink" title="$符号"></a>$符号</h3><p><code>$</code>是著名的jQuery符号。实际上，jQuery把所有功能全部封装在一个全局变量jQuery中，而$也是一个合法的变量名，它是变量jQuery的别名：</p>
-<pre>`window.jQuery; // jQuery(selector, context)
-window.$; // jQuery(selector, context)
-$ === jQuery; // true
-typeof($); // 'function'
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery; <span class="comment">// jQuery(selector, context)</span></span><br><span class="line"><span class="built_in">window</span>.$; <span class="comment">// jQuery(selector, context)</span></span><br><span class="line">$ === jQuery; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span>($); <span class="comment">// 'function'</span></span><br></pre></td></tr></table></figure>
 <p><code>$</code>本质上就是一个函数，但是函数也是对象，于是$除了可以直接调用外，也可以有很多其他属性。</p>
 <p>注意，你看到的<code>$</code>函数名可能不是<code>jQuery(selector, context)</code>，因为很多JavaScript压缩工具可以对函数名和参数改名，所以压缩过的jQuery源码<code>$</code>函数可能变成<code>a(b, c)</code>。</p>
 <p>绝大多数时候，我们都直接用<code>$</code>（因为写起来更简单嘛）。但是，如果<code>$</code>这个变量不幸地被占用了，而且还不能改，那我们就只能让<code>jQuery</code>把<code>$</code>变量交出来，然后就只能使用jQuery这个变量：</p>
-<pre>`$; // jQuery(selector, context)
-jQuery.noConflict();
-$; // undefined
-jQuery; // jQuery(selector, context)
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$; <span class="comment">// jQuery(selector, context)</span></span><br><span class="line">jQuery.noConflict();</span><br><span class="line">$; <span class="comment">// undefined</span></span><br><span class="line">jQuery; <span class="comment">// jQuery(selector, context)</span></span><br></pre></td></tr></table></figure>
 <p>这种黑魔法的原理是jQuery在占用<code>$</code>之前，先在内部保存了原来的<code>$</code>,调用<code>jQuery.noConflict()</code>时会把原来保存的变量还原。</p>
 <h3 id="u67E5_u627E_u548C_u8FC7_u6EE4"><a href="#u67E5_u627E_u548C_u8FC7_u6EE4" class="headerlink" title="查找和过滤"></a>查找和过滤</h3><p>map()方法把一个jQuery对象包含的若干DOM节点转化为其他对象：</p>
-<pre>`var langs = $('ul.lang li'); // 拿到JavaScript, Python, Swift, Scheme和Haskell
-var arr = langs.map(function () {
-    return this.innerHTML;
-}).get(); // 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> langs = $(<span class="string">'ul.lang li'</span>); <span class="comment">// 拿到JavaScript, Python, Swift, Scheme和Haskell</span></span><br><span class="line"><span class="keyword">var</span> arr = langs.map(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.innerHTML;</span><br><span class="line">&#125;).get(); <span class="comment">// 用get()拿到包含string的Array：['JavaScript', 'Python', 'Swift', 'Scheme', 'Haskell']</span></span><br></pre></td></tr></table></figure>
 <h3 id="u7EC3_u4E60"><a href="#u7EC3_u4E60" class="headerlink" title="练习"></a>练习</h3><p>对如下的Form表单：</p>
-<pre>`&lt;!-- HTML结构 --&gt;
-&lt;form id="test-form" action="test"&gt;
-    &lt;legend&gt;请选择想要学习的编程语言：&lt;/legend&gt;
-    &lt;fieldset&gt;
-        &lt;p&gt;&lt;label class="selectAll"&gt;&lt;input type="checkbox"&gt; &lt;span class="selectAll"&gt;全选&lt;/span&gt;&lt;span class="deselectAll"&gt;全不选&lt;/span&gt;&lt;/label&gt; &lt;a href="#0" class="invertSelect"&gt;反选&lt;/a&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="javascript"&gt; JavaScript&lt;/label&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="python"&gt; Python&lt;/label&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="ruby"&gt; Ruby&lt;/label&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="haskell"&gt; Haskell&lt;/label&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;label&gt;&lt;input type="checkbox" name="lang" value="scheme"&gt; Scheme&lt;/label&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;button type="submit"&gt;Submit&lt;/button&gt;&lt;/p&gt;
-    &lt;/fieldset&gt;
-&lt;/form&gt;
-`</pre>
-
-<form id="test-form" action="test"><br>    <legend>请选择想要学习的编程语言：</legend><br>    <fieldset><br>        <label class="selectAll"><input type="checkbox"> <span class="selectAll">全选</span><span class="deselectAll">全不选</span></label> <a href="/#0">反选</a><br>        <label><input type="checkbox" name="lang" value="javascript"> JavaScript</label><br>        <label><input type="checkbox" name="lang" value="python"> Python</label><br>        <label><input type="checkbox" name="lang" value="ruby"> Ruby</label><br>        <label><input type="checkbox" name="lang" value="haskell"> Haskell</label><br>        <label><input type="checkbox" name="lang" value="scheme"> Scheme</label><br>        <button type="submit">Submit</button><br>    </fieldset><br></form>
-
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">form</span> <span class="attribute">id</span>=<span class="value">"test-form"</span> <span class="attribute">action</span>=<span class="value">"test"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">legend</span>&gt;</span>请选择想要学习的编程语言：<span class="tag">&lt;/<span class="title">legend</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">fieldset</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span> <span class="attribute">class</span>=<span class="value">"selectAll"</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span>&gt;</span> <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"selectAll"</span>&gt;</span>全选<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"deselectAll"</span>&gt;</span>全不选<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">label</span>&gt;</span> [反选](#0)</span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"lang"</span> <span class="attribute">value</span>=<span class="value">"javascript"</span>&gt;</span> JavaScript<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"lang"</span> <span class="attribute">value</span>=<span class="value">"python"</span>&gt;</span> Python<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"lang"</span> <span class="attribute">value</span>=<span class="value">"ruby"</span>&gt;</span> Ruby<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"lang"</span> <span class="attribute">value</span>=<span class="value">"haskell"</span>&gt;</span> Haskell<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">label</span>&gt;</span><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"lang"</span> <span class="attribute">value</span>=<span class="value">"scheme"</span>&gt;</span> Scheme<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">button</span> <span class="attribute">type</span>=<span class="value">"submit"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>绑定合适的事件处理函数，实现以下逻辑：</p>
-</li>
-<li><p>当用户勾上“全选”时，自动选中所有语言，并把“全选”变成“全不选”；</p><p></p>
-</li>
+<ul>
+<li>当用户勾上“全选”时，自动选中所有语言，并把“全选”变成“全不选”；<p></p></li>
 <li>当用户去掉“全不选”时，自动不选中所有语言；</li>
 <li>当用户点击“反选”时，自动把所有语言状态反转（选中的变为未选，未选的变为选中）；</li>
 <li>当用户把所有语言都手动勾上时，“全选”被自动勾上，并变为“全不选”；</li>
-<li><p>当用户手动去掉选中至少一种语言时，“全不选”自动被去掉选中，并变为“全选”。</p>
-<pre>`'use strict';
-
-var
-    form = $('#test-form'),
-    langs = form.find('[name=lang]'),
-    selectAll = form.find('label.selectAll :checkbox'),
-    selectAllLabel = form.find('label.selectAll span.selectAll'),
-    deselectAllLabel = form.find('label.selectAll span.deselectAll'),
-    invertSelect = form.find('a.invertSelect');
-
-// 重置初始化状态:
-form.find('*').show().off();
-form.find(':checkbox').prop('checked', false).off();
-deselectAllLabel.hide();
-// 拦截form提交事件:
-form.off().submit(function (e) {
-    e.preventDefault();
-    alert(form.serialize());
-});
-
-selectAll.click(function(){
-    langs.prop('checked',this.checked);
-    selectAllLabel.toggle(!this.checked);
-    deselectAllLabel.toggle(this.checked);
-});
-
-invertSelect.click(function(){
-    langs.map(function(k,v){
-        $(v).prop('checked',!v.checked);
-    });
-    langs.change();
-});
-
-langs.change(function(){
-    var count = 0;
-    langs.map(function(k,v) {
-        if(v.checked) {count++;}
-    });
-    selectAll.prop('checked',count===langs.length);
-    selectAllLabel.toggle(!(count===langs.length));
-    deselectAllLabel.toggle(count===langs.length);
-});
-`</pre>
-
+<li>当用户手动去掉选中至少一种语言时，“全不选”自动被去掉选中，并变为“全选”。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">    form = $(<span class="string">'#test-form'</span>),</span><br><span class="line">    langs = form.find(<span class="string">'[name=lang]'</span>),</span><br><span class="line">    selectAll = form.find(<span class="string">'label.selectAll :checkbox'</span>),</span><br><span class="line">    selectAllLabel = form.find(<span class="string">'label.selectAll span.selectAll'</span>),</span><br><span class="line">    deselectAllLabel = form.find(<span class="string">'label.selectAll span.deselectAll'</span>),</span><br><span class="line">    invertSelect = form.find(<span class="string">'a.invertSelect'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重置初始化状态:</span></span><br><span class="line">form.find(<span class="string">'*'</span>).show().off();</span><br><span class="line">form.find(<span class="string">':checkbox'</span>).prop(<span class="string">'checked'</span>, <span class="literal">false</span>).off();</span><br><span class="line">deselectAllLabel.hide();</span><br><span class="line"><span class="comment">// 拦截form提交事件:</span></span><br><span class="line">form.off().submit(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    alert(form.serialize());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">selectAll.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    langs.prop(<span class="string">'checked'</span>,<span class="keyword">this</span>.checked);</span><br><span class="line">    selectAllLabel.toggle(!<span class="keyword">this</span>.checked);</span><br><span class="line">    deselectAllLabel.toggle(<span class="keyword">this</span>.checked);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">invertSelect.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    langs.map(<span class="function"><span class="keyword">function</span>(<span class="params">k,v</span>)</span>&#123;</span><br><span class="line">        $(v).prop(<span class="string">'checked'</span>,!v.checked);</span><br><span class="line">    &#125;);</span><br><span class="line">    langs.change();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">langs.change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">    langs.map(<span class="function"><span class="keyword">function</span>(<span class="params">k,v</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(v.checked) &#123;count++;&#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    selectAll.prop(<span class="string">'checked'</span>,count===langs.length);</span><br><span class="line">    selectAllLabel.toggle(!(count===langs.length));</span><br><span class="line">    deselectAllLabel.toggle(count===langs.length);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h3 id="jQuery__u63D2_u4EF6"><a href="#jQuery__u63D2_u4EF6" class="headerlink" title="jQuery 插件"></a>jQuery 插件</h3><p></p><p>当我们使用jQuery对象的方法时，由于jQuery对象可以操作一组DOM，而且支持链式操作，所以用起来非常方便。</p>
 <p>给jQuery对象绑定一个新方法是通过扩展$.fn对象实现的。让我们来编写第一个扩展——highlight1()：</p>
-<pre>`$.fn.highlight1 = function () {
-    // this已绑定为当前jQuery对象:
-    this.css('backgroundColor', '#fffceb').css('color', '#d85030');
-    return this;
-}
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.fn.highlight1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// this已绑定为当前jQuery对象:</span></span><br><span class="line">    <span class="keyword">this</span>.css(<span class="string">'backgroundColor'</span>, <span class="string">'#fffceb'</span>).css(<span class="string">'color'</span>, <span class="string">'#d85030'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意到函数内部的this在调用时被绑定为jQuery对象，所以函数内部代码可以正常调用所有jQuery对象的方法。</p>
 <p>细心的童鞋可能发现了，为什么最后要return this;？因为jQuery对象支持链式操作，我们自己写的扩展方法也要能继续链式下去：</p>
-<pre>`$('span.hl').highlight1().slideDown();
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'span.hl'</span>).highlight1().slideDown();</span><br></pre></td></tr></table></figure>
 <p>不然，用户调用的时候，就不得不把上面的代码拆成两行。</p>
 <p>但是这个版本并不完美。有的用户希望高亮的颜色能自己来指定，怎么办？</p>
 <p>我们可以给方法加个参数，让用户自己把参数用对象传进去。于是我们有了第二个版本的highlight2()：</p>
-<pre>`$.fn.highlight2 = function (options) {
-    // 要考虑到各种情况:
-    // options为undefined
-    // options只有部分key
-    var bgcolor = options &amp;&amp; options.backgroundColor || '#fffceb';
-    var color = options &amp;&amp; options.color || '#d85030';
-    this.css('backgroundColor', bgcolor).css('color', color);
-    return this;
-}
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.fn.highlight2 = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 要考虑到各种情况:</span></span><br><span class="line">    <span class="comment">// options为undefined</span></span><br><span class="line">    <span class="comment">// options只有部分key</span></span><br><span class="line">    <span class="keyword">var</span> bgcolor = options &amp;amp;&amp;amp; options.backgroundColor || <span class="string">'#fffceb'</span>;</span><br><span class="line">    <span class="keyword">var</span> color = options &amp;amp;&amp;amp; options.color || <span class="string">'#d85030'</span>;</span><br><span class="line">    <span class="keyword">this</span>.css(<span class="string">'backgroundColor'</span>, bgcolor).css(<span class="string">'color'</span>, color);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>紧接着用户对<code>highlight2()</code>提出了意见：每次调用都需要传入自定义的设置，能不能让我自己设定一个缺省值，以后的调用统一使用无参数的<code>highlight2()</code>？</p>
 <p>也就是说，我们设定的默认值应该能允许用户修改。</p>
 <p>那默认值放哪比较合适？放全局变量肯定不合适，最佳地点是<code>$.fn.highlight2</code>这个函数对象本身。</p>
 <p>于是最终版的<code>highlight()</code>终于诞生了：</p>
-<pre>`$.fn.highlight = function (options) {
-    // 合并默认值和用户设定值:
-    var opts = $.extend({}, $.fn.highlight.defaults, options);
-    this.css('backgroundColor', opts.backgroundColor).css('color', opts.color);
-    return this;
-}
-
-// 设定默认值:
-$.fn.highlight.defaults = {
-    color: '#d85030',
-    backgroundColor: '#fff8de'
-}
-`</pre>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.fn.highlight = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 合并默认值和用户设定值:</span></span><br><span class="line">    <span class="keyword">var</span> opts = $.extend(&#123;&#125;, $.fn.highlight.defaults, options);</span><br><span class="line">    <span class="keyword">this</span>.css(<span class="string">'backgroundColor'</span>, opts.backgroundColor).css(<span class="string">'color'</span>, opts.color);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设定默认值:</span></span><br><span class="line">$.fn.highlight.defaults = &#123;</span><br><span class="line">    color: <span class="string">'#d85030'</span>,</span><br><span class="line">    backgroundColor: <span class="string">'#fff8de'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这次用户终于满意了。用户使用时，只需一次性设定默认值：</p>
-<p><pre>`$.fn.highlight.defaults.color = ‘#fff’;<br>$.fn.highlight.defaults.backgroundColor = ‘#000’;</pre></p>
-</li>
-</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.fn.highlight.defaults.color = <span class="string">'#fff'</span>;</span><br><span class="line">$.fn.highlight.defaults.backgroundColor = <span class="string">'#000'</span>;</span><br></pre></td></tr></table></figure>
 <p>然后就可以非常简单地调用<code>highlight()</code>了。</p>
 <p>最终，我们得出编写一个jQuery插件的原则：</p>
 <ol>
 <li>给<code>$.fn</code>绑定函数，实现插件的代码逻辑；</li>
 <li>插件函数最后要<code>return this;</code>以支持链式调用；</li>
-<li>插件函数要有默认值，绑定在<code>$.fn.&amp;lt;pluginName&amp;gt;.defaults</code>上；</li>
+<li>插件函数要有默认值，绑定在<code>$.fn.&lt;pluginName&gt;;.defaults</code>上；</li>
 <li>用户在调用时可传入设定值以便覆盖默认值。</li>
 </ol>
-<div class="footnotes"><br><br><em> </em> *<br><br>1.  学习主要来自<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖雪峰官方网站 JavaScript 教程</a>，从中记录较为重要的、易于遗忘的部分。&#160;<a href="/#fnref-202-book">&#8617;</a><br></div></div></article></div></section><footer><div class="paginator"><a href="/2015/08/13/q-node-js/" class="prev">上一篇</a><a href="/2015/08/04/q-intellij-idea-14/" class="next">下一篇</a></div></footer><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ed77053554825c09d2021287e3a25e51";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/08/17/ukulele/" class="prev">上一篇</a><a href="/2015/08/04/q-intellij-idea-14/" class="next">下一篇</a></div></footer><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ed77053554825c09d2021287e3a25e51";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
