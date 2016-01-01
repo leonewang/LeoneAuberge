@@ -4,7 +4,7 @@
   <subtitle><![CDATA[God is in the detail]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://leonewang.wang/"/>
-  <updated>2016-01-01T09:48:50.000Z</updated>
+  <updated>2016-01-01T15:38:16.000Z</updated>
   <id>http://leonewang.wang/</id>
   
   <author>
@@ -15,11 +15,83 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[AngularJS Resource Interface with RESTful API]]></title>
+    <link href="http://leonewang.wang/2016/01/01/angularjs-resource-interface-with-restful-api/"/>
+    <id>http://leonewang.wang/2016/01/01/angularjs-resource-interface-with-restful-api/</id>
+    <published>2016-01-01T15:38:16.000Z</published>
+    <updated>2016-01-01T15:38:16.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>REF:<br><a href="https://docs.angularjs.org/api/ngResource/service/$resource" target="_blank" rel="external">https://docs.angularjs.org/api/ngResource/service/$resource</a><br><a href="http://harttle.com/2015/06/05/angular-resource.html" target="_blank" rel="external">http://harttle.com/2015/06/05/angular-resource.html</a></p>
+</blockquote>
+<p><a href="https://zh.wikipedia.org/zh-cn/REST" target="_blank" rel="external">REST</a>（表征性状态传输，Representational State Transfer）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。RESTful风格的设计不仅具有更好的可读性（Human Readable），而且易于做缓存以及服务器扩展（scalability）。REST风格体现在URL设计上：</p>
+<ul>
+<li>每个URL对应一个资源</li>
+<li>对资源的不同操作对应于HTTP的不同方法</li>
+<li>资源表现形式（representation）通过<code>Accept</code>和<code>Content-Type</code>指定<br>AngularJS提供了$resourceService来更方便地与RESTful服务器API进行交互，可以方便地定义一个REST资源，而不必手动所有的声明CRUD方法。<a id="more"></a>
+</li>
+</ul>
+<h2 id="Resource_Factory"><a href="#Resource_Factory" class="headerlink" title="Resource Factory"></a>Resource Factory</h2><p><code>$resourceService</code>定义在<code>ngResourceModule</code>中，需要在你的HTML中引入这个Module对应的JS，同时在你的APP中添加这样一个依赖：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'helloApp'</span>, [<span class="string">'ngResource'</span>]);</span><br></pre></td></tr></table></figure>
+<p>然后为资源建立一个Factory：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.factory(<span class="string">'Notes'</span>, [<span class="string">'$resource'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$resource</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $resource(<span class="string">'/notes/:id'</span>);</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>当然，你也可以不把<code>$resource的</code>实例放到Factory里，直接在控制器中存起来：<code>var Notes = $resource(&#39;/notes/:id&#39;)</code>。</p>
+<p>CRUD</p>
+<p>在你的控制器中就可以对资源进行增删改查了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">app.controller(<span class="string">'NotesCtrl'</span>, [<span class="string">'$scope'</span>, <span class="string">'Notes'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, Notes</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> notes = Notes.query(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">// GET: /notes</span></span><br><span class="line">        <span class="comment">// Response: [&#123;id: 1, content: 'hello'&#125;, &#123;id: 2, content: 'world'&#125;];</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> first = notes[<span class="number">0</span>];</span><br><span class="line">        first.content = <span class="string">'halo'</span>;</span><br><span class="line">        first.$save();</span><br><span class="line">        <span class="comment">// POST: /notes/1 &#123;id: 1, content: 'halo'&#125;</span></span><br><span class="line">        <span class="comment">// Response: &#123;id: 1, content: 'halo'&#125;</span></span><br><span class="line"></span><br><span class="line">        second.$<span class="keyword">delete</span>();</span><br><span class="line">        <span class="comment">// DELETE: /notes/2</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> note = <span class="keyword">new</span> Notes(&#123;content: <span class="string">'xxx'</span>&#125;);</span><br><span class="line">    note.$save();</span><br><span class="line">    <span class="comment">// POST: /notes</span></span><br><span class="line">    <span class="comment">// Response: &#123;id: 3, content: 'xxx'&#125;</span></span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<h2 id="PUT__u64CD_u4F5C"><a href="#PUT__u64CD_u4F5C" class="headerlink" title="PUT 操作"></a>PUT 操作</h2><p><code>$resource</code>提供了五种默认操作：<code>get</code>, <code>query</code>, <code>save</code>, <code>remove</code>, <code>delete</code>。你可以配置一个update操作来完成HTTP PUT：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.factory(<span class="string">'Notes'</span>, [<span class="string">'$resource'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$resource</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $resource(<span class="string">'/notes/:id'</span>, <span class="literal">null</span>, &#123;</span><br><span class="line">        update: &#123; method:<span class="string">'PUT'</span> &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p>现在，你可以在控制器中获取一个note并更新它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> note = Notes.get(&#123; id: <span class="number">3</span>&#125;),</span><br><span class="line">    $id = note.id;</span><br><span class="line"></span><br><span class="line">note.content = <span class="string">'yyy'</span>;</span><br><span class="line">Notes.update(&#123; id:$id &#125;, note);</span><br><span class="line"><span class="comment">// PUT /notes/3 &#123;id: 3, content: 'yyy'&#125;</span></span><br></pre></td></tr></table></figure>
+<p>现在你的Notes有六种操作了。这些操作有两种调用方式：</p>
+<ul>
+<li>通过资源类调用，例如：<code>Notes.update({id: xxx})；</code></li>
+<li>通过资源实例调用，例如：<code>note.$update()</code>，此时操作名需加前缀$。<br>具体的调用参数可参考文档：</li>
+</ul>
+<blockquote>
+<p>HTTP GET “class” actions: Resource.action([parameters], [success], [error])<br>non-GET “class” actions: Resource.action([parameters], postData, [success], [error])<br>non-GET instance actions: instance.$action([parameters], [success], [error])</p>
+</blockquote>
+<p>其中，success参数为<code>(value, responseHeaders)</code>，error参数为<code>(httpResponse)</code>。</p>
+<h2 id="u5C5E_u6027/URL_u6620_u5C04"><a href="#u5C5E_u6027/URL_u6620_u5C04" class="headerlink" title="属性/URL映射"></a>属性/URL映射</h2><p>上述例子中，我们看到note对象的id属性会映射到URL中的<code>:id</code>（<code>/notes/:id</code>）。如果你的业务更加复杂，可以手动配置这个映射关系。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Notes = $resouce(<span class="string">'/users/:userId/notes/:noteId'</span>, &#123;</span><br><span class="line">    noteId: <span class="string">'@id'</span>,</span><br><span class="line">    userId: <span class="string">'@owner'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将会 <strong>读取note的owner和id属性</strong> 来生成URL，比如删除note时：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// note === &#123;id: 123, owner: 'alice', content: 'hello'&#125;</span></span><br><span class="line">note.$<span class="keyword">delete</span>();</span><br><span class="line"><span class="comment">// DELETE: /users/alice/notes/123</span></span><br></pre></td></tr></table></figure>
+<p><strong>在构造<code>$resource</code>时，多于的属性映射会成为URL Query</strong>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Notes = $resouce(<span class="string">'/notes/:id'</span>, &#123;</span><br><span class="line">    id: <span class="string">'@id'</span>,</span><br><span class="line">    user: <span class="string">'@owner'</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// note === &#123;id: 123, owner: 'alice', content: 'hello'&#125;</span></span><br><span class="line">note.$<span class="keyword">delete</span>();</span><br><span class="line"><span class="comment">// DELETE: /notes/123?user=alice</span></span><br></pre></td></tr></table></figure>
+<p><strong>REST操作的声明和调用中，多于的属性会成为URL Query</strong>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Notes = $resouce(<span class="string">'/notes/:id'</span>, &#123;id: <span class="string">'@id'</span>&#125;, &#123;</span><br><span class="line">    update: &#123;method: <span class="string">'PUT'</span>, operator: <span class="string">'bob'</span>&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// note === &#123;id: 123, content: 'hello'&#125;</span></span><br><span class="line">note.$update(&#123;trusted: <span class="literal">true</span>&#125;);</span><br><span class="line"><span class="comment">// PUT: /notes/123?operator=bob&amp;trusted=true &#123;id: 123, content: 'hello'&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="u54CD_u5E94_u8F6C_u6362"><a href="#u54CD_u5E94_u8F6C_u6362" class="headerlink" title="响应转换"></a>响应转换</h2><p>有时基于既定的后台设计，无法提供完全RESTful的API，比如/notes返回的是一个分页器对象，而非数组。此时，我们仍然可以使用<code>$resource</code>，但需要设置响应转换回调。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Notes = $resouce(<span class="string">'/notes/:id'</span>, <span class="literal">null</span>, &#123;</span><br><span class="line">    pager: &#123;</span><br><span class="line">        method: <span class="string">'GET'</span>,</span><br><span class="line">        transformResponse: <span class="function"><span class="keyword">function</span>(<span class="params">data, headers</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// Server respond:</span></span><br><span class="line">            <span class="comment">// data = &#123;currentPage: 1,</span></span><br><span class="line">            <span class="comment">//    totalPage: 20,</span></span><br><span class="line">            <span class="comment">//    pageSize: 2,</span></span><br><span class="line">            <span class="comment">//    content: [&#123;id: 1, content: 'hello'&#125;, &#123;id: 2, content: 'world'&#125;]&#125;</span></span><br><span class="line">            <span class="keyword">var</span> pager = <span class="built_in">JSON</span>.parse(data);</span><br><span class="line">            <span class="keyword">return</span> pager.content;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> notes = Notes.query(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// GET: /notes</span></span><br><span class="line">    <span class="comment">// notes === [&#123;id: 1, content: 'hello'&#125;, &#123;id: 2, content: 'world'&#125;]</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>类似响应重写，你还可以设置请求转换<code>transformRequest</code>。</p>
+<div class="tip">虽然<code>$resource</code>的设计可以支持绝大多数的URL和内容表示设计，但如果你发现<code>$resource</code>的使用过程极其复杂，那可能是你的服务器API并不满足RESTful风格。</div>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>REF:<br><a href="https://docs.angularjs.org/api/ngResource/service/$resource">https://docs.angularjs.org/api/ngResource/service/$resource</a><br><a href="http://harttle.com/2015/06/05/angular-resource.html">http://harttle.com/2015/06/05/angular-resource.html</a></p>
+</blockquote>
+<p><a href="https://zh.wikipedia.org/zh-cn/REST">REST</a>（表征性状态传输，Representational State Transfer）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。RESTful风格的设计不仅具有更好的可读性（Human Readable），而且易于做缓存以及服务器扩展（scalability）。REST风格体现在URL设计上：</p>
+<ul>
+<li>每个URL对应一个资源</li>
+<li>对资源的不同操作对应于HTTP的不同方法</li>
+<li>资源表现形式（representation）通过<code>Accept</code>和<code>Content-Type</code>指定<br>AngularJS提供了$resourceService来更方便地与RESTful服务器API进行交互，可以方便地定义一个REST资源，而不必手动所有的声明CRUD方法。]]>
+    
+    </summary>
+    
+      <category term="$Resource" scheme="http://leonewang.wang/tags/Resource/"/>
+    
+      <category term="AngularJS" scheme="http://leonewang.wang/tags/AngularJS/"/>
+    
+      <category term="RESTful" scheme="http://leonewang.wang/tags/RESTful/"/>
+    
+      <category term="Notes" scheme="http://leonewang.wang/categories/Notes/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[GitHub/GitCafe Domain Binding Principle]]></title>
-    <link href="http://leonewang.wang/2016/01/01/GitHub-GitCafe-Domain-Binding-Principle/"/>
-    <id>http://leonewang.wang/2016/01/01/GitHub-GitCafe-Domain-Binding-Principle/</id>
+    <link href="http://leonewang.wang/2016/01/01/gitHub-gitCafe-domain-binding-principle/"/>
+    <id>http://leonewang.wang/2016/01/01/gitHub-gitCafe-domain-binding-principle/</id>
     <published>2016-01-01T09:21:02.000Z</published>
-    <updated>2016-01-01T09:48:50.000Z</updated>
+    <updated>2016-01-01T10:11:27.000Z</updated>
     <content type="html"><![CDATA[<p>根据<a href="https://www.zhihu.com/question/26609475" target="_blank" rel="external">Rainux Luo, CTO@GitCafe</a>在知乎的描述和自己的理解做出描述：</p>
 <ol>
 <li>GitHub/GitCafe 会为每个包含 gh-pages/gitcafe-pages 分支的项目创建包含该分支内容的、符合特定命名规则的目录 wwwroot。</li>
@@ -55,11 +127,76 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Question Shredder: JSP Analysis To HTML Incomplete]]></title>
+    <title><![CDATA[Think about JavaScript『 This Pointer 』]]></title>
+    <link href="http://leonewang.wang/2015/12/06/think-about-javascript-this-pointer/"/>
+    <id>http://leonewang.wang/2015/12/06/think-about-javascript-this-pointer/</id>
+    <published>2015-12-06T10:58:55.000Z</published>
+    <updated>2015-12-07T14:58:55.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>This，说到this，就不得不提到function，<strong>正是由于调用function的对象不同，才导致了this的指向不同</strong>。所以以前老是去记忆每种调用function的情况所对应的this，因为情况有限而且很少，所以这当然是可行的——对于聪明人来说。</p>
+</blockquote>
+<p>所以我不得不思考另外一些方式来让我记住。那么首先我们需要明确的一个事情是：<strong>function也是对象</strong>。同时我们还需要明确的一个事情是：<strong>function执行时是在某个特定的上下文中执行的</strong>。</p>
+<p>那什么是上下文呢？打个比方，比如你练会了辟邪剑谱，那这时候你的掌门让你用辟邪剑谱砍人。如果仅仅是这样的话，你是没法完成这个任务的，因为你必须得知道要砍谁吧，其次去哪儿砍吧，那么是个地下通道还是一望无尽的大草原，要是地下通道你走路都困难，还怎么用辟邪剑谱呢对吧。这就是上下文，函数执行时它也需要一些额外的信息来支撑它的运行。<br><a id="more"></a></p>
+<p>那么既然function是对象的话，就会有方法。而function中最核心的方法是 <code>call</code> 方法。因此我们就从这儿入手。</p>
+<h2 id="call_u65B9_u6CD5"><a href="#call_u65B9_u6CD5" class="headerlink" title="call方法"></a>call方法</h2><p>先来看一下如何使用call方法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">"From "</span> + <span class="keyword">this</span> + <span class="string">": Hello "</span>+ content);</span><br><span class="line">&#125;</span><br><span class="line">say.call(<span class="string">"Bob"</span>, <span class="string">"World"</span>); <span class="comment">//==&gt; From Bob: Hello World</span></span><br></pre></td></tr></table></figure>
+<p>接下来仔细分析一下call的用法：<br><strong>Step1:</strong> 把第二个到最后一个参数作为函数执行时要传入的参数<br><strong>Step2:</strong> 把函数执行时的this指向第一个参数<br><strong>Step3:</strong> 在上面这个特殊的上下文中执行函数</p>
+<p>上面例子中，我们通过call方法，让say函数执行时的<code>this</code>指向”Bob”，然后把”World”作为参数传进去，所以输出结果是可以预见的。</p>
+<p>js执行函数时会默认完成以上的步骤，你可以把直接调用函数理解为一种语法糖<br>比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">word</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(world);</span><br><span class="line">&#125;</span><br><span class="line">say(<span class="string">"Hello world"</span>);</span><br><span class="line">say.call(<span class="built_in">window</span>, <span class="string">"Hello world"</span>);</span><br></pre></td></tr></table></figure>
+<p>以上可以把<code>say(&quot;Hello world&quot;)</code>看做是<code>say.call(window,&quot;Hello world&quot;)</code>的语法糖。</p>
+<p>这个结论非常关键。所以以后每次看见<code>functionName(xxx)</code>的时候，你需要马上在脑海中把它替换为<code>functionName.call(window,xxxx)</code>，这对你理解this的指向非常重要。不过也有例外，<strong>在ES5的strict mode中call的第一个参数不是window而是undefined</strong>。之后的例子我假设总是不在strictmode下，但你需要记住strictmode有一点儿不同。</p>
+<p>对于匿名函数来说，上面的结论也是成立的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;)(<span class="string">"aa"</span>);</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;    </span><br><span class="line">  <span class="comment">//</span></span><br><span class="line">&#125;).call(<span class="built_in">window</span>, <span class="string">"aa"</span>);</span><br></pre></td></tr></table></figure>
+<p>函数作为对象的方法被调用，直接来看代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name : <span class="string">"caibirdme"</span>,</span><br><span class="line">    run : <span class="function"><span class="keyword">function</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">"has been running for over "</span>+ time+ <span class="string">" minutes"</span>);</span><br><span class="line">    &#125;&#125;;</span><br><span class="line">person.run(<span class="number">30</span>);</span><br><span class="line"><span class="comment">//==&gt; caibirdme has been running for over 30 minutes//等价于</span></span><br><span class="line">person.run.call(person, <span class="number">30</span>); <span class="comment">// the same</span></span><br></pre></td></tr></table></figure>
+<p>你会发现这里call的第一个参数是person而不是window。当你明白了这两点，下意识地把函数调用翻译成<code>foo.call()</code>的形式，明确call的第一个参数，那基本上this的问题就难不住你了。</p>
+<p>还是来举几个例子。<br>例一：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params">thing</span>) </span>&#123;  </span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span> + <span class="string">" says hello "</span> + thing);</span><br><span class="line">&#125;</span><br><span class="line">  person = &#123; name: <span class="string">"caibirdme"</span> &#125;  </span><br><span class="line">  person.hello = hello;</span><br><span class="line">  person.hello(<span class="string">"world"</span>)</span><br><span class="line"><span class="comment">// 相当于执行 person.hello.call(person, "world")</span></span><br><span class="line">hello(<span class="string">"world"</span>)</span><br><span class="line"><span class="comment">// 相当于执行 hello.call(window, "world")</span></span><br></pre></td></tr></table></figure>
+<p>例二：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    x: <span class="number">20</span>,</span><br><span class="line">    f: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); &#125;</span><br><span class="line">&#125;;</span><br><span class="line">    obj.f(); <span class="comment">// obj.f.call(obj)//==&gt; 20</span></span><br><span class="line">obj.innerobj = &#123;</span><br><span class="line">    x: <span class="number">30</span>,</span><br><span class="line">    f: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.innerobj.f();</span><br><span class="line"><span class="comment">// obj.innerobj.f.call(obj.innerobj)// ==&gt; 30</span></span><br></pre></td></tr></table></figure>
+<p>例三：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    x: <span class="number">20</span>,</span><br><span class="line">    f: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); <span class="comment">//this equals obj</span></span><br><span class="line">                <span class="comment">// ==&gt; 20</span></span><br><span class="line">        <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); &#125;</span><br><span class="line">        foo();</span><br><span class="line">        <span class="comment">// foo.call(window)</span></span><br><span class="line">        <span class="comment">//foo中this被指定为window，所以==&gt; 10</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.f();  <span class="comment">// obj.f.call(obj)// ==&gt; 20 10</span></span><br></pre></td></tr></table></figure>
+<p>由例三引出一个非常common的问题，如果我想让foo输出20怎么办？这时候需要用到一点小技巧。</p>
+<p>例四：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    x: <span class="number">20</span>,</span><br><span class="line">    f: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">        <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line"><span class="comment">//使用that保留当前函数执行上下文的this</span></span><br><span class="line">        <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(that.x); &#125;</span><br><span class="line"><span class="comment">//此时foo函数中的this仍然指向window，但我们使用that取得obj</span></span><br><span class="line">        foo(); <span class="comment">// foo.call(window)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.f();</span><br><span class="line">obj.f.call(obj)<span class="comment">// ==&gt; 20 20</span></span><br></pre></td></tr></table></figure>
+<p>再来一个稍微难一点点的(但其实用call替换法一点儿也不难)。</p>
+<p>例五：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    x: <span class="number">20</span>,</span><br><span class="line">    f: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(<span class="keyword">this</span>.x); &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.f(); <span class="comment">// obj.f.call(obj)// ==&gt; 20</span></span><br><span class="line"><span class="keyword">var</span> fOut = obj.f;</span><br><span class="line">fOut();</span><br><span class="line"><span class="comment">// fOut.call(window)//==&gt; 10</span></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    x: <span class="number">30</span>,</span><br><span class="line">    f: obj.f</span><br><span class="line">&#125;</span><br><span class="line">obj2.f(); <span class="comment">// obj2.f.call(obj2)//==&gt; 30</span></span><br></pre></td></tr></table></figure>
+<p>例五有些同学会可能出错的原因，是没有明确我上面说的：<strong>this是在执行是才会被确认的</strong>。他可能会认为说<code>obj.f</code>那个函数定义在obj里面，那this就该指向obj。如果看完这篇文章你还这么想的话，我会觉得我的表达水平太失败了……</p>
+<h2 id="u6784_u9020_u51FD_u6570"><a href="#u6784_u9020_u51FD_u6570" class="headerlink" title="构造函数"></a>构造函数</h2><p>先看一段代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func person(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> caibirdme = <span class="keyword">new</span> person(<span class="string">"deen"</span>);</span><br><span class="line"><span class="comment">// caibirdme.name == deen</span></span><br></pre></td></tr></table></figure>
+<p>我上面也说了，函数在用作构造函数时同样可以用call方法去代替，那这里怎么代替呢？<br>这里你又需要明确一点：<code>new constrcut()是一种创建对象的语法糖</code>，它等价于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> person(<span class="string">"deen"</span>);</span><br><span class="line"><span class="comment">//通过new创建了一个对象</span></span><br><span class="line"><span class="comment">//new是一种语法糖，new person等价于</span></span><br><span class="line"><span class="keyword">var</span> bar = (<span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _newObj = &#123;</span><br><span class="line">        constructor : person,</span><br><span class="line">        __proto__ : person.prototype,</span><br><span class="line">    &#125;;</span><br><span class="line">    _newObj.constructor(name);</span><br><span class="line">    <span class="comment">// _newObj.constructor.call(_newObj, name)</span></span><br><span class="line">    <span class="keyword">return</span> _newObj;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>So you can see……为什么new的时候this就指向新的对象了吧？</p>
+<p>通过我这篇文章，我希望学会通过把一个函数调用替换成<code>funcName.call</code>的形式，从而理解运行时上下文中this到底指向谁。总结来说就是下面两个等价变形：</p>
+<p><strong>foo() —&gt; foo.call(window)</strong><br><strong>obj.foo() –&gt; obj.foo.call(obj)</strong></p>
+<p>只要理解以上两个变形，this就不再是问题啦！！希望我的这种方法对各位同学认识this有所帮助，不要再像我曾经一样掉入this的坑中。</p>
+<p>总之：<code>this</code> 当前执行环境的上下文，<code>call</code> 和 <code>apply</code> 修改对象的上下文</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>This，说到this，就不得不提到function，<strong>正是由于调用function的对象不同，才导致了this的指向不同</strong>。所以以前老是去记忆每种调用function的情况所对应的this，因为情况有限而且很少，所以这当然是可行的——对于聪明人来说。</p>
+</blockquote>
+<p>所以我不得不思考另外一些方式来让我记住。那么首先我们需要明确的一个事情是：<strong>function也是对象</strong>。同时我们还需要明确的一个事情是：<strong>function执行时是在某个特定的上下文中执行的</strong>。</p>
+<p>那什么是上下文呢？打个比方，比如你练会了辟邪剑谱，那这时候你的掌门让你用辟邪剑谱砍人。如果仅仅是这样的话，你是没法完成这个任务的，因为你必须得知道要砍谁吧，其次去哪儿砍吧，那么是个地下通道还是一望无尽的大草原，要是地下通道你走路都困难，还怎么用辟邪剑谱呢对吧。这就是上下文，函数执行时它也需要一些额外的信息来支撑它的运行。<br>]]>
+    
+    </summary>
+    
+      <category term=".this" scheme="http://leonewang.wang/tags/this/"/>
+    
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+    
+      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Question Shredder: JSP Analysis to HTML Incomplete]]></title>
     <link href="http://leonewang.wang/2015/11/09/q-jsp-loaded-incomplete/"/>
     <id>http://leonewang.wang/2015/11/09/q-jsp-loaded-incomplete/</id>
     <published>2015-11-09T07:20:53.000Z</published>
-    <updated>2016-01-01T09:59:00.000Z</updated>
+    <updated>2015-11-09T07:20:53.000Z</updated>
     <content type="html"><![CDATA[<a id="more"></a>
 <p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12-1020x647.png" alt="2015-11-09 16.20.12"></a></p>
 <h2 id="u95EE_u9898_u63CF_u8FF0"><a href="#u95EE_u9898_u63CF_u8FF0" class="headerlink" title="问题描述"></a>问题描述</h2><p>jsp 解析后 <strong>html页面加载不完整</strong>，把前面的代码删一点后面的就跟着多加载一点</p>
@@ -92,11 +229,89 @@
   </entry>
   
   <entry>
-    <title><![CDATA[The Maximum Length Of HTTP Get/Post Request]]></title>
+    <title><![CDATA[Think about JavaScript『 Prototype and Prototype Chain 』]]></title>
+    <link href="http://leonewang.wang/2015/10/20/think-about-javascript-prototype-and-prototype-chain/"/>
+    <id>http://leonewang.wang/2015/10/20/think-about-javascript-prototype-and-prototype-chain/</id>
+    <published>2015-10-20T04:34:12.000Z</published>
+    <updated>2015-10-21T06:21:27.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u666E_u901A_u5BF9_u8C61_u4E0E_u51FD_u6570_u5BF9_u8C61"><a href="#u666E_u901A_u5BF9_u8C61_u4E0E_u51FD_u6570_u5BF9_u8C61" class="headerlink" title="普通对象与函数对象"></a>普通对象与函数对象</h2><p>JavaScript 中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象，Object ，Function 是JS自带的函数对象。下面举例说明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"> <span class="keyword">var</span> f2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"> <span class="keyword">var</span> f3 = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'str'</span>,<span class="string">'console.log(str)'</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> o3 = <span class="keyword">new</span> f1();</span><br><span class="line"> <span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line"> <span class="keyword">var</span> o2 =<span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Object</span>); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Function</span>); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> o1); <span class="comment">//object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> o2); <span class="comment">//object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> o3); <span class="comment">//object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> f1); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> f2); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> f3); <span class="comment">//function</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>  在上面的例子中 <code>o1 o2 o3</code> 为普通对象，<code>f1 f2 f3</code> 为函数对象。怎么区分，其实很简单，<strong>凡是通过 <code>new Function()</code> 创建的对象都是函数对象</strong>，其他的都是普通对象。f1,f2,归根结底都是通过 <code>new Function()</code>的方式进行创建的。<strong>Function Object 也都是通过<code>New Function()</code>创建的</strong>。</p>
+<h2 id="u539F_u578B_u5BF9_u8C61"><a href="#u539F_u578B_u5BF9_u8C61" class="headerlink" title="原型对象"></a>原型对象</h2><p> 在JavaScript 中，每当定义一个对象（函数）时候，对象中都会包含一些预定义的属性。其中函数对象的一个属性就是原型对象<code>prototype</code>。注：普通对象没有prototype,但有<code>__proto__</code>属性。</p>
+<p>  原型对象其实就是普通对象（<strong>Function.prototype除外,它是函数对象，但它很特殊，他没有prototype属性（前面说道函数对象都有prototype属性）</strong>）。看下面的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"> <span class="built_in">console</span>.log(f1.prototype) <span class="comment">//f1&#123;&#125;</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> f1. prototype) <span class="comment">//Object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype) <span class="comment">// Function，这个特殊</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Object</span>.prototype) <span class="comment">// Object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Function</span>.prototype.prototype) <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p> 从这句<code>console.log(f1.prototype) //f1 {}</code> 的输出就结果可以看出，<code>f1.prototype</code>就是f1的一个实例对象。<strong>就是在f1创建的时候,创建了一个它的实例对象并赋值给它的prototype</strong>，基本过程如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> temp = <span class="keyword">new</span> f1();</span><br><span class="line">f1. prototype = temp;</span><br></pre></td></tr></table></figure>
+<p>  所以，<code>Function.prototype</code>为什么是函数对象就迎刃而解了，上文提到凡是new Function ()产生的对象都是函数对象，所以temp1是函数对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> temp1 = <span class="keyword">new</span> <span class="built_in">Function</span> ();</span><br><span class="line"><span class="built_in">Function</span>.prototype = temp1;</span><br></pre></td></tr></table></figure>
+<p>那原型对象是用来做什么的呢？主要作用是用于<strong>继承</strong>。举了例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line"> &#125;;</span><br><span class="line"> person.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> zjh = <span class="keyword">new</span> person(<span class="string">'zjh'</span>);</span><br><span class="line"> zjh.getName(); <span class="comment">//zjh</span></span><br></pre></td></tr></table></figure>
+<p>从这个例子可以看出，通过给<code>person.prototype</code>设置了一个函数对象的属性，那样person实例（例中：zjh）出来的普通对象就继承了这个属性。具体是怎么实现的继承，就要讲到下面的原型链了。</p>
+<h2 id="u539F_u578B_u94FE"><a href="#u539F_u578B_u94FE" class="headerlink" title="原型链"></a>原型链</h2><p>JS在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做<code>__proto__</code>的内置属性，<strong>用于指向创建它的函数对象的原型对象prototype</strong>。以上面的例子为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(zjh.__proto__ === person.prototype) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>同样，person.prototype对象也有<code>__proto__</code>属性，它指向创建它的函数对象（Object）的prototype</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person.prototype.__proto__ === <span class="built_in">Object</span>.prototype) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>继续，Object.prototype对象也有<code>__proto__</code>属性，但它比较特殊，为null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__) <span class="comment">//null</span></span><br></pre></td></tr></table></figure>
+<p>我们把这个<strong>有<code>__proto__</code>串起来的直到<code>Object.prototype.__proto__</code>为null的链叫做原型链</strong>。如下图：</p>
+<p><img src="http://7xpp7u.com1.z0.glb.clouddn.com/prototype-1.jpg" alt="prototype-1"></p>
+<h2 id="u5185_u5B58_u7ED3_u6784_u56FE"><a href="#u5185_u5B58_u7ED3_u6784_u56FE" class="headerlink" title="内存结构图"></a>内存结构图</h2><p>为了更加深入和直观的进行理解，下面我们画一下上面的<strong>内存结构图</strong>：</p>
+<p><img src="http://7xpp7u.com1.z0.glb.clouddn.com/prototype-2.jpg" alt="prototype-1"></p>
+<p><strong>画图约定</strong>：</p>
+<p><img src="http://7xpp7u.com1.z0.glb.clouddn.com/prototype-3.jpg" alt="prototype-1"></p>
+<p><strong>疑点解释</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>Object是函数对象，是通过new Function()创建，所以<code>Object.__proto__</code>指向<code>Function.prototype</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>Function 也是对象函数，也是通过new Function()创建，所以<code>Function.__proto__</code>指向<code>Function.prototype</code>。</p>
+<blockquote>
+<p>自己是由自己创建的，好像不符合逻辑，但仔细想想，现实世界也有些类似，你是怎么来的，你妈生的，你妈怎么来的，你姥姥生的，……类人猿进化来的，那类人猿从哪来，一直追溯下去……，就是无，（NULL生万物）。正如《道德经》里所说“无，名天地之始”。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.__proto__ === <span class="built_in">Object</span>.prototype <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>其实这一点我也有点困惑，不过也可以试着解释一下。<br><strong>Function.prototype</strong> 是个函数对象，理论上他的<code>__proto__</code>应该指向 <code>Function.prototype</code>，就是他自己，自己指向自己，没有意义。<br>JS一直强调万物皆对象，函数对象也是对象，给他认个祖宗，指向<code>Object.prototype。Object.prototype.__proto__ === null</code>，保证原型链能够正常结束。</p>
+<h2 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h2><p>原型对象prototype中都有个预定义的<strong>constructor</strong>属性，用来引用它的函数对象。这是一种循环引用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">person.prototype.constructor === person <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.constructor === <span class="built_in">Function</span> <span class="comment">//true</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.constructor === <span class="built_in">Object</span> <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>完善下上面的内存结构图：</p>
+<p><img src="http://7xpp7u.com1.z0.glb.clouddn.com/prototype-4.jpg" alt="prototype-1"></p>
+<p>有两点需要注意：</p>
+<ol>
+<li>注意<code>Object.constructor===Function；//true</code> <strong>本身Object就是Function函数构造出来的</strong></li>
+<li>如何<strong>查找</strong>一个对象的constructor，就是在该对象的原型链上<strong>寻找碰到的第一个constructor属性所指向的对象</strong></li>
+</ol>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>原型和原型链是JS实现继承的一种模型。</li>
+<li>原型链的形成是真正是靠 <strong><strong>proto</strong> 而非prototype</strong></li>
+</ol>
+<p>要深入理解这句话，我们再举个例子，看看前面你真的理解了吗？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> animal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">  animal.price = <span class="number">2000</span>;</span><br><span class="line">  dog.prototype = animal;</span><br><span class="line">  <span class="keyword">var</span> tidy = <span class="keyword">new</span> dog();</span><br><span class="line">  <span class="comment">// tiny.__proto__ 指向 dog.prototype</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(dog.price) <span class="comment">//undefined</span></span><br><span class="line">  <span class="built_in">console</span>.log(tidy.price) <span class="comment">// 2000</span></span><br></pre></td></tr></table></figure>
+<p>为什么呢？画一下内存图：</p>
+<p><img src="http://7xpp7u.com1.z0.glb.clouddn.com/prototype-5.jpg" alt="prototype-1"></p>
+<p>这说明什么问题呢，执行dog.price的时候，发现没有price这个属性，<strong>虽然prototype指向的animal有这个属性，但它并没有去沿着这个“链”去寻找</strong>。同样，执行tidy.price的时候，也没有这个属性，但是<code>__proto__</code>指向了animal，它会沿着这个链去寻找，animal中有price属性，所以tidy.price输出2000。由此得出，原型链的真正形成是靠的<strong><strong>proro</strong></strong>，而不是prototype。<br>因此，如果在这样指定<code>dog.__proto__ = animal</code>。那<code>dog.price = 2000</code>。</p>
+<p>最后打个比喻，虽然不是很确切，但可能对原型的理解有些帮助。</p>
+<p><img src="http://7xpp7u.com1.z0.glb.clouddn.com/prototype-6.jpg" alt="prototype-1"></p>
+<p>父亲（函数对象），先生了一个大儿子（<strong>prototype</strong>），也就是你大哥，父亲给你大哥买了好多的玩具，当你出生的时候，你们之间的亲情纽带（<strong><strong>proto</strong></strong>）会让你自然而然的拥有了你大哥的玩具。同样，你也先生个大儿子，又给他买了好多的玩具，当你再生儿子的时候，你的小儿子会自然拥有你大儿子的所有玩具。至于他们会不会打架，这不是我们的事了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u666E_u901A_u5BF9_u8C61_u4E0E_u51FD_u6570_u5BF9_u8C61"><a href="#u666E_u901A_u5BF9_u8C61_u4E0E_u51FD_u6570_u5BF9_u8C61" class="headerlink" title="普通对象与函数对象"></a>普通对象与函数对象</h2><p>JavaScript 中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象，Object ，Function 是JS自带的函数对象。下面举例说明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"> <span class="keyword">var</span> f2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"> <span class="keyword">var</span> f3 = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'str'</span>,<span class="string">'console.log(str)'</span>);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> o3 = <span class="keyword">new</span> f1();</span><br><span class="line"> <span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line"> <span class="keyword">var</span> o2 =<span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Object</span>); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="built_in">Function</span>); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> o1); <span class="comment">//object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> o2); <span class="comment">//object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> o3); <span class="comment">//object</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> f1); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> f2); <span class="comment">//function</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> f3); <span class="comment">//function</span></span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+    
+      <category term="prototype" scheme="http://leonewang.wang/tags/prototype/"/>
+    
+      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[The Maximum Length of HTTP Get/Post Request]]></title>
     <link href="http://leonewang.wang/2015/09/23/http-getpost-max-length/"/>
     <id>http://leonewang.wang/2015/09/23/http-getpost-max-length/</id>
     <published>2015-09-23T15:27:56.000Z</published>
-    <updated>2016-01-01T09:52:56.000Z</updated>
+    <updated>2015-09-23T15:27:56.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>REF:<br><a href="http://blog.chinaunix.net/uid-26602509-id-4495786.html" target="_blank" rel="external">http://blog.chinaunix.net/uid-26602509-id-4495786.html</a><br><a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="external">https://developer.yahoo.com/performance/rules.html</a></p>
 </blockquote>
@@ -163,7 +378,7 @@
     <link href="http://leonewang.wang/2015/09/21/jiangxiwugong-mountain/"/>
     <id>http://leonewang.wang/2015/09/21/jiangxiwugong-mountain/</id>
     <published>2015-09-21T02:35:54.000Z</published>
-    <updated>2016-01-01T09:54:51.000Z</updated>
+    <updated>2015-09-21T02:35:54.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0069.jpg" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/09/IMG_0069-1020x366.jpg" alt="IMG_0069"></a></p>
 <blockquote>
 <p>徐霞客，早在377年前，就游览了武功山，留下了《游武功山日记》一文，并收录在《徐霞客游记》 一书中。现如今，越来越多的驴友关注武功山，每年有数以万计的驴友在界上驴行。在户外圈中有“北太白、南武功”一说，并被《中国国家地理杂志》，评为“中国十大非著名山峰”。</p>
@@ -264,11 +479,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Think About Property Of Javascript]]></title>
+    <title><![CDATA[Think about Prototype of Javascript]]></title>
     <link href="http://leonewang.wang/2015/09/02/web-design-with-javascript-and-the-dom/"/>
     <id>http://leonewang.wang/2015/09/02/web-design-with-javascript-and-the-dom/</id>
     <published>2015-09-02T08:19:04.000Z</published>
-    <updated>2016-01-01T10:00:05.000Z</updated>
+    <updated>2015-09-02T08:19:04.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>REF:<a href="http://www.liaoxuefeng.com/" target="_blank" rel="external">http://www.liaoxuefeng.com/</a> 的面向对象编程章节。</p>
 </blockquote>
@@ -291,6 +506,8 @@
     
       <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
     
+      <category term="prototype" scheme="http://leonewang.wang/tags/prototype/"/>
+    
       <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
     
   </entry>
@@ -300,7 +517,7 @@
     <link href="http://leonewang.wang/2015/08/17/ukulele/"/>
     <id>http://leonewang.wang/2015/08/17/ukulele/</id>
     <published>2015-08-17T08:59:56.000Z</published>
-    <updated>2016-01-01T09:59:50.000Z</updated>
+    <updated>2015-08-17T08:59:56.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>自从去年偶然发现了 <a href="http://walkofftheearth.com" target="_blank" rel="external">Walk off the Earth</a> 各种天马行空的 MV 之后，就一直觉得 Ukulele 弹奏有一种魔性的声音，欢快轻松，也是我非常喜欢的民谣风格，甚至摇滚风。</p>
 </blockquote>
@@ -326,7 +543,7 @@
     <link href="http://leonewang.wang/2015/08/09/javascript-notes/"/>
     <id>http://leonewang.wang/2015/08/09/javascript-notes/</id>
     <published>2015-08-09T12:01:58.000Z</published>
-    <updated>2016-01-01T09:24:54.000Z</updated>
+    <updated>2015-08-09T12:01:58.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>笔记修改自<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000" target="_blank" rel="external">廖雪峰官方网站</a>，从中记录较为重要的、易于遗忘的部分。</p>
 </blockquote>
@@ -530,7 +747,7 @@
     <link href="http://leonewang.wang/2015/08/04/q-intellij-idea-14/"/>
     <id>http://leonewang.wang/2015/08/04/q-intellij-idea-14/</id>
     <published>2015-08-04T07:04:48.000Z</published>
-    <updated>2016-01-01T06:55:28.000Z</updated>
+    <updated>2015-08-04T07:04:48.000Z</updated>
     <content type="html"><![CDATA[<h2 id="Q-description"><a href="#Q-description" class="headerlink" title="Q.description"></a>Q.description</h2><p>Tomcat 7 控制台输出日志乱码</p>
 <h2 id="Q-resolvent"><a href="#Q-resolvent" class="headerlink" title="Q.resolvent"></a>Q.resolvent</h2><p>Intellij IDEA 中设置 Web Server 的虚拟机编码，这样 IDE 的编码（控制台编码受IDE影响）和 Web Server 输出的编码一致，问题解决。</p>
 <a id="more"></a>
@@ -559,7 +776,7 @@
     <link href="http://leonewang.wang/2015/08/02/q-jquery-window-height-document-height/"/>
     <id>http://leonewang.wang/2015/08/02/q-jquery-window-height-document-height/</id>
     <published>2015-08-02T02:05:33.000Z</published>
-    <updated>2016-01-01T09:57:31.000Z</updated>
+    <updated>2015-08-02T02:05:33.000Z</updated>
     <content type="html"><![CDATA[<p>这周遇到的一个小问题，弹出框的显示位置莫名偏下，其位置是由 CSS 的 left 与 top 属性决定，top 的值又根据浏览器视口（viewport）高度和弹出框（popup）的高度计算决定：<code>top = ($(window).height() - popup.height()) / 2;</code></p>
 <a id="more"></a>
 <p><a href="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.03.30.png" target="_blank" rel="external"><img src="http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/07/屏幕快照-2015-08-02-09.03.30-632x404.png" alt="qiestion163 jquery windowWidth = documentWidth d"></a></p>
@@ -586,11 +803,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Web Design With JavaScript And The DOM]]></title>
+    <title><![CDATA[Web Design with JavaScript and the DOM]]></title>
     <link href="http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/"/>
     <id>http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/</id>
     <published>2015-07-26T13:32:27.000Z</published>
-    <updated>2016-01-01T06:56:16.000Z</updated>
+    <updated>2015-07-26T13:32:27.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u6700_u4F73_u5B9E_u8DF5"><a href="#u6700_u4F73_u5B9E_u8DF5" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="u4E0D_u8981_u602A_u7F6A_JavaScript"><a href="#u4E0D_u8981_u602A_u7F6A_JavaScript" class="headerlink" title="不要怪罪 JavaScript"></a>不要怪罪 JavaScript</h3><p>HTML 之所以会呈现爆炸性的增长，HTML 语言易学易用的特点就是其中不可否认的一个原因。很多人花很少的时间就可以掌握 HTML 语言的基本知识，并快速做出各种各样的网页。事实上，也许很多没有写过代码的人们在‘可视化’网页制作工具的帮助下成为了网页设计大军中的一员。</p>
 <p>因此产生的不良后果就是，许多网页的编写很糟糕，甚至没有做标记合法性检查，忽略规范，所以浏览器不得不以较为宽松的方式去处理网页。这也使得 CSS，JavaScript 等新技术在 Web 上推广收到了很大的阻力。</p>
 <a id="more"></a>
@@ -632,7 +849,7 @@
     <link href="http://leonewang.wang/2015/07/20/responsive-web-design-two/"/>
     <id>http://leonewang.wang/2015/07/20/responsive-web-design-two/</id>
     <published>2015-07-20T14:36:10.000Z</published>
-    <updated>2016-01-01T06:38:50.000Z</updated>
+    <updated>2015-07-20T14:36:10.000Z</updated>
     <content type="html"><![CDATA[<h2 id="u79C1_u6709_u524D_u7F00"><a href="#u79C1_u6709_u524D_u7F00" class="headerlink" title="私有前缀"></a>私有前缀</h2><p>在 CSS3 模块标准尚未被 W3C 批准或者标准所提议的特性尚未被浏览器完全实现时，浏览器厂商会使用所谓的 “私有前缀” 来测试 “试验性” 的 CSS3 特性。开发 CSS3 时，要记住添加相关的浏览器前缀以保证最广泛的浏览器兼容。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.main</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">-ms-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;    <span class="comment">/* Microsoft */</span></span><br><span class="line">  <span class="rule"><span class="attribute">-o-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;     <span class="comment">/*Opera */</span></span><br><span class="line">  <span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;   <span class="comment">/* Mozilla (Firefox) */</span></span><br><span class="line">  <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;    <span class="comment">/* Webkit (Safari,Chrome) */</span></span><br><span class="line">  <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;    <span class="comment">/* W3C 标准 */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>我知道你在想什么，对同一个属性写多个私有前缀声明是否会造成代码臃肿？确实会有那么一点。但无论追加多少属性，相对于使用图片完成类似效果，这仍然是一个快速、优雅而健壮的解决方案。这里推荐给大家一个相关网站<a href="http://caniuse.com/" target="_blank" rel="external">caniuse.com</a>，在这里可以知道当前浏览器对特定 HTML5 和 CSS3 特性的支持程度（可按特性搜索）。</p>
@@ -715,7 +932,7 @@
     <link href="http://leonewang.wang/2015/07/19/responsive-web-design-one/"/>
     <id>http://leonewang.wang/2015/07/19/responsive-web-design-one/</id>
     <published>2015-07-19T08:45:49.000Z</published>
-    <updated>2016-01-01T10:02:51.000Z</updated>
+    <updated>2015-07-19T08:45:49.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>来自 <a href="http://gs.statcounter.com/" target="_blank" rel="external">gs.statcounter.com</a> 的统计数据表明产品从 2010 年 7 月到 2011 年 7 月的 12 个月中，全球手机浏览器的使用量中 2.86% 上升至 7.02%。Internet Explorer 6 的使用率则是从 8.76% 下降到 3.42%。i到 2015 年 7 月，Internet Explorer 6、7、8 三个版本加起来也只不过 10% 的使用率。</p>
 </blockquote>
