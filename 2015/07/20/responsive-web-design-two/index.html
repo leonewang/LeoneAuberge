@@ -1,43 +1,63 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 响应式 Web 设计 - Responsive Web Design (Two) · Leone Auberge</title><meta name="description" content="&lt;div id=&quot;wmd-preview-section-270&quot; class=&quot;wmd-"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">分享</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/leonewang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">SITEMAP</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">响应式 Web 设计 - Responsive Web Design (Two)</h1><div class="post-meta"><div class="post-time">2015年7月20日</div></div><div class="post-content"><div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-panel"><br><div class="preview-container"><br><div id="preview-contents" class="note-content"><br><div id="wmd-preview-section-82" class="wmd-preview-section preview-content"><br><div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-panel"><br><div class="preview-container"><br><div id="preview-contents" class="note-content"><br><div id="wmd-preview-section-270" class="wmd-preview-section preview-content"><br><div class="layout-wrapper-l1"><br><div id="app_wrap" class="layout-wrapper-l2"><br><div class="layout-wrapper-l3"><br><div class="preview-panel"><br><div class="preview-container"><br><div id="preview-contents" class="note-content"><br><div id="wmd-preview-section-369" class="wmd-preview-section preview-content"></div><br><div id="wmd-preview-section-222" class="wmd-preview-section preview-content"></div><br><div id="wmd-preview-section-355" class="wmd-preview-section preview-content"><br><br>## 私有前缀<br><br>在 CSS3 模块标准尚未被 W3C 批准或者标准所提议的特性尚未被浏览器完全实现时，浏览器厂商会使用所谓的 “私有前缀” 来测试 “试验性” 的 CSS3 特性。开发 CSS3 时，要记住添加相关的浏览器前缀以保证最广泛的浏览器兼容。<a href="/#rebook"> [1]</a><br><br></div><br><div id="wmd-preview-section-224" class="wmd-preview-section preview-content"><br><br>    <span class="hljs-class">.main</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">-ms-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;    <span class="hljs-comment">/<em> Microsoft </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">-o-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;     <span class="hljs-comment">/<em>Opera </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">-moz-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;   <span class="hljs-comment">/<em> Mozilla (Firefox) </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">-webkit-border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;    <span class="hljs-comment">/<em> Webkit (Safari,Chrome) </em>/</span><br>        <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;    <span class="hljs-comment">/<em> W3C 标准 </em>/</span><br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
-    我知道你在想什么，对同一个属性写多个私有前缀声明是否会造成代码臃肿？确实会有那么一点。但无论追加多少属性，相对于使用图片完成类似效果，这仍然是一个快速、优雅而健壮的解决方案。这里推荐给大家一个相关网站[caniuse.com](http://caniuse.com/)，在这里可以知道当前浏览器对特定 HTML5 和 CSS3 特性的支持程度（可按特性搜索）。
-
-    当然了，私有前缀实在是太长了，我想没有一个人愿意手工敲上去，所以也有可以为 CSS 文件自动追加私有前缀的 JavaScript 方案，如 [-prefix-free](http:)，这样在样式表中就可以只写 W3C 规定的标准代码。
-
-    * * *
-
-    &lt;/div&gt;
-    &lt;div id=&quot;wmd-preview-section-225&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
-
-    ## CSS3
-
-    &lt;/div&gt;
-    &lt;div id=&quot;wmd-preview-section-226&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
-
-    #### 新增选择器
-
-    &lt;/div&gt;
-    &lt;div id=&quot;wmd-preview-section-227&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
-
-    ###### 子字符串匹配属性选择器
-
-1.  “匹配开头” 的属性选择器
-    语法</code>Element [attribute^=”value”]<code>例：选择所有 class 属性以 large 开头的图片:
-    &lt;/div&gt;
-    &lt;div id=&quot;wmd-preview-section-228&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
-    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">img</span> <span class="hljs-attr_selector">[class^=”large”]</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;<br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
-
-1.  “匹配包含内容” 的属性选择器
-    语法</code>Element [attribute<em>=”value”]<code>例：选择所有 class 属性包含 large 的图片:
-    &lt;/div&gt;
-    &lt;div id=&quot;wmd-preview-section-229&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
-    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">img</span> <span class="hljs-attr_selector">[class</span></em>=”large”] <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;<br>    <span class="hljs-rule">}</span></span><code>&lt;/pre&gt;
-
-1.  “匹配结尾” 的属性选择器
-    语法</code>Element [attribute$=”value”]<code>例：选择所有 class 属性以 large 结尾的图片:
-    &lt;/div&gt;
-    &lt;div id=&quot;wmd-preview-section-230&quot; class=&quot;wmd-preview-section preview-content&quot;&gt;
-    &lt;pre class=&quot;prettyprint hljs-light&quot;&gt;</code><span class="hljs-tag">img</span> <span class="hljs-attr_selector">[class$=”large”]</span> <span class="hljs-rules">{<br>        <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;<br>    <span class="hljs-rule">}</span></span><br><br></div><br><div id="wmd-preview-section-231" class="wmd-preview-section preview-content"><br><br>###### CSS结构伪类<br><br>1.  <code>:last-child</code> 选择器<br>&gt; 例：<code>li :last-child</code> 用以匹配最后一项列表项。<br><br>2.  <code>:nth-child</code> 选择器<br>&gt; 例：<code>li :nth-child(even)</code> 用以匹配偶数项 <code>li</code> 元素（可选参数 even, odd, 自定义）。主要说说自定义，比如 <code>li :nth-child(2n+1)</code> 用以匹配第 1、3、5 … 项列表项。<br>&gt; <strong>注意：n 从 0 开始</strong><br><br>3.  <code>:nth-last-of-type</code> 选择器<br>&gt; 例：<code>li .list :nth-last-of-type(n+2)</code> 表示从第二个匹配元素<code>li</code> 开始，匹配每一个类名为 list 的列表项。<br><br>4.  <code>:not</code> 选择器<br>&gt; 例：<code>li :not(.list)</code> 用以匹配类名不是 list 的列表项。<br></div><br><div id="wmd-preview-section-232" class="wmd-preview-section preview-content"><br><br>#### 动画过渡的局限性<br><br>在使用 CSS3 制作动画时，有些属性无法过渡，尽管规范说它应该可以。例如：background-gradient 属性就无法过渡，但理论上所有的 CSS 属性都是可以过渡的。<br><br></div><br><div id="wmd-preview-section-233" class="wmd-preview-section preview-content"><br><br>#### 元素透明<br><br><strong>为什么不使用 opacity？</strong> 这个问题在初学时困扰了我 long long time。原因在于 opacity 设置的透明度会对整个元素产生影响，而使用 RGBA 或 HSLA 则可以仅让部分有透明效果，这样一个元素就可以拥有透明背景，但内部的文字仍不透明。<br><br></div><br><div id="wmd-preview-section-234" class="wmd-preview-section preview-content"><br><br>#### 用 HSL 代替 RGB、HEX<br><br><strong>为什么要用 HSL 呢？</strong> 首先要知道 HSL 是由色相（Hue）、饱和度（Saturation）、明度（Lightness）所组成的，而 RGB 是由 R（Red）、G（Green）、B（Blue）所组成。在我们使用颜色标准时，我相信没有几个人能够看到 <code>RGB(12,12,12)</code> 就知道这是什么颜色，但是当看到 <code>HSL(12,12,12)</code>时，我却能知道这大概是什么颜色——介于红色与橘红色之间的颜色。不要太崇拜 <code>&amp;lt;(￣▽￣)&amp;gt;</code> 哇哈哈…你也可以：<br><br><em>   <strong>H (Hue)</strong> 分量<br>&gt; 代表的是人眼所能感知的颜色范围，这些颜色分布在一个平面的色相环上，取值范围是0°到360°的圆心角，每个角度可以代表一种颜色。色相值的意义在于，我们可以在不改变光感的情况下，通过旋转色相环来改变颜色。在实际应用中，我们需要记住色相环上的六大主色，用作基本参照：360°/0°红、60°黄、120°绿、180°青、240°蓝、300°洋红，它们在色相环上按照60°圆心角的间隔排列。
-
-</em>   <strong>S (Saturation)</strong> 分量<br>&gt; 指的是色彩的饱和度，它用0%至100%的值描述了相同色相、明度下色彩纯度的变化。数值越大，颜色中的灰色越少，颜色越鲜艳，呈现一种从理性(灰度)到感性(纯色)的变化。<br><br><em>   <strong>L (lightness)</strong> 分量<br>&gt; 指的是色彩的明度，作用是控制色彩的明暗变化。它同样使用了0%至100%的取值范围。数值越小，色彩越暗，越接近于黑色；数值越大，色彩越亮，越接近于白色。
-
-</em> <em> </em><br><br></div><br><div id="wmd-preview-section-235" class="wmd-preview-section preview-content"><br><br>## 离线 Web 应用<br><br>必须在每一个准备离线使用的页面的 HTML 标签中都追加 <code>manifest = &quot;/offline.manifest&quot;</code> 属性。当然这仅适用于不需要与服务器端打交道的页面，这点我想你应该明白。<br><br></div><br><div id="wmd-preview-section-footnotes" class="preview-content"><br><div class="footnotes"><br><br>1.  以上均为学习 Responsive Web Design with HTML5 and CSS3 后的个人总结，如有错误欢迎指出。 <a href="/#book" title="Return">↩</a><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div><br></div></div></article></div></section><footer><div class="paginator"><a href="/2015/07/26/web-design-with-javascript-and-the-dom-dom/" class="prev">上一篇</a><a href="/2015/07/19/responsive-web-design-one/" class="next">下一篇</a></div></footer><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ed77053554825c09d2021287e3a25e51";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Responsive Web Design (Two) · Leone Auberge</title><meta name="description" content="私有前缀在 CSS3 模块标准尚未被 W3C 批准或者标准所提议的特性尚未被浏览器完全实现时，浏览器厂商会使用所谓的 “私有前缀” 来测试 “试验性” 的 CSS3 特性。开发 CSS3 时，要记住添加相关的浏览器前缀以保证最广泛的浏览器兼容。
+1234567.main&lt;/"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">博客</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">归档</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">标签</a></li><li class="nav-list-item"><a href="/share" target="_self" class="nav-list-link">分享</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/leonewang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a target="_self" class="nav-list-link">SITEMAP</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Responsive Web Design (Two)</h1><div class="post-meta"><div class="post-time">2015年7月20日</div></div><div class="post-content"><h2 id="u79C1_u6709_u524D_u7F00"><a href="#u79C1_u6709_u524D_u7F00" class="headerlink" title="私有前缀"></a>私有前缀</h2><p>在 CSS3 模块标准尚未被 W3C 批准或者标准所提议的特性尚未被浏览器完全实现时，浏览器厂商会使用所谓的 “私有前缀” 来测试 “试验性” 的 CSS3 特性。开发 CSS3 时，要记住添加相关的浏览器前缀以保证最广泛的浏览器兼容。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.main</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">-ms-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;    <span class="comment">/* Microsoft */</span></span><br><span class="line">  <span class="rule"><span class="attribute">-o-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;     <span class="comment">/*Opera */</span></span><br><span class="line">  <span class="rule"><span class="attribute">-moz-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;   <span class="comment">/* Mozilla (Firefox) */</span></span><br><span class="line">  <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;    <span class="comment">/* Webkit (Safari,Chrome) */</span></span><br><span class="line">  <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;    <span class="comment">/* W3C 标准 */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我知道你在想什么，对同一个属性写多个私有前缀声明是否会造成代码臃肿？确实会有那么一点。但无论追加多少属性，相对于使用图片完成类似效果，这仍然是一个快速、优雅而健壮的解决方案。这里推荐给大家一个相关网站<a href="http://caniuse.com/" target="_blank" rel="external">caniuse.com</a>，在这里可以知道当前浏览器对特定 HTML5 和 CSS3 特性的支持程度（可按特性搜索）。</p>
+<a id="more"></a>
+<p>当然了，私有前缀实在是太长了，我想没有一个人愿意手工敲上去，所以也有可以为 CSS 文件自动追加私有前缀的 JavaScript 方案，如 <a href="http:" target="_blank" rel="external">-prefix-free</a>，这样在样式表中就可以只写 W3C 规定的标准代码。</p>
+<h2 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h2><h4 id="u65B0_u589E_u9009_u62E9_u5668"><a href="#u65B0_u589E_u9009_u62E9_u5668" class="headerlink" title="新增选择器"></a>新增选择器</h4><h6 id="u5B50_u5B57_u7B26_u4E32_u5339_u914D_u5C5E_u6027_u9009_u62E9_u5668"><a href="#u5B50_u5B57_u7B26_u4E32_u5339_u914D_u5C5E_u6027_u9009_u62E9_u5668" class="headerlink" title="子字符串匹配属性选择器"></a>子字符串匹配属性选择器</h6><ol>
+<li><p>“匹配开头” 的属性选择器<br>语法 <code>Element [attribute^=&quot;value&quot;]</code><br>例：选择所有 class 属性以 large 开头的图片:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">img</span> <span class="attr_selector">[class^="large"]</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>“匹配包含内容” 的属性选择器<br>语法 <code>Element [attribute*=&quot;value&quot;]</code><br>例：选择所有 class 属性包含 large 的图片:</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">img</span> <span class="attr_selector">[class*="large"]</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>“匹配结尾” 的属性选择器<br>语法 <code>Element [attribute$=&quot;value&quot;]</code><br>例：选择所有 class 属性以 large 结尾的图片:</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">img</span> <span class="attr_selector">[class$="large"]</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h6 id="CSS_u7ED3_u6784_u4F2A_u7C7B"><a href="#CSS_u7ED3_u6784_u4F2A_u7C7B" class="headerlink" title="CSS结构伪类"></a>CSS结构伪类</h6><ol>
+<li><p><code>:last-child</code> 选择器</p>
+<blockquote>
+<p>例：<code>li :last-child</code> 用以匹配最后一项列表项。</p>
+</blockquote>
+</li>
+<li><p><code>:nth-child</code> 选择器</p>
+<blockquote>
+<p>例：<code>li :nth-child(even)</code> 用以匹配偶数项 <code>li</code> 元素（可选参数 even, odd, 自定义）。主要说说自定义，比如 <code>li :nth-child(2n+1)</code> 用以匹配第 1、3、5 … 项列表项。<br><strong>注意：n 从 0 开始</strong></p>
+</blockquote>
+</li>
+<li><p><code>:nth-last-of-type</code> 选择器</p>
+<blockquote>
+<p>例：<code>li .list :nth-last-of-type(n+2)</code> 表示从第二个匹配元素<code>li</code> 开始，匹配每一个类名为 list 的列表项。</p>
+</blockquote>
+</li>
+<li><p><code>:not</code> 选择器</p>
+<blockquote>
+<p>例：<code>li :not(.list)</code> 用以匹配类名不是 list 的列表项。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="u52A8_u753B_u8FC7_u6E21_u7684_u5C40_u9650_u6027"><a href="#u52A8_u753B_u8FC7_u6E21_u7684_u5C40_u9650_u6027" class="headerlink" title="动画过渡的局限性"></a>动画过渡的局限性</h4><p>在使用 CSS3 制作动画时，有些属性无法过渡，尽管规范说它应该可以。例如：background-gradient 属性就无法过渡，但理论上所有的 CSS 属性都是可以过渡的。</p>
+<h4 id="u5143_u7D20_u900F_u660E"><a href="#u5143_u7D20_u900F_u660E" class="headerlink" title="元素透明"></a>元素透明</h4><p><strong>为什么不使用 opacity？</strong> 这个问题在初学时困扰了我 long long time。原因在于 opacity 设置的透明度会对整个元素产生影响，而使用 RGBA 或 HSLA 则可以仅让部分有透明效果，这样一个元素就可以拥有透明背景，但内部的文字仍不透明。</p>
+<h4 id="u7528_HSL__u4EE3_u66FF_RGB_u3001HEX"><a href="#u7528_HSL__u4EE3_u66FF_RGB_u3001HEX" class="headerlink" title="用 HSL 代替 RGB、HEX"></a>用 HSL 代替 RGB、HEX</h4><p><strong>为什么要用 HSL 呢？</strong> 首先要知道 HSL 是由色相（Hue）、饱和度（Saturation）、明度（Lightness）所组成的，而 RGB 是由 R（Red）、G（Green）、B（Blue）所组成。在我们使用颜色标准时，我相信没有几个人能够看到 <code>RGB(12,12,12)</code> 就知道这是什么颜色，但是当看到 <code>HSL(12,12,12)</code>时，我却能知道这大概是什么颜色——介于红色与橘红色之间的颜色。不要太崇拜 <code>&amp;lt;(￣▽￣)&amp;gt;</code> 哇哈哈…你也可以：</p>
+<ul>
+<li><p><strong>H (Hue)</strong> 分量</p>
+<blockquote>
+<p>代表的是人眼所能感知的颜色范围，这些颜色分布在一个平面的色相环上，取值范围是0°到360°的圆心角，每个角度可以代表一种颜色。色相值的意义在于，我们可以在不改变光感的情况下，通过旋转色相环来改变颜色。在实际应用中，我们需要记住色相环上的六大主色，用作基本参照：360°/0°红、60°黄、120°绿、180°青、240°蓝、300°洋红，它们在色相环上按照60°圆心角的间隔排列。</p>
+</blockquote>
+</li>
+<li><p><strong>S (Saturation)</strong> 分量</p>
+<blockquote>
+<p>指的是色彩的饱和度，它用0%至100%的值描述了相同色相、明度下色彩纯度的变化。数值越大，颜色中的灰色越少，颜色越鲜艳，呈现一种从理性(灰度)到感性(纯色)的变化。</p>
+</blockquote>
+</li>
+<li><p><strong>L (lightness)</strong> 分量</p>
+<blockquote>
+<p>指的是色彩的明度，作用是控制色彩的明暗变化。它同样使用了0%至100%的取值范围。数值越小，色彩越暗，越接近于黑色；数值越大，色彩越亮，越接近于白色。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="u79BB_u7EBF_Web__u5E94_u7528"><a href="#u79BB_u7EBF_Web__u5E94_u7528" class="headerlink" title="离线 Web 应用"></a>离线 Web 应用</h2><p>必须在每一个准备离线使用的页面的 HTML 标签中都追加 <code>manifest = &quot;/offline.manifest&quot;</code> 属性。当然这仅适用于不需要与服务器端打交道的页面，这点我想你应该明白。</p>
+<p><em>以上均为学习 Responsive Web Design with HTML5 and CSS3 后的个人总结，如有错误欢迎指出。</em></p>
+</div></article></div></section><footer><div class="paginator"><a href="/2015/07/26/web-design-with-javascript-and-the-dom-dom/" class="prev">上一篇</a><a href="/2015/07/19/responsive-web-design-one/" class="next">下一篇</a></div></footer><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?ed77053554825c09d2021287e3a25e51";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
