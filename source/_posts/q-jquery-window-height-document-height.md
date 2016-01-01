@@ -7,6 +7,7 @@ tags:
 categories:
   - Develop
 date: 2015-08-02 10:05:33
+updated: 2015-08-03 15:04:40
 ---
 
 这周遇到的一个小问题，弹出框的显示位置莫名偏下，其位置是由 CSS 的 left 与 top 属性决定，top 的值又根据浏览器视口（viewport）高度和弹出框（popup）的高度计算决定：`top = ($(window).height() - popup.height()) / 2;`

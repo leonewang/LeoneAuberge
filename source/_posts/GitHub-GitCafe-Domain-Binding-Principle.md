@@ -1,6 +1,7 @@
 ---
 title: GitHub/GitCafe Domain Binding Principle
 date: 2016-01-01 17:21:02
+updated: 2016-01-01 17:21:02
 categories:
 	- Summarize
 tags:

@@ -1,11 +1,12 @@
 ---
-title: Web Design With JavaScript And The DOM
+title: Web Design with JavaScript and the DOM
 tags:
   - HTML5
   - JavaScript
 categories:
   - Summarize
 date: 2015-07-26 21:32:27
+updated: 2015-07-26 21:32:27
 ---
 ## 最佳实践
 

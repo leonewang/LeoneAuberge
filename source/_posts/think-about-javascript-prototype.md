@@ -1,10 +1,11 @@
 ---
-title: Think About Property Of Javascript
+title: Think about JavaScript『prototype』
 tags:
   - JavaScript
 categories:
   - Summarize
 date: 2015-09-02 16:19:04
+updated: 2015-09-02 16:19:04
 ---
 
 > REF:[http://www.liaoxuefeng.com/](http://www.liaoxuefeng.com/) 的面向对象编程章节。

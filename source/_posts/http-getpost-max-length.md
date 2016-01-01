@@ -1,5 +1,5 @@
 ---
-title: "The Maximum Length Of HTTP Get/Post Request"
+title: "The Maximum Length of HTTP Get/Post Request"
 tags:
   - GET/POST
   - HTTP

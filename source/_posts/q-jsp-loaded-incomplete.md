@@ -1,20 +1,21 @@
 ---
-title: "Question Shredder: JSP Analysis To HTML Incomplete"
+title: "Question Shredder: JSP Analysis to HTML Incomplete"
 tags:
   - JSP
   - Question
 categories:
   - Develop
 date: 2015-11-09 15:20:53
+updated: 2015-11-09 15:20:53
 ---
-<!-- more -->
-[![2015-11-09 16.20.12](http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12-1020x647.png)](http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12.png)
-
 ## 问题描述
 jsp 解析后 **html页面加载不完整**，把前面的代码删一点后面的就跟着多加载一点
 
 ## 环境
-`Tomcat7` + `MySQL`
+`Tomcat7` + `JDK7`
+
+<!-- more -->
+[![2015-11-09 16.20.12](http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12-1020x647.png)](http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/11/屏幕快照-2015-11-09-16.20.12.png)
 
 ## 直接原因
 jsp页面中调用的java代码出现了异常，`java.lang.ArrayIndexOutOfBoundsException`，**数组下标越界错误**，未考虑到某些因素导致数组初始值大小错误。

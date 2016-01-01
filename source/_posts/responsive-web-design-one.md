@@ -6,6 +6,7 @@ tags:
 categories:
 - Summarize
 date: 2015-07-19 16:45:49
+updated: 2015-07-19 16:45:49
 ---
 
 > 来自 [gs.statcounter.com](http://gs.statcounter.com/) 的统计数据表明产品从 2010 年 7 月到 2011 年 7 月的 12 个月中，全球手机浏览器的使用量中 2.86% 上升至 7.02%。Internet Explorer 6 的使用率则是从 8.76% 下降到 3.42%。i到 2015 年 7 月，Internet Explorer 6、7、8 三个版本加起来也只不过 10% 的使用率。
