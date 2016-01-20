@@ -4,7 +4,7 @@
   <subtitle><![CDATA[God is in the detail]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://leonewang.wang/"/>
-  <updated>2016-01-18T12:13:22.000Z</updated>
+  <updated>2016-01-20T15:10:05.000Z</updated>
   <id>http://leonewang.wang/</id>
   
   <author>
@@ -13,6 +13,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Difference between Factory, Service and Provider in AngularJS]]></title>
+    <link href="http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/"/>
+    <id>http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/</id>
+    <published>2016-01-20T15:10:05.000Z</published>
+    <updated>2016-01-20T15:10:05.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u5DE5_u5382_u65B9_u5F0F__7C_Factory"><a href="#u5DE5_u5382_u65B9_u5F0F__7C_Factory" class="headerlink" title="工厂方式 | Factory"></a>工厂方式 | Factory</h2><p>如果有一个类或对象，需要首先为他提供一些参数和逻辑，然后才能对它进行初始化，那么就能够使用这里的 Factory 接口。Factory 是一个函数，它负责创建一些特定的值或者对象，下面是一个 Greeter 实例，这个函数需要一条问候语来初始化：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Greeter</span>(<span class="params">saluation</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.greet = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> saluation + name;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>greeter 函数实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myapp.factory(<span class="string">'greeter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">sal</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Greeter(sal);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>然后这样调用它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> greeter = greeter(<span class="string">'Hello'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="u670D_u52A1_u65B9_u5F0F__7C_Service"><a href="#u670D_u52A1_u65B9_u5F0F__7C_Service" class="headerlink" title="服务方式 | Service"></a>服务方式 | Service</h2><p>想要用 service 实现上面的实例，可以把 greet Factory 改为下面的 greet Service:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myApp.service(<span class="string">'greeter'</span>, Greeter);</span><br></pre></td></tr></table></figure>
+<p>Service 与 Factory 的不同点在于，Factory 会直接调用传递给它的函数（ <code>function(sal) { ... }</code> ）后返回执行的结果；而 Service 将会通过调用传递给它的构造方法去执行 <strong>new</strong> 操作（ 示例中相当于返回了 <code>new Greeter</code> )，然后再返回结果。</p>
+<h2 id="u4F9B_u5E94_u8005_u65B9_u5F0F__7C_Provider"><a href="#u4F9B_u5E94_u8005_u65B9_u5F0F__7C_Provider" class="headerlink" title="供应者方式 | Provider"></a>供应者方式 | Provider</h2><blockquote>
+<p>Provider recipe is syntactically defined as a custom type that implements a <code>$get</code> method. This method is a factory function just like the one we use in Factory recipe. In fact, if you define a Factory recipe, an empty Provider type with the $get method set to your factory function is automatically created under the hood.</p>
+</blockquote>
+<p>Provider recipe 是语法定义为一个自定义类型，实现 <code>$get</code> 的方法。这个方法是一个工厂方法，就像我们在 Factory recipe 中使用的一样。事实上，如果定义一个 Factory recipe，钩子会自动创建一个包含空 Provider 类型 $get 方法的工厂方法。</p>
+<blockquote>
+<p>You should use the Provider recipe only when you want to expose an API for application-wide configuration that must be made before the application starts. This is usually interesting only for reusable services whose behavior might need to vary slightly between applications.</p>
+</blockquote>
+<p>只有当希望一个应用程序配置的 API 必须在应用程序启动之前被创建，才应该使用 Provider recipe 。通常只关注可重用服务的行为可能在应用程序间略有不同。</p>
+<p>Provider 的使用最为复杂，但是也是可定制性最高的部分，Provider 中既绑定了 Factory 也绑定了 Service，并且在注入系统准备完毕之前，还可以使用模板的 API 创建一个含有注入 Provider 的 config 方法，下面使用 Provider 改造：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">myApp.provider(<span class="string">'greeter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> saluation = <span class="string">'Hello'</span>;</span><br><span class="line">    <span class="keyword">this</span>.setSaluation = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">        saluation = s;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Greeter</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.greet = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> salustion + <span class="string">' '</span> + a;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.$get = <span class="function"><span class="keyword">function</span>(<span class="params">a</span>)  </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Greeter(a);  </span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 config 阶段，只有 Provider 能被注入：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myApp.config(<span class="function"><span class="keyword">function</span>(<span class="params">greeter</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//不会运行 -- greeter是一个服务的实例</span></span><br><span class="line">  <span class="comment">//只有服务的provider能被注入到config中</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>但是可以通过下面的方法注入，之后 Angular 就会调用这个 Provider 的 <code>$get</code> 函数来返回该服务的一个实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myApp.config(<span class="function"><span class="keyword">function</span>(<span class="params">greeterProvider</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// It will work</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<div class="tip"><br>无论何时为服务定义了一个 Provider，这个 Provider 的名字都是 serviceProvider，service 是服务的名称。<br></div>
+
+<h2 id="u603B_u7ED3__7C_Conclusion"><a href="#u603B_u7ED3__7C_Conclusion" class="headerlink" title="总结 | Conclusion"></a>总结 | Conclusion</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Feature / Recipe type</th>
+<th style="text-align:center">Factory</th>
+<th style="text-align:center">Service</th>
+<th style="text-align:center">Provider</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Can have dependencies - 支持依赖注入</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">Uses type friendly injection - 使用友好的方式注入</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Object available in config phase - 配置阶段可用</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">Can create functions / primitives - 可以创建方法、基元</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u5DE5_u5382_u65B9_u5F0F__7C_Factory"><a href="#u5DE5_u5382_u65B9_u5F0F__7C_Factory" class="headerlink" title="工厂方式 | Factory"></a>工厂方式 | Factory</h2><p>如果有一个类或对象，需要首先为他提供一些参数和逻辑，然后才能对它进行初始化，那么就能够使用这里的 Factory 接口。Factory 是一个函数，它负责创建一些特定的值或者对象，下面是一个 Greeter 实例，这个函数需要一条问候语来初始化：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Greeter</span>(<span class="params">saluation</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.greet = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> saluation + name;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="AngularJS" scheme="http://leonewang.wang/tags/AngularJS/"/>
+    
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+    
+      <category term="Notes" scheme="http://leonewang.wang/categories/Notes/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[AngularJS Notes]]></title>

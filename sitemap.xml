@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/</loc>
+    <lastmod>2016-01-20T15:10:05.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://leonewang.wang/2016/01/18/angularjs-notes/</loc>
     <lastmod>2016-01-18T12:13:22.000Z</lastmod>
   </url>
