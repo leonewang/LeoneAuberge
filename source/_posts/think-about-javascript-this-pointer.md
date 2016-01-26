@@ -1,6 +1,6 @@
 ---
 title: Think about JavaScript『this pointer』
-date: 2015-12-15 21:30:22
+date: 2015-10-23 21:30:22
 updated: 2015-12-15 21:30:22
 tags:
 	- JavaScript

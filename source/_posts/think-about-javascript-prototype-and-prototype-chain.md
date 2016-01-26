@@ -1,7 +1,7 @@
 ---
 title: Think about JavaScript『prototype and prototype chain』
-date: 2015-10-23 13:29:24
-updated: 2015-10-23 013:29:24
+date: 2015-12-15 13:29:24
+updated: 2015-12-15 13:29:24
 tags:
 	- JavaScript
 	- prototype
@@ -17,9 +17,9 @@ function f1(){};
  var f2 = function(){};
  var f3 = new Function('str','console.log(str)');
 
- var o3 = new f1();
  var o1 = {};
  var o2 =new Object();
+ var o3 = new f1();
 
  console.log(typeof Object); //function
  console.log(typeof Function); //function
@@ -59,6 +59,28 @@ function f1(){};
 ``` javascript
  var temp1 = new Function ();
  Function.prototype = temp1;
+```
+
+上篇 [ *this 指针理解* ](http://leonewang.wang/2015/10/23/think-about-javascript-this-pointer/) 中提到：如果在一个函数前面带上`new`关键字来调用，那么JavaScript会给这个函数添加一个`prototype`属性，并创建一个新对象，同时在调用这个函数时将`this`指针绑定到这个对象上，那么为什么`this`指针会绑定到新对象？
+
+这里你又需要明确一点：`new constrcut()`是一种创建对象的语法糖，它等价于：
+
+``` javascript
+var person = function(name) {
+  this.name = name;
+}
+var foo = new person("deen");
+//通过new创建了一个对象
+//new是一种语法糖，new person等价于
+var bar = (function(name) {
+  var _newObj = {
+       constructor : person,
+       __proto__ : person.prototype,
+   };
+   _newObj.constructor(name);
+   // _newObj.constructor.call(_newObj, name)
+   return _newObj;
+})();
 ```
 
 那原型对象是用来做什么的呢？主要作用是用于**继承**。举了例子：
