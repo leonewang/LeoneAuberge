@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leonewang.wang/share/index.html</loc>
+    <lastmod>2016-01-26T03:06:25.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/</loc>
     <lastmod>2016-01-20T15:10:05.000Z</lastmod>
   </url>
@@ -19,11 +24,6 @@
   <url>
     <loc>http://leonewang.wang/2016/01/01/github-gitcafe-domain-binding-principle/</loc>
     <lastmod>2016-01-01T09:21:02.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://leonewang.wang/share/index.html</loc>
-    <lastmod>2016-01-01T07:15:00.000Z</lastmod>
   </url>
   
   <url>
