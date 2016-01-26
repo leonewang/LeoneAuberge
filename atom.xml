@@ -8,14 +8,14 @@
   <id>http://leonewang.wang/</id>
   
   <author>
-    <name><![CDATA[LeoneWang]]></name>
+    <name><![CDATA[Leone Wang]]></name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Difference between Factory, Service and Provider in AngularJS]]></title>
+    <title><![CDATA[Difference Between Factory, Service and Provider in AngularJS]]></title>
     <link href="http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/"/>
     <id>http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/</id>
     <published>2016-01-20T15:10:05.000Z</published>
@@ -89,11 +89,11 @@
     
     </summary>
     
-      <category term="AngularJS" scheme="http://leonewang.wang/tags/AngularJS/"/>
+      <category term="AngularJS" scheme="http://leonewang.wang/tags/angularjs/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/Notes/"/>
+      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
     
   </entry>
   
@@ -169,11 +169,11 @@
     
     </summary>
     
-      <category term="AngularJS" scheme="http://leonewang.wang/tags/AngularJS/"/>
+      <category term="AngularJS" scheme="http://leonewang.wang/tags/angularjs/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/Notes/"/>
+      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
     
   </entry>
   
@@ -209,16 +209,16 @@
     
     </summary>
     
-      <category term="Domain" scheme="http://leonewang.wang/tags/Domain/"/>
+      <category term="Domain" scheme="http://leonewang.wang/tags/domain/"/>
     
-      <category term="Git" scheme="http://leonewang.wang/tags/Git/"/>
+      <category term="Git" scheme="http://leonewang.wang/tags/git/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[AngularJS Resource Interface with RESTful API]]></title>
+    <title><![CDATA[AngularJS Resource Interface With RESTful API]]></title>
     <link href="http://leonewang.wang/2015/12/22/angularjs-resource-interface-with-restful-api/"/>
     <id>http://leonewang.wang/2015/12/22/angularjs-resource-interface-with-restful-api/</id>
     <published>2015-12-21T17:23:15.000Z</published>
@@ -279,18 +279,18 @@
     
     </summary>
     
-      <category term="AngularJS" scheme="http://leonewang.wang/tags/AngularJS/"/>
+      <category term="AngularJS" scheme="http://leonewang.wang/tags/angularjs/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
-      <category term="RESTful" scheme="http://leonewang.wang/tags/RESTful/"/>
+      <category term="RESTful" scheme="http://leonewang.wang/tags/restful/"/>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/Notes/"/>
+      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Think about JavaScript『prototype and prototype chain』]]></title>
+    <title><![CDATA[Think About JavaScript『prototype and Prototype Chain』]]></title>
     <link href="http://leonewang.wang/2015/12/15/think-about-javascript-prototype-and-prototype-chain/"/>
     <id>http://leonewang.wang/2015/12/15/think-about-javascript-prototype-and-prototype-chain/</id>
     <published>2015-12-15T05:29:24.000Z</published>
@@ -362,11 +362,11 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
       <category term="prototype" scheme="http://leonewang.wang/tags/prototype/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
@@ -400,16 +400,16 @@
     
     </summary>
     
-      <category term="JSP" scheme="http://leonewang.wang/tags/JSP/"/>
+      <category term="JSP" scheme="http://leonewang.wang/tags/jsp/"/>
     
-      <category term="Question" scheme="http://leonewang.wang/tags/Question/"/>
+      <category term="Question" scheme="http://leonewang.wang/tags/question/"/>
     
-      <category term="Develop" scheme="http://leonewang.wang/categories/Develop/"/>
+      <category term="Develop" scheme="http://leonewang.wang/categories/develop/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Think about JavaScript『this pointer』]]></title>
+    <title><![CDATA[Think About JavaScript『this Pointer』]]></title>
     <link href="http://leonewang.wang/2015/10/23/think-about-javascript-this-pointer/"/>
     <id>http://leonewang.wang/2015/10/23/think-about-javascript-this-pointer/</id>
     <published>2015-10-23T13:30:22.000Z</published>
@@ -463,9 +463,9 @@
     
       <category term=".this" scheme="http://leonewang.wang/tags/this/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
@@ -526,13 +526,13 @@
     
     </summary>
     
-      <category term="GET/POST" scheme="http://leonewang.wang/tags/GET-POST/"/>
+      <category term="GET/POST" scheme="http://leonewang.wang/tags/get-post/"/>
     
-      <category term="HTTP" scheme="http://leonewang.wang/tags/HTTP/"/>
+      <category term="HTTP" scheme="http://leonewang.wang/tags/http/"/>
     
-      <category term="Request" scheme="http://leonewang.wang/tags/Request/"/>
+      <category term="Request" scheme="http://leonewang.wang/tags/request/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
@@ -635,14 +635,14 @@
     
     </summary>
     
-      <category term="Mountaineering" scheme="http://leonewang.wang/tags/Mountaineering/"/>
+      <category term="Mountaineering" scheme="http://leonewang.wang/tags/mountaineering/"/>
     
-      <category term="Journey" scheme="http://leonewang.wang/categories/Journey/"/>
+      <category term="Journey" scheme="http://leonewang.wang/categories/journey/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Think about JavaScript『prototype』]]></title>
+    <title><![CDATA[Think About JavaScript『prototype』]]></title>
     <link href="http://leonewang.wang/2015/09/02/think-about-javascript-prototype/"/>
     <id>http://leonewang.wang/2015/09/02/think-about-javascript-prototype/</id>
     <published>2015-09-02T08:19:04.000Z</published>
@@ -667,9 +667,9 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
@@ -693,9 +693,9 @@
     
     </summary>
     
-      <category term="Ukulele" scheme="http://leonewang.wang/tags/Ukulele/"/>
+      <category term="Ukulele" scheme="http://leonewang.wang/tags/ukulele/"/>
     
-      <category term="Music" scheme="http://leonewang.wang/categories/Music/"/>
+      <category term="Music" scheme="http://leonewang.wang/categories/music/"/>
     
   </entry>
   
@@ -897,9 +897,9 @@
     
     </summary>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/Notes/"/>
+      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
     
   </entry>
   
@@ -924,11 +924,11 @@
     
     </summary>
     
-      <category term="IDE" scheme="http://leonewang.wang/tags/IDE/"/>
+      <category term="IDE" scheme="http://leonewang.wang/tags/ide/"/>
     
-      <category term="Question" scheme="http://leonewang.wang/tags/Question/"/>
+      <category term="Question" scheme="http://leonewang.wang/tags/question/"/>
     
-      <category term="Develop" scheme="http://leonewang.wang/categories/Develop/"/>
+      <category term="Develop" scheme="http://leonewang.wang/categories/develop/"/>
     
   </entry>
   
@@ -953,18 +953,18 @@
     
     </summary>
     
-      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+      <category term="HTML5" scheme="http://leonewang.wang/tags/html5/"/>
     
-      <category term="JQuery" scheme="http://leonewang.wang/tags/JQuery/"/>
+      <category term="JQuery" scheme="http://leonewang.wang/tags/jquery/"/>
     
-      <category term="Question" scheme="http://leonewang.wang/tags/Question/"/>
+      <category term="Question" scheme="http://leonewang.wang/tags/question/"/>
     
-      <category term="Develop" scheme="http://leonewang.wang/categories/Develop/"/>
+      <category term="Develop" scheme="http://leonewang.wang/categories/develop/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Web Design with JavaScript and the DOM]]></title>
+    <title><![CDATA[Web Design With JavaScript and the DOM]]></title>
     <link href="http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/"/>
     <id>http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/</id>
     <published>2015-07-26T13:32:27.000Z</published>
@@ -997,11 +997,11 @@
     
     </summary>
     
-      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+      <category term="HTML5" scheme="http://leonewang.wang/tags/html5/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
@@ -1080,11 +1080,11 @@
     
     </summary>
     
-      <category term="CSS3" scheme="http://leonewang.wang/tags/CSS3/"/>
+      <category term="CSS3" scheme="http://leonewang.wang/tags/css3/"/>
     
-      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+      <category term="HTML5" scheme="http://leonewang.wang/tags/html5/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
@@ -1153,11 +1153,11 @@
     
     </summary>
     
-      <category term="CSS3" scheme="http://leonewang.wang/tags/CSS3/"/>
+      <category term="CSS3" scheme="http://leonewang.wang/tags/css3/"/>
     
-      <category term="HTML5" scheme="http://leonewang.wang/tags/HTML5/"/>
+      <category term="HTML5" scheme="http://leonewang.wang/tags/html5/"/>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/Summarize/"/>
+      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
     
   </entry>
   
