@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://leonewang.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/</loc>
+    <loc>http://leonewang.wang/2016/04/28/prefixes-stems-and-suffixes-in-english-words/</loc>
     
-    <lastmod>2016-03-15T14:35:55.000Z</lastmod>
+    <lastmod>2016-04-28T15:38:17.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://leonewang.wang/resume/index.html</loc>
     
-    <lastmod>2016-02-15T13:06:25.000Z</lastmod>
+    <lastmod>2016-04-28T13:19:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leonewang.wang/share/index.html</loc>
+    
+    <lastmod>2016-04-27T17:18:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leonewang.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/</loc>
+    
+    <lastmod>2016-03-15T14:35:55.000Z</lastmod>
     
   </url>
   
@@ -26,13 +40,6 @@
     <loc>http://leonewang.wang/2016/01/26/directive-scope-binding-strategy-in-angularjs/</loc>
     
     <lastmod>2016-01-26T13:07:15.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leonewang.wang/share/index.html</loc>
-    
-    <lastmod>2016-01-26T03:06:25.000Z</lastmod>
     
   </url>
   
