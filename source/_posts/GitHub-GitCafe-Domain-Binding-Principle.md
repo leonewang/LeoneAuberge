@@ -3,10 +3,10 @@ title: GitHub/GitCafe Domain Binding Principle
 date: 2016-01-01 17:21:02
 updated: 2016-01-01 17:21:02
 categories:
-	- Summarize
+    - Summarize
 tags:
-	- Git
-	- Domain
+    - Git
+    - Domain
 ---
 根据[Rainux Luo, CTO@GitCafe](https://www.zhihu.com/question/26609475)在知乎的描述和自己的理解做出描述：
 

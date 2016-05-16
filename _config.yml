@@ -7,7 +7,7 @@ title: Leone Auberge
 subtitle: God is in the detail
 description: LeoneWang's blog
 author: LeoneWang
-language: zh-CN
+language: en
 timezone: Asia/Shanghai
 
 # URL
@@ -30,9 +30,9 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
-titlecase: false # Transform title into titlecase
+titlecase: true # Transform title into titlecase
 external_link: true # Open external links in new tab
-filename_case: 0
+filename_case: 1
 render_drafts: false
 post_asset_folder: false
 relative_link: false
