@@ -22,41 +22,68 @@
     <published>2016-05-15T11:22:28.000Z</published>
     <updated>2016-05-16T11:22:28.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Part-1&quot;&gt;&lt;a href=&quot;#Part-1&quot; class=&quot;headerlink&quot; title=&quot;Part 1&quot;&gt;&lt;/a&gt;Part 1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#History&quot;&gt;History&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Park&quot;&gt;Park&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;Part-1&quot;&gt;&lt;a href=&quot;#Part-1&quot; class=&quot;headerlink&quot; title=&quot;Part 1&quot;&gt;&lt;/a&gt;Part 1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#History&quot;&gt;History&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Park&quot;&gt;Park&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Study-Efficiency&quot;&gt;Study Efficiency&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&quot;History&quot;&gt;&lt;a href=&quot;#History&quot; class=&quot;headerlink&quot; title=&quot;History&quot;&gt;&lt;/a&gt;History&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you like history?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes,I find history very interesting. Its always engaging to learn some historical stories and learn some knowledge at the same time. Also, I believe history is really useful and practical. There are many philosophies and rules that could be reflected in history, which prevent us from making the same mistakes or give us some good examples to refer to.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you like history?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes,I find history very interesting. Its always engaging to learn some historical stories and learn some knowledge at the same time. Also, I believe history is really useful and practical. There are many philosophies and rules that could be reflected in history, which prevent us from making the same mistakes or give us some good examples to refer to.&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Extended Q1: How do you think about your history classes?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Actually, I enjoyed it. The history classes were pretty interesting and engaging for me. The teacher was very profound and knowledgeable.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Extended Q1: How do you think about your history classes?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Actually, I enjoyed it. The history classes were pretty interesting and engaging for me. The teacher was very profound and knowledgeable.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q2: Do you think history is important?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes, I do believe history is very crucial. History offers a lot of experience for us to learn and you know that it can be a rather broad concept, including historical legacy, relics and history leaves us lots of great tourist attractions to visit. For example, emperors or poets used to live in palaces or houses, which are great architecture worth visiting now.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q2: Do you think history is important?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes, I do believe history is very crucial. History offers a lot of experience for us to learn and you know that it can be a rather broad concept, including historical legacy, relics and history leaves us lots of great tourist attractions to visit. For example, emperors or poets used to live in palaces or houses, which are great architecture worth visiting now.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q3: Do you think the Internet is a good way to learn about history?&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Leone:&lt;/strong&gt; Well, I believe so. Since the Internet has got rich resources for people to browse. It’s like no matter which historical figures or events you want to find, you could find in the Internet. Besides, it employs sound and visual effects which are more enjoyable and lively for people to learn in a more interactive way. &lt;code&gt;However, some of the references are not very academic or authorized.&lt;/code&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q3: Do you think the Internet is a good way to learn about history?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Leone:&lt;/strong&gt; Well, I believe so. Since the Internet has got rich resources for people to browse. It’s like no matter which historical figures or events you want to find, you could find in the Internet. Besides, it employs sound and visual effects which are more enjoyable and lively for people to learn in a more interactive way. &lt;em&gt;However, some of the references are not very academic or authorized.&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Extended Q3: Do you think you can learn history from films or TV programs?&lt;/strong&gt;&lt;br&gt; &lt;strong&gt;Leone:&lt;/strong&gt; No, it can be adapted or edited to be more entertaining and not be faithful to original text.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Extended Q3: Do you think you can learn history from films or TV programs?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;Leone:&lt;/strong&gt; No, it can be adapted or edited to be more entertaining and not be faithful to original text.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q4: Can you name a person from history whom you would like to learn more about? Why would you like to learn more about him/her?&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Leone:&lt;/strong&gt; There are many great persons in Chinese history. But the one I admire the most is the Emperor Wu from Han Dynasty. I’d like to learn more from him because he’s very wise and intelligent leader who made great deal of policies to promote education and relieve the tax burden during his 54 years reign. &lt;code&gt;At the same time, he&amp;#39;s very versatile person who was so talented in literature and Chinese ink painting.&lt;/code&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q4: Can you name a person from history whom you would like to learn more about? Why would you like to learn more about him/her?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Leone:&lt;/strong&gt; There are many great persons in Chinese history. But the one I admire the most is the Emperor Wu from Han Dynasty. I’d like to learn more from him because he’s very wise and intelligent leader who made great deal of policies to promote education and relieve the tax burden during his 54 years reign. &lt;em&gt;At the same time, he’s very versatile person who was so talented in literature and Chinese ink painting.&lt;/em&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;Park&quot;&gt;&lt;a href=&quot;#Park&quot; class=&quot;headerlink&quot; title=&quot;Park&quot;&gt;&lt;/a&gt;Park&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you think there are enough public gardens in your hometown?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yeh, there are plenty of parks all around my city. These parks are with different themes, such as an amusement park, a spacious city park with natural lake and many trees. I would like to say that my hometown is more attractive for those parks.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you think there are enough public gardens in your hometown?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yeh, there are plenty of parks all around my city. These parks are with different themes, such as an amusement park, a spacious city park with natural lake and many trees. I would like to say that my hometown is more attractive for those parks.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q2: Are public gardens very important in China? | What do you think are the benefits of having gardens in the city? | Why do people who live in cities like public gardens?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Sure, definitely. Public gardens are actually an indispensable part of peoples lives. For those living in the metropolitan, this is a place where they are able to do some outdoor activities, like retired citizens can do some dancing together while kids can play hide and seek. What’s more, it is the perfect place to do some walking and enjoy the sunshine, which is something you can hardly get living in an apartment block.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q2: Are public gardens very important in China? | What do you think are the benefits of having gardens in the city? | Why do people who live in cities like public gardens?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Sure, definitely. Public gardens are actually an indispensable part of peoples lives. For those living in the metropolitan, this is a place where they are able to do some outdoor activities, like retired citizens can do some dancing together while kids can play hide and seek. What’s more, it is the perfect place to do some walking and enjoy the sunshine, which is something you can hardly get living in an apartment block.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q3: Do you think it is more important to have public facilities, such as gardens and parks, for young people or old people?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Personally speaking, I suppose it means more to those senior citizens for the first and most obvious reason, public areas cost nothing, which is something old people care a lot while relatively young people doesn’t mind to pay for entertainment places. On the other hand, the recreational facilities for the young are more than enough, they don’t seem to need the public ones.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q3: Do you think it is more important to have public facilities, such as gardens and parks, for young people or old people?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Personally speaking, I suppose it means more to those senior citizens for the first and most obvious reason, public areas cost nothing, which is something old people care a lot while relatively young people doesn’t mind to pay for entertainment places. On the other hand, the recreational facilities for the young are more than enough, they don’t seem to need the public ones.&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q4: Do you think gardens have any value for children?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; I believe gardens bring great benefits for kids. Firstly, it provides a place and area for them to play with their friends for fun, which is essential to their childhood. On the other hand, they can do various kinds of sports in these places to build up a stronger body and keep fit.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q4: Do you think gardens have any value for children?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; I believe gardens bring great benefits for kids. Firstly, it provides a place and area for them to play with their friends for fun, which is essential to their childhood. On the other hand, they can do various kinds of sports in these places to build up a stronger body and keep fit.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Study-Efficiency&quot;&gt;&lt;a href=&quot;#Study-Efficiency&quot; class=&quot;headerlink&quot; title=&quot;Study Efficiency&quot;&gt;&lt;/a&gt;Study Efficiency&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you prefer to study in the morning or int the evening?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; I would definitely choose to study in the evening. I can never get up early in the morning, so studying in the morning is absolutely out of question. And I actually prefer the evening, because after a long day, the whole night belongs to only myself and I can make the most of it, without worrying that anyone would disturb me. I could play some soft music and enjoy the quietness.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q2: Why do some people find it difficult to focus in the morning?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; I think some people find it hard to focus in the morning because they are used to staying up. I mean, I feel vibrant in the morning due to sufficient sleep last night, but for those who don’t have enough rest, they could barely think straight, let alone studying.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q3: What do you do to improve your study efficiency?&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;拖延症（procrastinate / procrastination）总是无法顺利开始：不要犹豫，马上行动，从较难的任务开始做&lt;br&gt;好不容易开始，30分钟拖拉到60分钟：设定时间目标，给自己紧迫感（sense of urgency）和动力（motivation）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; My principle for improving my efficiency is to take action right away! Like many young people, I have serious procrastination problem. I would put off the things I should do until the deadline is drawing really near and then finish them in a hurry. The results are usually lousy, of course. So when I want to delay something, I would remind myself to do it immediately. And my tip is, when you start with something really difficult, things will keep getting easier and you would finish all of them quicker.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Part-1&quot;&gt;&lt;a href=&quot;#Part-1&quot; class=&quot;headerlink&quot; title=&quot;Part 1&quot;&gt;&lt;/a&gt;Part 1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#History&quot;&gt;History&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Park&quot;&gt;Park&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+      &lt;h1 id=&quot;Part-1&quot;&gt;&lt;a href=&quot;#Part-1&quot; class=&quot;headerlink&quot; title=&quot;Part 1&quot;&gt;&lt;/a&gt;Part 1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#History&quot;&gt;History&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Park&quot;&gt;Park&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Study-Efficiency&quot;&gt;Study Efficiency&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&quot;History&quot;&gt;&lt;a href=&quot;#History&quot; class=&quot;headerlink&quot; title=&quot;History&quot;&gt;&lt;/a&gt;History&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you like history?&lt;/strong&gt;&lt;br&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes,I find history very interesting. Its always engaging to learn some historical stories and learn some knowledge at the same time. Also, I believe history is really useful and practical. There are many philosophies and rules that could be reflected in history, which prevent us from making the same mistakes or give us some good examples to refer to.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you like history?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes,I find history very interesting. Its always engaging to learn some historical stories and learn some knowledge at the same time. Also, I believe history is really useful and practical. There are many philosophies and rules that could be reflected in history, which prevent us from making the same mistakes or give us some good examples to refer to.&lt;/p&gt;
     
     </summary>
     
