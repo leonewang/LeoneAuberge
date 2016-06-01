@@ -22,11 +22,12 @@
     <published>2016-05-15T11:22:28.000Z</published>
     <updated>2016-05-16T11:22:28.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Part-1&quot;&gt;&lt;a href=&quot;#Part-1&quot; class=&quot;headerlink&quot; title=&quot;Part 1&quot;&gt;&lt;/a&gt;Part 1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#History&quot;&gt;History&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Park&quot;&gt;Park&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Study-Efficiency&quot;&gt;Study Efficiency&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;Updating…&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Part-1&quot;&gt;&lt;a href=&quot;#Part-1&quot; class=&quot;headerlink&quot; title=&quot;Part 1&quot;&gt;&lt;/a&gt;Part 1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#History&quot;&gt;History&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Park&quot;&gt;Park&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Study-Efficiency&quot;&gt;Study Efficiency&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Part-2&quot;&gt;&lt;a href=&quot;#Part-2&quot; class=&quot;headerlink&quot; title=&quot;Part 2&quot;&gt;&lt;/a&gt;Part 2&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#Product&quot;&gt;Product&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&quot;History&quot;&gt;&lt;a href=&quot;#History&quot; class=&quot;headerlink&quot; title=&quot;History&quot;&gt;&lt;/a&gt;History&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you like history?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes,I find history very interesting. Its always engaging to learn some historical stories and learn some knowledge at the same time. Also, I believe history is really useful and practical. There are many philosophies and rules that could be reflected in history, which prevent us from making the same mistakes or give us some good examples to refer to.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Extended Q1: How do you think about your history classes?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Actually, I enjoyed it. The history classes were pretty interesting and engaging for me. The teacher was very profound and knowledgeable.&lt;/p&gt;
@@ -76,14 +77,12 @@
 &lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; My principle for improving my efficiency is to take action right away! Like many young people, I have serious procrastination problem. I would put off the things I should do until the deadline is drawing really near and then finish them in a hurry. The results are usually lousy, of course. So when I want to delay something, I would remind myself to do it immediately. And my tip is, when you start with something really difficult, things will keep getting easier and you would finish all of them quicker.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&quot;Product&quot;&gt;&lt;a href=&quot;#Product&quot; class=&quot;headerlink&quot; title=&quot;Product&quot;&gt;&lt;/a&gt;Product&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Q: Describe a product. 介绍一件物品&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;Leone:&lt;/strong&gt; This equipment looks very simple from outside. It’s about 50 centimeters tall and 40 centimeters wide. As for the thickness, it’s less than a Longman dictionary. But on the top left corner, there is a round hole where is the place for air being absorbed in and filtered out. This air purifier has pretty powerful function. It has 6 filter layers and can get ride of the ash, tiny poisoning things, smelly odor, some allergens. And the PM2.5 can be also reduced by this purifier.&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Part-1&quot;&gt;&lt;a href=&quot;#Part-1&quot; class=&quot;headerlink&quot; title=&quot;Part 1&quot;&gt;&lt;/a&gt;Part 1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;#History&quot;&gt;History&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Park&quot;&gt;Park&lt;/a&gt;&lt;/strong&gt; | &lt;strong&gt;&lt;a href=&quot;#Study-Efficiency&quot;&gt;Study Efficiency&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;History&quot;&gt;&lt;a href=&quot;#History&quot; class=&quot;headerlink&quot; title=&quot;History&quot;&gt;&lt;/a&gt;History&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Q1: Do you like history?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;  &lt;strong&gt;Leone:&lt;/strong&gt; Yes,I find history very interesting. Its always engaging to learn some historical stories and learn some knowledge at the same time. Also, I believe history is really useful and practical. There are many philosophies and rules that could be reflected in history, which prevent us from making the same mistakes or give us some good examples to refer to.&lt;/p&gt;
+      &lt;p&gt;Updating…&lt;br&gt;
     
     </summary>
     
