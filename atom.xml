@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leone.wang/"/>
-  <updated>2016-05-16T11:22:28.000Z</updated>
+  <updated>2016-08-10T13:27:16.000Z</updated>
   <id>http://leone.wang/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>The App Life Cycle</title>
+    <link href="http://leone.wang/2016/08/10/the-app-life-cycle/"/>
+    <id>http://leone.wang/2016/08/10/the-app-life-cycle/</id>
+    <published>2016-08-10T13:27:16.000Z</published>
+    <updated>2016-08-10T13:27:16.000Z</updated>
+    
+    <content type="html">&lt;p&gt;应用程序由代码和系统框架（system frameworks）相互作用所产生。系统框架给所有应用程序提供基础环境（infrastructure），开发者则自行编码定制应用的外观和行为。阅读本文章能帮助你了解一些 iOS 的基础环境及其如何工作。&lt;/p&gt;
+&lt;p&gt;iOS 框架依赖于一些设计模式（如模型-视图-控制器（model-view-controller））和执行过程中的授权（delegation）。理解这些设计模式对构建一个成功的应用大有裨益，也帮助熟悉 &lt;code&gt;Object-C&lt;/code&gt; 和它的特性。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;The-Main-Function-主函数&quot;&gt;&lt;a href=&quot;#The-Main-Function-主函数&quot; class=&quot;headerlink&quot; title=&quot;The Main Function 主函数&quot;&gt;&lt;/a&gt;The Main Function 主函数&lt;/h1&gt;&lt;p&gt;所有以 &lt;code&gt;C&lt;/code&gt; 语言为基础的应用的程序入口都是 &lt;code&gt;main&lt;/code&gt; 函数，iOS 应用也不例外。唯一的区别是在 iOS 程序中不需要手动编写 &lt;code&gt;main&lt;/code&gt; 函数，因为 Xcode 在创建项目时就已经提供了。除非特殊情况，否则最好不要修改 Xcode 提供的 &lt;code&gt;main&lt;/code&gt; 函数。示例如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#import &amp;#60;UIKit/UIKit.h&amp;#62;&amp;#10;#import &amp;#34;AppDelegate.h&amp;#34;&amp;#10;&amp;#10;int main(int argc, char * argv[])&amp;#10;&amp;#123;&amp;#10;    @autoreleasepool &amp;#123;&amp;#10;        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;值得注意的是，&lt;code&gt;main&lt;/code&gt; 函数的职责是为 &lt;code&gt;UIKit&lt;/code&gt; 框架切换控制。 其中 &lt;code&gt;UIApplicationMain&lt;/code&gt; 函数主要用以创建一些应用的核心对象来处理以下的过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从有效的 &lt;code&gt;storyboard&lt;/code&gt; 文件中加载用户界面&lt;/li&gt;
+&lt;li&gt;调用 &lt;code&gt;AppDelegate&lt;/code&gt; 用户自定义代码进行一些初始化设置&lt;/li&gt;
+&lt;li&gt;将主循环（app’s run loop）放入执行过程，响应和处理事务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;你需要做的只是提供 &lt;code&gt;storyboard&lt;/code&gt; 文件和自定义的初始化代码。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;未完&quot;&gt;&lt;a href=&quot;#未完&quot; class=&quot;headerlink&quot; title=&quot;未完&quot;&gt;&lt;/a&gt;未完&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;应用程序由代码和系统框架（system frameworks）相互作用所产生。系统框架给所有应用程序提供基础环境（infrastructure），开发者则自行编码定制应用的外观和行为。阅读本文章能帮助你了解一些 iOS 的基础环境及其如何工作。&lt;/p&gt;
+&lt;p&gt;iOS 框架依赖于一些设计模式（如模型-视图-控制器（model-view-controller））和执行过程中的授权（delegation）。理解这些设计模式对构建一个成功的应用大有裨益，也帮助熟悉 &lt;code&gt;Object-C&lt;/code&gt; 和它的特性。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
+    
+    
+      <category term="Swift" scheme="http://leone.wang/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://leone.wang/tags/ios/"/>
+    
+  </entry>
   
   <entry>
     <title>IELTS Speaking Topics</title>
@@ -1733,93 +1770,6 @@
       <category term="HTML5" scheme="http://leone.wang/tags/html5/"/>
     
       <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Responsive Web Design (Two)</title>
-    <link href="http://leone.wang/2015/07/20/responsive-web-design-two/"/>
-    <id>http://leone.wang/2015/07/20/responsive-web-design-two/</id>
-    <published>2015-07-20T14:36:10.000Z</published>
-    <updated>2015-07-20T14:36:10.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;私有前缀&quot;&gt;&lt;a href=&quot;#私有前缀&quot; class=&quot;headerlink&quot; title=&quot;私有前缀&quot;&gt;&lt;/a&gt;私有前缀&lt;/h2&gt;&lt;p&gt;在 CSS3 模块标准尚未被 W3C 批准或者标准所提议的特性尚未被浏览器完全实现时，浏览器厂商会使用所谓的 “私有前缀” 来测试 “试验性” 的 CSS3 特性。开发 CSS3 时，要记住添加相关的浏览器前缀以保证最广泛的浏览器兼容。&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.main&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-ms-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;    &lt;span class=&quot;comment&quot;&gt;/* Microsoft */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-o-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;     &lt;span class=&quot;comment&quot;&gt;/*Opera */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-moz-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;   &lt;span class=&quot;comment&quot;&gt;/* Mozilla (Firefox) */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-webkit-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;    &lt;span class=&quot;comment&quot;&gt;/* Webkit (Safari,Chrome) */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;    &lt;span class=&quot;comment&quot;&gt;/* W3C 标准 */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;我知道你在想什么，对同一个属性写多个私有前缀声明是否会造成代码臃肿？确实会有那么一点。但无论追加多少属性，相对于使用图片完成类似效果，这仍然是一个快速、优雅而健壮的解决方案。这里推荐给大家一个相关网站&lt;a href=&quot;http://caniuse.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;caniuse.com&lt;/a&gt;，在这里可以知道当前浏览器对特定 HTML5 和 CSS3 特性的支持程度（可按特性搜索）。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;当然了，私有前缀实在是太长了，我想没有一个人愿意手工敲上去，所以也有可以为 CSS 文件自动追加私有前缀的 JavaScript 方案，如 &lt;a href=&quot;http:&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;-prefix-free&lt;/a&gt;，这样在样式表中就可以只写 W3C 规定的标准代码。&lt;/p&gt;
-&lt;h2 id=&quot;CSS3&quot;&gt;&lt;a href=&quot;#CSS3&quot; class=&quot;headerlink&quot; title=&quot;CSS3&quot;&gt;&lt;/a&gt;CSS3&lt;/h2&gt;&lt;h4 id=&quot;新增选择器&quot;&gt;&lt;a href=&quot;#新增选择器&quot; class=&quot;headerlink&quot; title=&quot;新增选择器&quot;&gt;&lt;/a&gt;新增选择器&lt;/h4&gt;&lt;h6 id=&quot;子字符串匹配属性选择器&quot;&gt;&lt;a href=&quot;#子字符串匹配属性选择器&quot; class=&quot;headerlink&quot; title=&quot;子字符串匹配属性选择器&quot;&gt;&lt;/a&gt;子字符串匹配属性选择器&lt;/h6&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;“匹配开头” 的属性选择器&lt;br&gt;语法 &lt;code&gt;Element [attribute^=&amp;quot;value&amp;quot;]&lt;/code&gt;&lt;br&gt;例：选择所有 class 属性以 large 开头的图片:&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;attr_selector&quot;&gt;[class^=&quot;large&quot;]&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;100%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;“匹配包含内容” 的属性选择器&lt;br&gt;语法 &lt;code&gt;Element [attribute*=&amp;quot;value&amp;quot;]&lt;/code&gt;&lt;br&gt;例：选择所有 class 属性包含 large 的图片:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;attr_selector&quot;&gt;[class*=&quot;large&quot;]&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;100%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol&gt;
-&lt;li&gt;“匹配结尾” 的属性选择器&lt;br&gt;语法 &lt;code&gt;Element [attribute$=&amp;quot;value&amp;quot;]&lt;/code&gt;&lt;br&gt;例：选择所有 class 属性以 large 结尾的图片:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;attr_selector&quot;&gt;[class$=&quot;large&quot;]&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;100%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h6 id=&quot;CSS结构伪类&quot;&gt;&lt;a href=&quot;#CSS结构伪类&quot; class=&quot;headerlink&quot; title=&quot;CSS结构伪类&quot;&gt;&lt;/a&gt;CSS结构伪类&lt;/h6&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;:last-child&lt;/code&gt; 选择器&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;例：&lt;code&gt;li :last-child&lt;/code&gt; 用以匹配最后一项列表项。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;:nth-child&lt;/code&gt; 选择器&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;例：&lt;code&gt;li :nth-child(even)&lt;/code&gt; 用以匹配偶数项 &lt;code&gt;li&lt;/code&gt; 元素（可选参数 even, odd, 自定义）。主要说说自定义，比如 &lt;code&gt;li :nth-child(2n+1)&lt;/code&gt; 用以匹配第 1、3、5 … 项列表项。&lt;br&gt;&lt;strong&gt;注意：n 从 0 开始&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;:nth-last-of-type&lt;/code&gt; 选择器&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;例：&lt;code&gt;li .list :nth-last-of-type(n+2)&lt;/code&gt; 表示从第二个匹配元素&lt;code&gt;li&lt;/code&gt; 开始，匹配每一个类名为 list 的列表项。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;:not&lt;/code&gt; 选择器&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;例：&lt;code&gt;li :not(.list)&lt;/code&gt; 用以匹配类名不是 list 的列表项。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;动画过渡的局限性&quot;&gt;&lt;a href=&quot;#动画过渡的局限性&quot; class=&quot;headerlink&quot; title=&quot;动画过渡的局限性&quot;&gt;&lt;/a&gt;动画过渡的局限性&lt;/h4&gt;&lt;p&gt;在使用 CSS3 制作动画时，有些属性无法过渡，尽管规范说它应该可以。例如：background-gradient 属性就无法过渡，但理论上所有的 CSS 属性都是可以过渡的。&lt;/p&gt;
-&lt;h4 id=&quot;元素透明&quot;&gt;&lt;a href=&quot;#元素透明&quot; class=&quot;headerlink&quot; title=&quot;元素透明&quot;&gt;&lt;/a&gt;元素透明&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;为什么不使用 opacity？&lt;/strong&gt; 这个问题在初学时困扰了我 long long time。原因在于 opacity 设置的透明度会对整个元素产生影响，而使用 RGBA 或 HSLA 则可以仅让部分有透明效果，这样一个元素就可以拥有透明背景，但内部的文字仍不透明。&lt;/p&gt;
-&lt;h4 id=&quot;用-HSL-代替-RGB、HEX&quot;&gt;&lt;a href=&quot;#用-HSL-代替-RGB、HEX&quot; class=&quot;headerlink&quot; title=&quot;用 HSL 代替 RGB、HEX&quot;&gt;&lt;/a&gt;用 HSL 代替 RGB、HEX&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;为什么要用 HSL 呢？&lt;/strong&gt; 首先要知道 HSL 是由色相（Hue）、饱和度（Saturation）、明度（Lightness）所组成的，而 RGB 是由 R（Red）、G（Green）、B（Blue）所组成。在我们使用颜色标准时，我相信没有几个人能够看到 &lt;code&gt;RGB(12,12,12)&lt;/code&gt; 就知道这是什么颜色，但是当看到 &lt;code&gt;HSL(12,12,12)&lt;/code&gt;时，我却能知道这大概是什么颜色——介于红色与橘红色之间的颜色。不要太崇拜 &lt;code&gt;&amp;amp;lt;(￣▽￣)&amp;amp;gt;&lt;/code&gt; 哇哈哈…你也可以：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;H (Hue)&lt;/strong&gt; 分量&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;代表的是人眼所能感知的颜色范围，这些颜色分布在一个平面的色相环上，取值范围是0°到360°的圆心角，每个角度可以代表一种颜色。色相值的意义在于，我们可以在不改变光感的情况下，通过旋转色相环来改变颜色。在实际应用中，我们需要记住色相环上的六大主色，用作基本参照：360°/0°红、60°黄、120°绿、180°青、240°蓝、300°洋红，它们在色相环上按照60°圆心角的间隔排列。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;S (Saturation)&lt;/strong&gt; 分量&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;指的是色彩的饱和度，它用0%至100%的值描述了相同色相、明度下色彩纯度的变化。数值越大，颜色中的灰色越少，颜色越鲜艳，呈现一种从理性(灰度)到感性(纯色)的变化。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;L (lightness)&lt;/strong&gt; 分量&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;指的是色彩的明度，作用是控制色彩的明暗变化。它同样使用了0%至100%的取值范围。数值越小，色彩越暗，越接近于黑色；数值越大，色彩越亮，越接近于白色。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;离线-Web-应用&quot;&gt;&lt;a href=&quot;#离线-Web-应用&quot; class=&quot;headerlink&quot; title=&quot;离线 Web 应用&quot;&gt;&lt;/a&gt;离线 Web 应用&lt;/h2&gt;&lt;p&gt;必须在每一个准备离线使用的页面的 HTML 标签中都追加 &lt;code&gt;manifest = &amp;quot;/offline.manifest&amp;quot;&lt;/code&gt; 属性。当然这仅适用于不需要与服务器端打交道的页面，这点我想你应该明白。&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;以上均为学习 Responsive Web Design with HTML5 and CSS3 后的个人总结，如有错误欢迎指出。&lt;/em&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;私有前缀&quot;&gt;&lt;a href=&quot;#私有前缀&quot; class=&quot;headerlink&quot; title=&quot;私有前缀&quot;&gt;&lt;/a&gt;私有前缀&lt;/h2&gt;&lt;p&gt;在 CSS3 模块标准尚未被 W3C 批准或者标准所提议的特性尚未被浏览器完全实现时，浏览器厂商会使用所谓的 “私有前缀” 来测试 “试验性” 的 CSS3 特性。开发 CSS3 时，要记住添加相关的浏览器前缀以保证最广泛的浏览器兼容。&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.main&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-ms-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;    &lt;span class=&quot;comment&quot;&gt;/* Microsoft */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-o-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;     &lt;span class=&quot;comment&quot;&gt;/*Opera */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-moz-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;   &lt;span class=&quot;comment&quot;&gt;/* Mozilla (Firefox) */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;-webkit-border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;    &lt;span class=&quot;comment&quot;&gt;/* Webkit (Safari,Chrome) */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;    &lt;span class=&quot;comment&quot;&gt;/* W3C 标准 */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;我知道你在想什么，对同一个属性写多个私有前缀声明是否会造成代码臃肿？确实会有那么一点。但无论追加多少属性，相对于使用图片完成类似效果，这仍然是一个快速、优雅而健壮的解决方案。这里推荐给大家一个相关网站&lt;a href=&quot;http://caniuse.com/&quot;&gt;caniuse.com&lt;/a&gt;，在这里可以知道当前浏览器对特定 HTML5 和 CSS3 特性的支持程度（可按特性搜索）。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
-    
-    
-      <category term="CSS3" scheme="http://leone.wang/tags/css3/"/>
-    
-      <category term="HTML5" scheme="http://leone.wang/tags/html5/"/>
     
   </entry>
   
