@@ -4,9 +4,9 @@
   <subtitle>God is in the detail</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://leonewang.wang/"/>
+  <link href="http://leone.wang/"/>
   <updated>2016-05-16T11:22:28.000Z</updated>
-  <id>http://leonewang.wang/</id>
+  <id>http://leone.wang/</id>
   
   <author>
     <name>LeoneWang</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>IELTS Speaking Topics</title>
-    <link href="http://leonewang.wang/2016/05/15/ielts-speaking-topics/"/>
-    <id>http://leonewang.wang/2016/05/15/ielts-speaking-topics/</id>
+    <link href="http://leone.wang/2016/05/15/ielts-speaking-topics/"/>
+    <id>http://leone.wang/2016/05/15/ielts-speaking-topics/</id>
     <published>2016-05-15T11:22:28.000Z</published>
     <updated>2016-05-16T11:22:28.000Z</updated>
     
@@ -110,17 +110,17 @@
     
     </summary>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
+      <category term="Notes" scheme="http://leone.wang/categories/notes/"/>
     
     
-      <category term="IELTS" scheme="http://leonewang.wang/tags/ielts/"/>
+      <category term="IELTS" scheme="http://leone.wang/tags/ielts/"/>
     
   </entry>
   
   <entry>
     <title>Prefixes, Stems and Suffixes in English Words</title>
-    <link href="http://leonewang.wang/2016/04/28/prefixes-stems-and-suffixes-in-english-words/"/>
-    <id>http://leonewang.wang/2016/04/28/prefixes-stems-and-suffixes-in-english-words/</id>
+    <link href="http://leone.wang/2016/04/28/prefixes-stems-and-suffixes-in-english-words/"/>
+    <id>http://leone.wang/2016/04/28/prefixes-stems-and-suffixes-in-english-words/</id>
     <published>2016-04-28T15:38:17.000Z</published>
     <updated>2016-04-28T15:38:17.000Z</updated>
     
@@ -563,17 +563,17 @@
     
     </summary>
     
-      <category term="English" scheme="http://leonewang.wang/categories/english/"/>
+      <category term="English" scheme="http://leone.wang/categories/english/"/>
     
     
-      <category term="words" scheme="http://leonewang.wang/tags/words/"/>
+      <category term="words" scheme="http://leone.wang/tags/words/"/>
     
   </entry>
   
   <entry>
     <title>Javascript Properties Are Enumerable Writable and Configurable</title>
-    <link href="http://leonewang.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/"/>
-    <id>http://leonewang.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/</id>
+    <link href="http://leone.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/"/>
+    <id>http://leone.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/</id>
     <published>2016-03-15T14:35:55.000Z</published>
     <updated>2016-03-15T14:35:55.000Z</updated>
     
@@ -633,17 +633,17 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>Directive Scope Binding Strategy in AngularJS</title>
-    <link href="http://leonewang.wang/2016/01/26/directive-scope-binding-strategy-in-angularjs/"/>
-    <id>http://leonewang.wang/2016/01/26/directive-scope-binding-strategy-in-angularjs/</id>
+    <link href="http://leone.wang/2016/01/26/directive-scope-binding-strategy-in-angularjs/"/>
+    <id>http://leone.wang/2016/01/26/directive-scope-binding-strategy-in-angularjs/</id>
     <published>2016-01-26T13:07:15.000Z</published>
     <updated>2016-01-26T13:07:15.000Z</updated>
     
@@ -676,19 +676,19 @@
     
     </summary>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
+      <category term="Notes" scheme="http://leone.wang/categories/notes/"/>
     
     
-      <category term="AngularJS" scheme="http://leonewang.wang/tags/angularjs/"/>
+      <category term="AngularJS" scheme="http://leone.wang/tags/angularjs/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>Difference Between Factory, Service and Provider in AngularJS</title>
-    <link href="http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/"/>
-    <id>http://leonewang.wang/2016/01/20/angularjs-api-factory-service-provider/</id>
+    <link href="http://leone.wang/2016/01/20/angularjs-api-factory-service-provider/"/>
+    <id>http://leone.wang/2016/01/20/angularjs-api-factory-service-provider/</id>
     <published>2016-01-20T15:10:05.000Z</published>
     <updated>2016-01-20T15:10:05.000Z</updated>
     
@@ -763,19 +763,19 @@
     
     </summary>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
+      <category term="Notes" scheme="http://leone.wang/categories/notes/"/>
     
     
-      <category term="AngularJS" scheme="http://leonewang.wang/tags/angularjs/"/>
+      <category term="AngularJS" scheme="http://leone.wang/tags/angularjs/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>AngularJS Notes</title>
-    <link href="http://leonewang.wang/2016/01/18/angularjs-notes/"/>
-    <id>http://leonewang.wang/2016/01/18/angularjs-notes/</id>
+    <link href="http://leone.wang/2016/01/18/angularjs-notes/"/>
+    <id>http://leone.wang/2016/01/18/angularjs-notes/</id>
     <published>2016-01-18T12:13:22.000Z</published>
     <updated>2016-01-18T12:13:22.000Z</updated>
     
@@ -847,19 +847,19 @@
     
     </summary>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
+      <category term="Notes" scheme="http://leone.wang/categories/notes/"/>
     
     
-      <category term="AngularJS" scheme="http://leonewang.wang/tags/angularjs/"/>
+      <category term="AngularJS" scheme="http://leone.wang/tags/angularjs/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>GitHub/GitCafe Domain Binding Principle</title>
-    <link href="http://leonewang.wang/2016/01/01/github-gitcafe-domain-binding-principle/"/>
-    <id>http://leonewang.wang/2016/01/01/github-gitcafe-domain-binding-principle/</id>
+    <link href="http://leone.wang/2016/01/01/github-gitcafe-domain-binding-principle/"/>
+    <id>http://leone.wang/2016/01/01/github-gitcafe-domain-binding-principle/</id>
     <published>2016-01-01T09:21:02.000Z</published>
     <updated>2016-01-01T09:21:02.000Z</updated>
     
@@ -891,19 +891,19 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term="Domain" scheme="http://leonewang.wang/tags/domain/"/>
+      <category term="Domain" scheme="http://leone.wang/tags/domain/"/>
     
-      <category term="Git" scheme="http://leonewang.wang/tags/git/"/>
+      <category term="Git" scheme="http://leone.wang/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>AngularJS Resource Interface With RESTful API</title>
-    <link href="http://leonewang.wang/2015/12/22/angularjs-resource-interface-with-restful-api/"/>
-    <id>http://leonewang.wang/2015/12/22/angularjs-resource-interface-with-restful-api/</id>
+    <link href="http://leone.wang/2015/12/22/angularjs-resource-interface-with-restful-api/"/>
+    <id>http://leone.wang/2015/12/22/angularjs-resource-interface-with-restful-api/</id>
     <published>2015-12-21T17:23:15.000Z</published>
     <updated>2015-12-21T17:23:15.000Z</updated>
     
@@ -965,21 +965,21 @@
     
     </summary>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
+      <category term="Notes" scheme="http://leone.wang/categories/notes/"/>
     
     
-      <category term="AngularJS" scheme="http://leonewang.wang/tags/angularjs/"/>
+      <category term="AngularJS" scheme="http://leone.wang/tags/angularjs/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
-      <category term="RESTful" scheme="http://leonewang.wang/tags/restful/"/>
+      <category term="RESTful" scheme="http://leone.wang/tags/restful/"/>
     
   </entry>
   
   <entry>
     <title>Think About JavaScript『prototype and Prototype Chain』</title>
-    <link href="http://leonewang.wang/2015/12/15/think-about-javascript-prototype-and-prototype-chain/"/>
-    <id>http://leonewang.wang/2015/12/15/think-about-javascript-prototype-and-prototype-chain/</id>
+    <link href="http://leone.wang/2015/12/15/think-about-javascript-prototype-and-prototype-chain/"/>
+    <id>http://leone.wang/2015/12/15/think-about-javascript-prototype-and-prototype-chain/</id>
     <published>2015-12-15T05:29:24.000Z</published>
     <updated>2015-12-15T05:29:24.000Z</updated>
     
@@ -994,7 +994,7 @@
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; temp = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; f1();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;f1. prototype = temp;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;  所以，&lt;code&gt;Function.prototype&lt;/code&gt;为什么是函数对象就迎刃而解了，上文提到凡是new Function ()产生的对象都是函数对象，所以temp1是函数对象。&lt;/p&gt;
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; temp1 = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;Function&lt;/span&gt; ();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;Function&lt;/span&gt;.prototype = temp1;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;上篇 &lt;a href=&quot;http://leonewang.wang/2015/10/23/think-about-javascript-this-pointer/&quot;&gt; &lt;em&gt;this 指针理解&lt;/em&gt; &lt;/a&gt; 中提到：如果在一个函数前面带上&lt;code&gt;new&lt;/code&gt;关键字来调用，那么JavaScript会给这个函数添加一个&lt;code&gt;prototype&lt;/code&gt;属性，并创建一个新对象，同时在调用这个函数时将&lt;code&gt;this&lt;/code&gt;指针绑定到这个对象上，那么为什么&lt;code&gt;this&lt;/code&gt;指针会绑定到新对象？&lt;/p&gt;
+&lt;p&gt;上篇 &lt;a href=&quot;http://leonewang.wang/2015/10/23/think-about-javascript-this-pointer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt; &lt;em&gt;this 指针理解&lt;/em&gt; &lt;/a&gt; 中提到：如果在一个函数前面带上&lt;code&gt;new&lt;/code&gt;关键字来调用，那么JavaScript会给这个函数添加一个&lt;code&gt;prototype&lt;/code&gt;属性，并创建一个新对象，同时在调用这个函数时将&lt;code&gt;this&lt;/code&gt;指针绑定到这个对象上，那么为什么&lt;code&gt;this&lt;/code&gt;指针会绑定到新对象？&lt;/p&gt;
 &lt;p&gt;这里你又需要明确一点：&lt;code&gt;new constrcut()&lt;/code&gt;是一种创建对象的语法糖，它等价于：&lt;/p&gt;
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; person = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;name&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name = name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; foo = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; person(&lt;span class=&quot;string&quot;&gt;&quot;deen&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//通过new创建了一个对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//new是一种语法糖，new person等价于&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; bar = (&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;name&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; _newObj = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       constructor : person,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       __proto__ : person.prototype,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   _newObj.constructor(name);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;comment&quot;&gt;// _newObj.constructor.call(_newObj, name)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; _newObj;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;那原型对象是用来做什么的呢？主要作用是用于&lt;strong&gt;继承&lt;/strong&gt;。举了例子：&lt;/p&gt;
@@ -1052,19 +1052,19 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
-      <category term="prototype" scheme="http://leonewang.wang/tags/prototype/"/>
+      <category term="prototype" scheme="http://leone.wang/tags/prototype/"/>
     
   </entry>
   
   <entry>
     <title>Question Shredder: JSP Analysis to HTML Incomplete</title>
-    <link href="http://leonewang.wang/2015/11/09/q-jsp-loaded-incomplete/"/>
-    <id>http://leonewang.wang/2015/11/09/q-jsp-loaded-incomplete/</id>
+    <link href="http://leone.wang/2015/11/09/q-jsp-loaded-incomplete/"/>
+    <id>http://leone.wang/2015/11/09/q-jsp-loaded-incomplete/</id>
     <published>2015-11-09T07:20:53.000Z</published>
     <updated>2015-11-09T07:20:53.000Z</updated>
     
@@ -1094,19 +1094,19 @@
     
     </summary>
     
-      <category term="Develop" scheme="http://leonewang.wang/categories/develop/"/>
+      <category term="Develop" scheme="http://leone.wang/categories/develop/"/>
     
     
-      <category term="JSP" scheme="http://leonewang.wang/tags/jsp/"/>
+      <category term="JSP" scheme="http://leone.wang/tags/jsp/"/>
     
-      <category term="Question" scheme="http://leonewang.wang/tags/question/"/>
+      <category term="Question" scheme="http://leone.wang/tags/question/"/>
     
   </entry>
   
   <entry>
     <title>Think About JavaScript『this Pointer』</title>
-    <link href="http://leonewang.wang/2015/10/23/think-about-javascript-this-pointer/"/>
-    <id>http://leonewang.wang/2015/10/23/think-about-javascript-this-pointer/</id>
+    <link href="http://leone.wang/2015/10/23/think-about-javascript-this-pointer/"/>
+    <id>http://leone.wang/2015/10/23/think-about-javascript-this-pointer/</id>
     <published>2015-10-23T13:30:22.000Z</published>
     <updated>2015-12-15T13:30:22.000Z</updated>
     
@@ -1159,19 +1159,19 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term=".this" scheme="http://leonewang.wang/tags/this/"/>
+      <category term=".this" scheme="http://leone.wang/tags/this/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>The Maximum Length of HTTP Get/Post Request</title>
-    <link href="http://leonewang.wang/2015/09/23/http-getpost-max-length/"/>
-    <id>http://leonewang.wang/2015/09/23/http-getpost-max-length/</id>
+    <link href="http://leone.wang/2015/09/23/http-getpost-max-length/"/>
+    <id>http://leone.wang/2015/09/23/http-getpost-max-length/</id>
     <published>2015-09-23T15:27:56.000Z</published>
     <updated>2016-02-15T09:06:44.000Z</updated>
     
@@ -1228,21 +1228,21 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term="GET/POST" scheme="http://leonewang.wang/tags/get-post/"/>
+      <category term="GET/POST" scheme="http://leone.wang/tags/get-post/"/>
     
-      <category term="HTTP" scheme="http://leonewang.wang/tags/http/"/>
+      <category term="HTTP" scheme="http://leone.wang/tags/http/"/>
     
-      <category term="Request" scheme="http://leonewang.wang/tags/request/"/>
+      <category term="Request" scheme="http://leone.wang/tags/request/"/>
     
   </entry>
   
   <entry>
     <title>远赴边陲？江西的北国 — 武功山</title>
-    <link href="http://leonewang.wang/2015/09/21/jiangxiwugong-mountain/"/>
-    <id>http://leonewang.wang/2015/09/21/jiangxiwugong-mountain/</id>
+    <link href="http://leone.wang/2015/09/21/jiangxiwugong-mountain/"/>
+    <id>http://leone.wang/2015/09/21/jiangxiwugong-mountain/</id>
     <published>2015-09-21T02:35:54.000Z</published>
     <updated>2015-09-21T02:35:54.000Z</updated>
     
@@ -1341,17 +1341,17 @@
     
     </summary>
     
-      <category term="Journey" scheme="http://leonewang.wang/categories/journey/"/>
+      <category term="Journey" scheme="http://leone.wang/categories/journey/"/>
     
     
-      <category term="Mountaineering" scheme="http://leonewang.wang/tags/mountaineering/"/>
+      <category term="Mountaineering" scheme="http://leone.wang/tags/mountaineering/"/>
     
   </entry>
   
   <entry>
     <title>Think About JavaScript『prototype』</title>
-    <link href="http://leonewang.wang/2015/09/02/think-about-javascript-prototype/"/>
-    <id>http://leonewang.wang/2015/09/02/think-about-javascript-prototype/</id>
+    <link href="http://leone.wang/2015/09/02/think-about-javascript-prototype/"/>
+    <id>http://leone.wang/2015/09/02/think-about-javascript-prototype/</id>
     <published>2015-09-02T08:19:04.000Z</published>
     <updated>2015-09-02T08:19:04.000Z</updated>
     
@@ -1377,17 +1377,17 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>Ukulele</title>
-    <link href="http://leonewang.wang/2015/08/17/ukulele/"/>
-    <id>http://leonewang.wang/2015/08/17/ukulele/</id>
+    <link href="http://leone.wang/2015/08/17/ukulele/"/>
+    <id>http://leone.wang/2015/08/17/ukulele/</id>
     <published>2015-08-17T08:59:56.000Z</published>
     <updated>2015-08-17T08:59:56.000Z</updated>
     
@@ -1407,17 +1407,17 @@
     
     </summary>
     
-      <category term="Music" scheme="http://leonewang.wang/categories/music/"/>
+      <category term="Music" scheme="http://leone.wang/categories/music/"/>
     
     
-      <category term="Ukulele" scheme="http://leonewang.wang/tags/ukulele/"/>
+      <category term="Ukulele" scheme="http://leone.wang/tags/ukulele/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript Notes</title>
-    <link href="http://leonewang.wang/2015/08/09/javascript-notes/"/>
-    <id>http://leonewang.wang/2015/08/09/javascript-notes/</id>
+    <link href="http://leone.wang/2015/08/09/javascript-notes/"/>
+    <id>http://leone.wang/2015/08/09/javascript-notes/</id>
     <published>2015-08-09T12:01:58.000Z</published>
     <updated>2015-08-09T12:01:58.000Z</updated>
     
@@ -1615,17 +1615,17 @@
     
     </summary>
     
-      <category term="Notes" scheme="http://leonewang.wang/categories/notes/"/>
+      <category term="Notes" scheme="http://leone.wang/categories/notes/"/>
     
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>Question Shredder: Intellij IDEA 14 Tomcat Console Output Messy Code</title>
-    <link href="http://leonewang.wang/2015/08/04/q-intellij-idea-14/"/>
-    <id>http://leonewang.wang/2015/08/04/q-intellij-idea-14/</id>
+    <link href="http://leone.wang/2015/08/04/q-intellij-idea-14/"/>
+    <id>http://leone.wang/2015/08/04/q-intellij-idea-14/</id>
     <published>2015-08-04T07:04:48.000Z</published>
     <updated>2015-08-04T07:04:48.000Z</updated>
     
@@ -1646,19 +1646,19 @@
     
     </summary>
     
-      <category term="Develop" scheme="http://leonewang.wang/categories/develop/"/>
+      <category term="Develop" scheme="http://leone.wang/categories/develop/"/>
     
     
-      <category term="IDE" scheme="http://leonewang.wang/tags/ide/"/>
+      <category term="IDE" scheme="http://leone.wang/tags/ide/"/>
     
-      <category term="Question" scheme="http://leonewang.wang/tags/question/"/>
+      <category term="Question" scheme="http://leone.wang/tags/question/"/>
     
   </entry>
   
   <entry>
     <title>Question Shredder: $(window).height() Problem</title>
-    <link href="http://leonewang.wang/2015/08/02/q-jquery-window-height-document-height/"/>
-    <id>http://leonewang.wang/2015/08/02/q-jquery-window-height-document-height/</id>
+    <link href="http://leone.wang/2015/08/02/q-jquery-window-height-document-height/"/>
+    <id>http://leone.wang/2015/08/02/q-jquery-window-height-document-height/</id>
     <published>2015-08-02T02:05:33.000Z</published>
     <updated>2015-08-03T07:04:40.000Z</updated>
     
@@ -1679,21 +1679,21 @@
     
     </summary>
     
-      <category term="Develop" scheme="http://leonewang.wang/categories/develop/"/>
+      <category term="Develop" scheme="http://leone.wang/categories/develop/"/>
     
     
-      <category term="HTML5" scheme="http://leonewang.wang/tags/html5/"/>
+      <category term="HTML5" scheme="http://leone.wang/tags/html5/"/>
     
-      <category term="JQuery" scheme="http://leonewang.wang/tags/jquery/"/>
+      <category term="JQuery" scheme="http://leone.wang/tags/jquery/"/>
     
-      <category term="Question" scheme="http://leonewang.wang/tags/question/"/>
+      <category term="Question" scheme="http://leone.wang/tags/question/"/>
     
   </entry>
   
   <entry>
     <title>Web Design With JavaScript and the DOM</title>
-    <link href="http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/"/>
-    <id>http://leonewang.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/</id>
+    <link href="http://leone.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/"/>
+    <id>http://leone.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/</id>
     <published>2015-07-26T13:32:27.000Z</published>
     <updated>2015-07-26T13:32:27.000Z</updated>
     
@@ -1727,19 +1727,19 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term="HTML5" scheme="http://leonewang.wang/tags/html5/"/>
+      <category term="HTML5" scheme="http://leone.wang/tags/html5/"/>
     
-      <category term="JavaScript" scheme="http://leonewang.wang/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>Responsive Web Design (Two)</title>
-    <link href="http://leonewang.wang/2015/07/20/responsive-web-design-two/"/>
-    <id>http://leonewang.wang/2015/07/20/responsive-web-design-two/</id>
+    <link href="http://leone.wang/2015/07/20/responsive-web-design-two/"/>
+    <id>http://leone.wang/2015/07/20/responsive-web-design-two/</id>
     <published>2015-07-20T14:36:10.000Z</published>
     <updated>2015-07-20T14:36:10.000Z</updated>
     
@@ -1814,12 +1814,12 @@
     
     </summary>
     
-      <category term="Summarize" scheme="http://leonewang.wang/categories/summarize/"/>
+      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
     
     
-      <category term="CSS3" scheme="http://leonewang.wang/tags/css3/"/>
+      <category term="CSS3" scheme="http://leone.wang/tags/css3/"/>
     
-      <category term="HTML5" scheme="http://leonewang.wang/tags/html5/"/>
+      <category term="HTML5" scheme="http://leone.wang/tags/html5/"/>
     
   </entry>
   
