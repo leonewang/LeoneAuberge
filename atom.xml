@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leone.wang/"/>
-  <updated>2016-08-10T13:27:16.000Z</updated>
+  <updated>2016-08-11T09:57:30.000Z</updated>
   <id>http://leone.wang/</id>
   
   <author>
@@ -16,15 +16,15 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>The App Life Cycle</title>
+    <title>iOS 应用程序生命周期</title>
     <link href="http://leone.wang/2016/08/10/the-app-life-cycle/"/>
     <id>http://leone.wang/2016/08/10/the-app-life-cycle/</id>
     <published>2016-08-10T13:27:16.000Z</published>
-    <updated>2016-08-10T13:27:16.000Z</updated>
+    <updated>2016-08-11T09:57:30.000Z</updated>
     
     <content type="html">&lt;p&gt;应用程序由代码和系统框架（system frameworks）相互作用所产生。系统框架给所有应用程序提供基础环境（infrastructure），开发者则自行编码定制应用的外观和行为。阅读本文章能帮助你了解一些 iOS 的基础环境及其如何工作。&lt;/p&gt;
 &lt;p&gt;iOS 框架依赖于一些设计模式（如 model-view-controller）和执行过程中的授权（delegation）。理解这些设计模式对构建一个成功的应用大有裨益，也帮助熟悉 &lt;code&gt;Object-C&lt;/code&gt; 和它的特性。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;The-Main-Function-主函数&quot;&gt;&lt;a href=&quot;#The-Main-Function-主函数&quot; class=&quot;headerlink&quot; title=&quot;The Main Function 主函数&quot;&gt;&lt;/a&gt;The Main Function 主函数&lt;/h2&gt;&lt;p&gt;所有以 C 语言为基础的应用的程序入口都是 &lt;code&gt;main&lt;/code&gt; 函数，iOS 应用也不例外。唯一的区别是在 iOS 程序中不需要手动编写 &lt;code&gt;main&lt;/code&gt; 函数，因为 Xcode 在创建项目时就已经提供了。除非特殊情况，否则最好不要修改 Xcode 提供的 &lt;code&gt;main&lt;/code&gt; 函数。示例如下：&lt;/p&gt;
+&lt;h2 id=&quot;主函数&quot;&gt;&lt;a href=&quot;#主函数&quot; class=&quot;headerlink&quot; title=&quot;主函数&quot;&gt;&lt;/a&gt;主函数&lt;/h2&gt;&lt;p&gt;所有以 C 语言为基础的应用的程序入口都是 &lt;code&gt;main&lt;/code&gt; 函数，iOS 应用也不例外。唯一的区别是在 iOS 程序中不需要手动编写 &lt;code&gt;main&lt;/code&gt; 函数，因为 Xcode 在创建项目时就已经提供了。除非特殊情况，否则最好不要修改 Xcode 提供的 &lt;code&gt;main&lt;/code&gt; 函数。示例如下：&lt;/p&gt;
 &lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &amp;lt;UIKit/UIKit.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &quot;AppDelegate.h&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int main(int argc, char * argv[])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @autoreleasepool &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;UIApplicationMain&lt;/span&gt;(argc, argv, &lt;span class=&quot;literal&quot;&gt;nil&lt;/span&gt;, &lt;span class=&quot;type&quot;&gt;NSStringFromClass&lt;/span&gt;([&lt;span class=&quot;type&quot;&gt;AppDelegate&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;]));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;值得注意的是，&lt;code&gt;main&lt;/code&gt; 函数的职责是为 &lt;code&gt;UIKit&lt;/code&gt; 框架切换控制。 其中 &lt;code&gt;UIApplicationMain&lt;/code&gt; 函数主要用以创建一些应用的核心对象来处理以下的过程：&lt;/p&gt;
 &lt;ul&gt;
@@ -33,8 +33,48 @@
 &lt;li&gt;将主循环（app’s run loop）放入执行过程，响应和处理事务&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;你需要做的只是提供 &lt;code&gt;storyboard&lt;/code&gt; 文件和自定义的初始化代码。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;待续&quot;&gt;&lt;a href=&quot;#待续&quot; class=&quot;headerlink&quot; title=&quot;待续&quot;&gt;&lt;/a&gt;待续&lt;/h2&gt;</content>
+&lt;h2 id=&quot;应用程序架构&quot;&gt;&lt;a href=&quot;#应用程序架构&quot; class=&quot;headerlink&quot; title=&quot;应用程序架构&quot;&gt;&lt;/a&gt;应用程序架构&lt;/h2&gt;&lt;p&gt;启动阶段，&lt;code&gt;UIApplicationMain&lt;/code&gt; 函数建立起一些关键的对象使应用开始运行。并且 &lt;code&gt;UIApplication&lt;/code&gt; 对象是 iOS 应用的核心，它的作用是帮助系统和应用中其他对象进行交互。iOS 应用程序都遵循 &lt;code&gt;model-view-controller&lt;/code&gt; 的架构，该模式将数据和业务逻辑从该数据的视图呈现中分离出来，这使得在不同屏幕尺寸的设备上创建应用中更为便捷。通过下图了解在 &lt;code&gt;MVC&lt;/code&gt; 模式下 iOS 应用程序的关键对象及其作用。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/core_objects_2x.png&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/core_objects_2x.png&quot; alt=&quot;core_objects&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对象作用描述&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;对象名&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;UIApplication&lt;/code&gt; 对象&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;用于管理事件循环和高等级的应用程序行为、将关键的应用转换（app transitions）和事件委托给开发者自定义的对象 delegate 来处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;App delegate&lt;/code&gt; 对象&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;自定义对象，与 &lt;code&gt;UIApplication&lt;/code&gt; 配合完成应用程序的初始化、状态转换和高等级事件，该对象是唯一一个存在于所有应用中的对象，所以常用于应用启动时初始化数据结构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;Documents&lt;/code&gt; 和 &lt;code&gt;data model&lt;/code&gt; 对象&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;data model&lt;/code&gt; 对象主要用来存储数据，如银行应用中存储了交易记录的数据。&lt;code&gt;documents&lt;/code&gt; 自定义对象是 &lt;code&gt;UIDocument&lt;/code&gt; 对象的子对象，用于管理 &lt;code&gt;data model&lt;/code&gt; 对象，&lt;code&gt;documents&lt;/code&gt; 对象不是必须的，但是它提供了一种便利的方法来分组单个文件或多个文件的数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;View controller&lt;/code&gt; 对象&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;管理应用程序内容在屏幕上的展现，即管理单一视图和获取子视图。&lt;code&gt;UIViewController&lt;/code&gt; 类是 &lt;code&gt;view controller&lt;/code&gt; 对象的基类，它默认用于加载视图、展现视图、翻转视图和其他的一些标准系统行为。&lt;code&gt;UIKit&lt;/code&gt; 等框架会定义额外的 &lt;code&gt;view controller&lt;/code&gt; 类来实现标准系统界面（interface），如图片选取（image picker），侧边栏和导航栏界面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;UIWindow&lt;/code&gt; 对象&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;协调单一屏幕上多视图的呈现。大多数应用只能将内容显示在一个窗口（window），但是有时我们需要额外的窗口来展示内容，比如扩展屏幕。所以为了改变应用的内容，就需要用到 &lt;code&gt;view controller&lt;/code&gt; 来在相应的窗口上更改显示的视图，而不是直接更换窗口。除了拥有视图以外，窗口也和 &lt;code&gt;UIApplication&lt;/code&gt; 对象共同传递事件给视图和 &lt;code&gt;view controllers&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;View&lt;/code&gt; 对象、&lt;code&gt;control&lt;/code&gt; 对象、&lt;code&gt;layer&lt;/code&gt; 对象&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;view&lt;/code&gt; 和 &lt;code&gt;control&lt;/code&gt; 用于内容的视觉呈现。&lt;code&gt;view&lt;/code&gt; 对象在指定的矩形区域绘制内容并且响应该区域的事件。&lt;code&gt;Control&lt;/code&gt; 对象是一中特定类型的 &lt;code&gt;view&lt;/code&gt; ，用来处理用户交互对象，如 buttons、text fields、toggle switches。&lt;code&gt;UIKit&lt;/code&gt; 提供了一些标准视图来展示不同类型的数据，当然你也能够直接继承 &lt;code&gt;UIView&lt;/code&gt; 创建自定义视图。除了通过 &lt;code&gt;view&lt;/code&gt; 和 &lt;code&gt;control&lt;/code&gt; 对象来构建 &lt;code&gt;view&lt;/code&gt; 的结构层层次并改变应用程序的外观以外，还可以使用 &lt;code&gt;Core Animation&lt;/code&gt; 框架的 &lt;code&gt;layer&lt;/code&gt; 对象来渲染（render）内容、完成一些复杂的动画和视觉效果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;iOS 应用和其他应用的区别在于其管理的数据（和相应的业务逻辑）及其如何将数据呈现给用户。&lt;code&gt;UIKit&lt;/code&gt; 的大部分交互无法构建起一个完整的应用，但是能帮助开发者优化应用的操作行为使其更为友好。&lt;/p&gt;
+&lt;h2 id=&quot;The-Main-Run-Loop&quot;&gt;&lt;a href=&quot;#The-Main-Run-Loop&quot; class=&quot;headerlink&quot; title=&quot;The Main Run Loop&quot;&gt;&lt;/a&gt;The Main Run Loop&lt;/h2&gt;&lt;hr&gt;
+&lt;h2 id=&quot;Continuing…&quot;&gt;&lt;a href=&quot;#Continuing…&quot; class=&quot;headerlink&quot; title=&quot;Continuing…&quot;&gt;&lt;/a&gt;Continuing…&lt;/h2&gt;</content>
     
     <summary type="html">
     
