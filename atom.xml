@@ -93,7 +93,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;Remote control、Shake motion 事件&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;第一响应器对象（&lt;code&gt;First responder object&lt;/code&gt;）&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;第一响应器对象（First responder object）&lt;/td&gt;
 &lt;td style=&quot;text-align:left&quot;&gt;耳机等附件会产生远程操作事件，用于控制媒体播放器&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -113,8 +113,8 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;其中一些事件，如触摸和远程控制事件是由应用程序中的响应器对象处理，而响应器对象无处不在（&lt;code&gt;UIApplication&lt;/code&gt; 对象、&lt;code&gt;view&lt;/code&gt; 对象、&lt;code&gt;view controller&lt;/code&gt; 对象均是）。当需要处理事件时，大多数事件会被传至某个特殊的响应器对象，但也可以通过响应链传递到其他响应器对象中。比如，视图对象（&lt;code&gt;view object&lt;/code&gt;）处理事件时可以将其传至父视图或视图控制器（&lt;code&gt;view controller&lt;/code&gt;）。&lt;/p&gt;
-&lt;p&gt;但是出现在控制机构（&lt;code&gt;controls&lt;/code&gt;，如 button）中的触摸事件相比出现在其他类型的视图中的触摸事件有所不同，因为 control 会产生一些典型的交互，并将这些交互会被重新打包成动作信息（&lt;code&gt;action message&lt;/code&gt;）转发给其对应的目标对象。这种目标-动作（&lt;code&gt;target-action&lt;/code&gt;） 设计模式让使用 &lt;code&gt;control&lt;/code&gt; 来触发自定义代码的执行变得非常便捷。&lt;/p&gt;
+&lt;p&gt;其中一些事件，如触摸和远程控制事件是由应用程序中的响应器对象处理，而响应器对象无处不在（&lt;code&gt;UIApplication&lt;/code&gt; 对象、&lt;code&gt;view&lt;/code&gt; 对象、&lt;code&gt;view controller&lt;/code&gt; 对象均是）。当需要处理事件时，大多数事件会被传至某个特殊的响应器对象，但也可以通过响应链传递到其他响应器对象中。比如，视图对象（view object）处理事件时可以将其传至父视图或视图控制器（view controller）。&lt;/p&gt;
+&lt;p&gt;但是出现在控制机构（controls，如 button）中的触摸事件相比出现在其他类型的视图中的触摸事件有所不同，因为 control 会产生一些典型的交互，并将这些交互会被重新打包成动作信息（action message）转发给其对应的目标对象。这种目标-动作（target-action） 设计模式让使用 &lt;code&gt;control&lt;/code&gt; 来触发自定义代码的执行变得非常便捷。&lt;/p&gt;
 &lt;h2 id=&quot;应用程序的状态和多任务&quot;&gt;&lt;a href=&quot;#应用程序的状态和多任务&quot; class=&quot;headerlink&quot; title=&quot;应用程序的状态和多任务&quot;&gt;&lt;/a&gt;应用程序的状态和多任务&lt;/h2&gt;&lt;h2 id=&quot;应用程序的终止&quot;&gt;&lt;a href=&quot;#应用程序的终止&quot; class=&quot;headerlink&quot; title=&quot;应用程序的终止&quot;&gt;&lt;/a&gt;应用程序的终止&lt;/h2&gt;&lt;h2 id=&quot;线程和并发执行&quot;&gt;&lt;a href=&quot;#线程和并发执行&quot; class=&quot;headerlink&quot; title=&quot;线程和并发执行&quot;&gt;&lt;/a&gt;线程和并发执行&lt;/h2&gt;&lt;hr&gt;
 &lt;h2 id=&quot;Continuing…&quot;&gt;&lt;a href=&quot;#Continuing…&quot; class=&quot;headerlink&quot; title=&quot;Continuing…&quot;&gt;&lt;/a&gt;Continuing…&lt;/h2&gt;</content>
     
