@@ -49,5 +49,47 @@
 </tbody>
 </table>
 <p>iOS 应用和其他应用的区别在于其管理的数据（和相应的业务逻辑）及其如何将数据呈现给用户。<code>UIKit</code> 的大部分交互无法构建起一个完整的应用，但是能帮助开发者优化应用的操作行为使其更为友好。</p>
-<h2 id="The-Main-Run-Loop"><a href="#The-Main-Run-Loop" class="headerlink" title="The Main Run Loop"></a>The Main Run Loop</h2><hr>
+<h2 id="The-Main-Run-Loop"><a href="#The-Main-Run-Loop" class="headerlink" title="The Main Run Loop"></a>The Main Run Loop</h2><p>一个 iOS 应用的 <code>main run loop</code> 主要是处理所有用户相关的事件。<code>UIApplication</code> 对象在启动时建立 <code>main run loop</code>，将其用于事件处理和基于 <code>view</code> 的界面更新。正如它名字所显示的，<code>main run loop</code> 运行在应用的主线程上，这样确保接收到用户相关的事件并得到有序的处理。</p>
+<p>下图展示的是 <code>main run loop</code> 的结构和用户事件是怎样被应用处理的。当用户在使用设备时，系统会产生相关的交互事件并且通过 <code>UIKit</code> 的特殊接口传递给应用。应用程序将事件有序的放入队列，然后逐个分发到 <code>main run loop</code> 执行。<code>UIApplication</code> 对象是第一个接收到事件的对象并且决定如何进行操作。触摸操作事件通常分发到 <code>main window</code> 对象，这个对象会把该事件再次分发给发生触摸的 <code>view</code>，而其他的事件的处理路径会有些许不同。</p>
+<p><a href="http://7xpp7u.com1.z0.glb.clouddn.com/event_draw_cycle_a_2x.png" target="_blank" rel="external"><img src="http://7xpp7u.com1.z0.glb.clouddn.com/event_draw_cycle_a_2x.png" alt="event_draw_cycle_a_2x"></a></p>
+<p>在应用程序中会传递许多不同类型的事件。其中最常见的事件列于下面的表格。有一些事件是经由 <code>main run loop</code> 传递，也有一些不是，它们会被发送至一个 <code>delegate</code> 对象或传递到一个你提供的 <code>block</code> 中。想了解如何处理大多数类型的事件，如触摸（touch）、远程控制（remote control）、手势（motion）、测振仪（accelerometer）、陀螺仪（gyroscope）等事件，参见 <a href="https://developer.apple.com/library/ios/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009541" target="_blank" rel="external">Event Handling Guide for iOS</a>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">事件类型</th>
+<th style="text-align:center">传递至</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Touch</td>
+<td style="text-align:center">触摸位置所在的 <code>view</code> 对象</td>
+<td style="text-align:left"><code>view</code> 对象是响应器对象，任何没有被 <code>view</code> 处理的触摸事件都将被转发（forward down）响应链进行处理</td>
+</tr>
+<tr>
+<td style="text-align:center">Remote control、Shake motion 事件</td>
+<td style="text-align:center">第一响应器对象（<code>First responder object</code>）</td>
+<td style="text-align:left">耳机等附件会产生远程操作事件，用于控制媒体播放器</td>
+</tr>
+<tr>
+<td style="text-align:center">Accelerometer、Magnetometer、Gyroscope</td>
+<td style="text-align:center">开发者指定的对象</td>
+<td style="text-align:left">与测振仪、磁强计、陀螺仪等硬件相关的事件会分发到开发者自己指定的对象中</td>
+</tr>
+<tr>
+<td style="text-align:center">Location</td>
+<td style="text-align:center">开发者指定的对象</td>
+<td style="text-align:left">开发者可以通过 <code>Core Location</code> 框架接受地理位置事件，详见 <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009497" target="_blank" rel="external">Location and Maps Programming Guide</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Redraw</td>
+<td style="text-align:center">需要更新的 <code>view</code> 对象</td>
+<td style="text-align:left">重绘事件不需要事件对象，但需要唤起视图对象（view）对自身进行绘制。绘制的结构请见 <a href="https://developer.apple.com/library/ios/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156" target="_blank" rel="external">Drawing and Printing Guide for iOS</a></td>
+</tr>
+</tbody>
+</table>
+<p>其中一些事件，如触摸和远程控制事件是由应用程序中的响应器对象处理，而响应器对象无处不在（<code>UIApplication</code> 对象、<code>view</code> 对象、<code>view controller</code> 对象均是）。当需要处理事件时，大多数事件会被传至某个特殊的响应器对象，但也可以通过响应链传递到其他响应器对象中。比如，视图对象（<code>view object</code>）处理事件时可以将其传至父视图或视图控制器（<code>view controller</code>）。</p>
+<p>但是出现在控制机构（<code>controls</code>，如 button）中的触摸事件相比出现在其他类型的视图中的触摸事件有所不同，因为 control 会产生一些典型的交互，并将这些交互会被重新打包成动作信息（<code>action message</code>）转发给其对应的目标对象。这种目标-动作（<code>target-action</code>） 设计模式让使用 <code>control</code> 来触发自定义代码的执行变得非常便捷。</p>
+<h2 id="应用程序状态和多任务"><a href="#应用程序状态和多任务" class="headerlink" title="应用程序状态和多任务"></a>应用程序状态和多任务</h2><hr>
 <h2 id="Continuing…"><a href="#Continuing…" class="headerlink" title="Continuing…"></a>Continuing…</h2></div></article></div></section><footer><div class="paginator"><a href="/2016/05/15/ielts-speaking-topics/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://leone.wang">LeoneWang</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
