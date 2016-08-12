@@ -690,7 +690,7 @@
   </entry>
   
   <entry>
-    <title>JS 对象属性的可枚举性、可写性、可配置性</title>
+    <title>Javascript 对象属性的三种特性</title>
     <link href="http://leone.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/"/>
     <id>http://leone.wang/2016/03/15/javascript-properties-are-enumerable-writable-and-configurable/</id>
     <published>2016-03-15T14:35:55.000Z</published>
