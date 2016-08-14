@@ -91,5 +91,57 @@
 </table>
 <p>其中一些事件，如触摸和远程控制事件是由应用程序中的响应器对象处理，而响应器对象无处不在（<code>UIApplication</code> 对象、<code>view</code> 对象、<code>view controller</code> 对象均是）。当需要处理事件时，大多数事件会被传至某个特殊的响应器对象，但也可以通过响应链传递到其他响应器对象中。比如，视图对象（view object）处理事件时可以将其传至父视图或视图控制器（view controller）。</p>
 <p>但是出现在控制机构（controls，如 button）中的触摸事件相比出现在其他类型的视图中的触摸事件有所不同，因为 control 会产生一些典型的交互，并将这些交互会被重新打包成动作信息（action message）转发给其对应的目标对象。这种目标-动作（target-action） 设计模式让使用 <code>control</code> 来触发自定义代码的执行变得非常便捷。</p>
-<h2 id="应用程序的状态和多任务"><a href="#应用程序的状态和多任务" class="headerlink" title="应用程序的状态和多任务"></a>应用程序的状态和多任务</h2><h2 id="应用程序的终止"><a href="#应用程序的终止" class="headerlink" title="应用程序的终止"></a>应用程序的终止</h2><h2 id="线程和并发执行"><a href="#线程和并发执行" class="headerlink" title="线程和并发执行"></a>线程和并发执行</h2><hr>
+<h2 id="应用程序的状态和多任务"><a href="#应用程序的状态和多任务" class="headerlink" title="应用程序的状态和多任务"></a>应用程序的状态和多任务</h2><p>系统对其中发生的活动（action）采取响应，即改变它的状态。比如：当用户按下 Home 键、打进了一个电话或其他阻碍应用运行的行为发生，正在运行的应用程序会及时的改变程序的状态来相应。下表列出了应用程序中可能的状态。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">状态名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Not running</td>
+<td style="text-align:left">应用未运行，或已运行但被系统终止</td>
+</tr>
+<tr>
+<td style="text-align:center">Inactive</td>
+<td style="text-align:left">应用运行在前台但并暂未接受事件（也许是在执行其他的代码），应用常常会在过渡到其他状态时短暂提留该状态一段时间</td>
+</tr>
+<tr>
+<td style="text-align:center">Active</td>
+<td style="text-align:left">应用运行在前台并且正在接受事件，这是前台应用的一般状态</td>
+</tr>
+<tr>
+<td style="text-align:center">Background</td>
+<td style="text-align:left">应用运行于后台而且依旧在处理代码。大多数应用程序在切换到 <code>suspended</code> 状态时会短暂处于该状态，也可能因为进行额外的处理而保持该状态一段时间。而且，应用运行于后台时并非会进入 <code>inactive</code> 状态，而是直接进入 <code>background</code> 状态。后台如何处理代码，详见 <a href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1" target="_blank" rel="external">Background Execution</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Suspended</td>
+<td style="text-align:left">应用处于后台但没有在执行代码。iOS 系统会自动将应用转入该状态并且不会有任何提醒。当处于 <code>suspended</code> 状态时，应用程序依旧会在内存中， 但不再执行任何代码；当系统内存过低时，系统会清除（purge）掉处于 <code>suspended</code> 状态的应用来为前台应用提供更多的运行空间</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>iOS 应用程序中的状态转换</p>
+</blockquote>
+<p><a href="http://7xpp7u.com1.z0.glb.clouddn.com/high_level_flow_2x.png" target="_blank" rel="external"><img src="http://7xpp7u.com1.z0.glb.clouddn.com/high_level_flow_2x.png?imageView/2/w/400" alt="high_level_flow"></a></p>
+<p>大多数的状态转换伴随着应用中 <code>delegate</code> 对象中相应方法的调用。这些方法让开发者能够对状态变化采取合适的响应。下面列出这些方法并介绍它们的使用方法。</p>
+<ul>
+<li><p><strong>application:willFinishLaunchingWithOptions</strong>: 应用在启动时第一次处理代码的机会</p>
+</li>
+<li><p><strong>application:didFinishLaunchingWithOptions</strong>: 在应用展现给用户之前最后一次初始化操作</p>
+</li>
+<li><p><strong>applicationDidBecomeActive</strong>: 告诉应用即将成为前台应用，此方法用于做最后准备</p>
+</li>
+<li><p><strong>applicationWillResignActive</strong>: 即将脱离前台时的进行的操作，该方法将应用置于休眠状态。</p>
+</li>
+<li><p><strong>applicationDidEnterBackground</strong>: 已经切换至 <code>background</code> 状态时进行的操作，但随时有可能被置于 <code>suspended</code> 状态。</p>
+</li>
+<li><p><strong>applicationWillEnterForeground</strong>: 从后台切换至前台时进行的操作，但依旧还没处于 <code>active</code> 状态。</p>
+</li>
+<li><p><strong>applicationWillTerminate</strong>: 应用终止前的操作，但是应用处于 <code>suspended</code> 状态时不会调用该方法。</p>
+</li>
+</ul>
+<h2 id="应用程序的终止"><a href="#应用程序的终止" class="headerlink" title="应用程序的终止"></a>应用程序的终止</h2><h2 id="线程和并发执行"><a href="#线程和并发执行" class="headerlink" title="线程和并发执行"></a>线程和并发执行</h2><hr>
 <h2 id="Continuing…"><a href="#Continuing…" class="headerlink" title="Continuing…"></a>Continuing…</h2></div></article></div></section><footer><div class="paginator"><a href="/2016/05/15/ielts-speaking-topics/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://leone.wang">LeoneWang</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
