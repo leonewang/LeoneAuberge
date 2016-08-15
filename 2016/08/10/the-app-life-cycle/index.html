@@ -91,7 +91,7 @@
 </table>
 <p>其中一些事件，如触摸和远程控制事件是由应用程序中的响应器对象处理，而响应器对象无处不在（<code>UIApplication</code> 对象、<code>view</code> 对象、<code>view controller</code> 对象均是）。当需要处理事件时，大多数事件会被传至某个特殊的响应器对象，但也可以通过响应链传递到其他响应器对象中。比如，视图对象（view object）处理事件时可以将其传至父视图或视图控制器（view controller）。</p>
 <p>但是出现在控制机构（controls，如 button）中的触摸事件相比出现在其他类型的视图中的触摸事件有所不同，因为 control 会产生一些典型的交互，并将这些交互会被重新打包成动作信息（action message）转发给其对应的目标对象。这种目标-动作（target-action） 设计模式让使用 <code>control</code> 来触发自定义代码的执行变得非常便捷。</p>
-<h2 id="应用程序的状态和多任务"><a href="#应用程序的状态和多任务" class="headerlink" title="应用程序的状态和多任务"></a>应用程序的状态和多任务</h2><p>系统对其中发生的活动（action）采取响应，即改变它的状态。比如：当用户按下 Home 键、打进了一个电话或其他阻碍应用运行的行为发生，正在运行的应用程序会及时的改变程序的状态来相应。下表列出了应用程序中可能的状态。</p>
+<h2 id="应用程序的状态"><a href="#应用程序的状态" class="headerlink" title="应用程序的状态"></a>应用程序的状态</h2><p>系统对其中发生的活动（action）采取响应，即改变它的状态。比如：当用户按下 Home 键、打进了一个电话或其他阻碍应用运行的行为发生，正在运行的应用程序会及时的改变程序的状态来相应。下表列出了应用程序中可能的状态。</p>
 <table>
 <thead>
 <tr>
@@ -143,5 +143,19 @@
 <li><p><strong>applicationWillTerminate</strong>: 应用终止前的操作，但是应用处于 <code>suspended</code> 状态时不会调用该方法。</p>
 </li>
 </ul>
-<h2 id="应用程序的终止"><a href="#应用程序的终止" class="headerlink" title="应用程序的终止"></a>应用程序的终止</h2><h2 id="线程和并发执行"><a href="#线程和并发执行" class="headerlink" title="线程和并发执行"></a>线程和并发执行</h2><hr>
+<h2 id="应用程序的终止"><a href="#应用程序的终止" class="headerlink" title="应用程序的终止"></a>应用程序的终止</h2><p>应用程序应该随时做好程序终止的准备，并且存储好用户数据、完成一些重要任务。系统引发的终止（system-initiated termination）是应用生命周期里常见的一部分。系统通常终止程序来释放内存、运行其他用户启动的应用，当然系统也会及时地终止一些长时间未响应的、故障的应用。</p>
+<p>Suspended 状态的应用被终止时将无法接受到消息提醒，系统直接杀掉进该进程、释放相应的内存。如果应用正运行与后台并且未暂停（suspended），系统则会优先调用该应用的 <code>applicationWillTerminal:</code> 方法，如果系统重启则不会调用该方法。</p>
+<p>除了系统能够终止应用，用户也能通过多任务处理界面生动直观地终止应用。用户引发的终止（user-initiated termination）和处于 suspended 状态的应用终止非常相似，均为杀死进程、没有消息提醒。</p>
+<h2 id="线程和并发执行"><a href="#线程和并发执行" class="headerlink" title="线程和并发执行"></a>线程和并发执行</h2><p>系统创建了应用的主线程，而开发者可自行创建额外的线程用于执行其他任务。对于 iOS 应用而言，创建和管理进程较为常用的技术有 Grand Central Dispatch（GCD）、运行对象（operation object）以及其他一些异步程序接口。GCD 技术能够让开发者定义想做的任务并决定任务执行的先后，但由系统决定如何利用有限的 CPU 资源最优化执行任务。让系统负责线程管理来简化必写的代码，确保代码的正确性，提升整体性能（performance）。</p>
+<p>考虑线程（thread）和并发执行（concurrency）时不要忘记一下几点：</p>
+<ul>
+<li><p>view、Core Animation 和一些 UIKit 类一般在应用的主线程中。当然也有一些例外，比如基于图片的（image-based）操作常出现在后台线程中，但在不确定时，估计它需要在主线程中。</p>
+</li>
+<li><p>长时间任务（或潜在的长时间任务）应该在后台进程中被执行。任何涉及到网络（network access）、文件读取（file access）、大数据处理的任务都应由 GCD 或 operation 对象执行。</p>
+</li>
+<li><p>在启动阶段，尽可能的将任务从主线程中移处，因为应用会在这时尽可能快地建立起用户接口，所以只有用于建立用户接口的任务才应该在主线程上执行，而其他的任务应该异步执行，一旦准备完成就立马展示给用户。</p>
+</li>
+</ul>
+<p>更多关于 GCD 和 operation 对象的内容，请看 <a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091" target="_blank" rel="external">Concurrency Programming Guide</a>。</p>
+<hr>
 <h2 id="Continuing…"><a href="#Continuing…" class="headerlink" title="Continuing…"></a>Continuing…</h2></div></article></div></section><footer><div class="paginator"><a href="/2016/05/15/ielts-speaking-topics/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://leone.wang">LeoneWang</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
