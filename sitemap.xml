@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leone.wang/resume/index.html</loc>
+    
+    <lastmod>2016-09-16T14:24:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leone.wang/share/index.html</loc>
+    
+    <lastmod>2016-09-16T14:22:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leone.wang/2016/08/10/the-app-life-cycle/</loc>
     
     <lastmod>2016-08-11T09:57:30.000Z</lastmod>
@@ -19,20 +33,6 @@
     <loc>http://leone.wang/2016/04/28/prefixes-stems-and-suffixes-in-english-words/</loc>
     
     <lastmod>2016-04-28T15:38:17.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leone.wang/resume/index.html</loc>
-    
-    <lastmod>2016-04-28T13:19:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leone.wang/share/index.html</loc>
-    
-    <lastmod>2016-04-27T17:18:15.000Z</lastmod>
     
   </url>
   
