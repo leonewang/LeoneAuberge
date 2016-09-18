@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leone.wang/"/>
-  <updated>2016-08-11T09:57:30.000Z</updated>
+  <updated>2016-09-18T16:12:21.000Z</updated>
   <id>http://leone.wang/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《放学后》后感</title>
+    <link href="http://leone.wang/2016/08/26/sentiment-of-fangxuehou/"/>
+    <id>http://leone.wang/2016/08/26/sentiment-of-fangxuehou/</id>
+    <published>2016-08-25T16:12:21.000Z</published>
+    <updated>2016-09-18T16:12:21.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;不经意间的话语、动作、眼神、事情总是不知在何时就伤害到他人，自己的为人处世之道于自己看来似乎没什么问题，于他人或许已伤至心灵。当青春、美丽、纯粹、友情甚至是爱情遭到破坏时，也许从心底诞生的恨意将成为一生的芥蒂，行差踏错将是万劫不复。人与人之间的关系是世界上最难解答的谜题，本着小心谨慎希望不会被伤害，却总在一不留神的时候伤害了他人，而深究只会陷入庸人自扰，我只叹一句“心安就好”。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/IMG_1671.jpg?imageView/2/w/350/q/90&quot; alt=&quot;notes&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;不经意间的话语、动作、眼神、事情总是不知在何时就伤害到他人，自己的为人处世之道于自己看来似乎没什么问题，于他人或许已伤至心灵。当青春、美丽、纯粹、友情甚至是爱情遭到破坏时，也许从心底诞生的恨意将成为一生的芥蒂，行差踏错将是万劫不复。人与人之间的关系是世界上最难解答的谜题，本着小心谨慎希望不会被伤害，却总在一不留神的时候伤害了他人，而深究只会陷入庸人自扰，我只叹一句“心安就好”。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>iOS 应用程序生命周期</title>
@@ -1871,52 +1894,6 @@
       <category term="JQuery" scheme="http://leone.wang/tags/jquery/"/>
     
       <category term="Question" scheme="http://leone.wang/tags/question/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Web Design With JavaScript and the DOM</title>
-    <link href="http://leone.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/"/>
-    <id>http://leone.wang/2015/07/26/web-design-with-javascript-and-the-dom-dom/</id>
-    <published>2015-07-26T13:32:27.000Z</published>
-    <updated>2015-07-26T13:32:27.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;最佳实践&quot;&gt;&lt;a href=&quot;#最佳实践&quot; class=&quot;headerlink&quot; title=&quot;最佳实践&quot;&gt;&lt;/a&gt;最佳实践&lt;/h2&gt;&lt;h3 id=&quot;不要怪罪-JavaScript&quot;&gt;&lt;a href=&quot;#不要怪罪-JavaScript&quot; class=&quot;headerlink&quot; title=&quot;不要怪罪 JavaScript&quot;&gt;&lt;/a&gt;不要怪罪 JavaScript&lt;/h3&gt;&lt;p&gt;HTML 之所以会呈现爆炸性的增长，HTML 语言易学易用的特点就是其中不可否认的一个原因。很多人花很少的时间就可以掌握 HTML 语言的基本知识，并快速做出各种各样的网页。事实上，也许很多没有写过代码的人们在‘可视化’网页制作工具的帮助下成为了网页设计大军中的一员。&lt;/p&gt;
-&lt;p&gt;因此产生的不良后果就是，许多网页的编写很糟糕，甚至没有做标记合法性检查，忽略规范，所以浏览器不得不以较为宽松的方式去处理网页。这也使得 CSS，JavaScript 等新技术在 Web 上推广收到了很大的阻力。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;与 HTML 语言相比，Javascript 语言的生存环境要严苛的多，如果 JavaScript 代码不符合语法规范，浏览器将无法执行，而在碰到不符合语法规范的 HTML 代码时，浏览器却又千方百计的把它呈现出来。尽管如此，网络上依旧充斥着许多质量低下的 JavaScript 代码。&lt;/p&gt;
-&lt;p&gt;许多网页设计者并不舍得花大量的时间来学习 JavaScript，而是把一些现成的代码直接复制到文档中，这依旧得益于‘可视化’的网页设计工具。其实这些现成的 JavaScript 代码里有许多问题考虑的并不周全，从表面上看，似乎这些代码确实帮助我们完成了一些新颖动人的交互效果，但是，他们却很少有能够在禁用 JavaScript 的情况下对网页的行为作出正确地响应。一旦 JavaScript 被禁用，那些质量低劣的代码将在浏览器中得不到很好的解释，甚至完全没法使用。这就让许多人认为 &lt;strong&gt;JavaScript=网页&lt;/strong&gt; 无法访问。&lt;/p&gt;
-&lt;h3 id=&quot;平稳退化&quot;&gt;&lt;a href=&quot;#平稳退化&quot; class=&quot;headerlink&quot; title=&quot;平稳退化&quot;&gt;&lt;/a&gt;平稳退化&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;也许你会说，禁用 JavaScript 的用户已经是少数了，何必耗费大量的时间来优化这些代码呢？&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;先说内在因素，请想象一下，有个访问者来到了你的网站，他在浏览 Web 的同时禁用了 JavaScript 和图片，我敢肯定这样的用户现在已近非常少见，但是，这个用户却非常重要，因为他是 —— &lt;strong&gt;Searchbot&lt;/strong&gt;（搜索机器人）。其次外在因素，现在的网页的用户体验越来越受到人们的关注，那些不遵循‘用户至上’原则的网站从长远来看都是自取灭亡，况且&lt;code&gt;不追求完美的程序员不是好程序员&lt;/code&gt;，你说呢？&lt;/p&gt;
-&lt;p&gt;如果正确的使用了 JavaScript 脚本，就可以让访问者在禁用了 JavaScript 的情况下仍能继续顺利的浏览你的网站，这就是 &lt;strong&gt;平稳退化&lt;/strong&gt; ，就是虽然某些功能无法使用，但最基本的操作仍能顺利完成。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;分离 javascript&lt;/li&gt;
-&lt;li&gt;向后兼容（与现代并无必要，大多浏览器足够健壮）&lt;/li&gt;
-&lt;li&gt;性能考虑&lt;ol&gt;
-&lt;li&gt;尽量减少标记和访问 DOM&lt;/li&gt;
-&lt;li&gt;脚本合并&lt;/li&gt;
-&lt;li&gt;脚本压缩（工具）&lt;br&gt;A. Douglas Crockford 的 JSMin&lt;br&gt;B. Yahoo 的 YUI Compressor&lt;br&gt;C. Google 的 Closure Compiler&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;学习并参考自《DOM Scripting Web Design with JavaScript and the Document Object Model》&lt;/em&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;最佳实践&quot;&gt;&lt;a href=&quot;#最佳实践&quot; class=&quot;headerlink&quot; title=&quot;最佳实践&quot;&gt;&lt;/a&gt;最佳实践&lt;/h2&gt;&lt;h3 id=&quot;不要怪罪-JavaScript&quot;&gt;&lt;a href=&quot;#不要怪罪-JavaScript&quot; class=&quot;headerlink&quot; title=&quot;不要怪罪 JavaScript&quot;&gt;&lt;/a&gt;不要怪罪 JavaScript&lt;/h3&gt;&lt;p&gt;HTML 之所以会呈现爆炸性的增长，HTML 语言易学易用的特点就是其中不可否认的一个原因。很多人花很少的时间就可以掌握 HTML 语言的基本知识，并快速做出各种各样的网页。事实上，也许很多没有写过代码的人们在‘可视化’网页制作工具的帮助下成为了网页设计大军中的一员。&lt;/p&gt;
-&lt;p&gt;因此产生的不良后果就是，许多网页的编写很糟糕，甚至没有做标记合法性检查，忽略规范，所以浏览器不得不以较为宽松的方式去处理网页。这也使得 CSS，JavaScript 等新技术在 Web 上推广收到了很大的阻力。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Summarize" scheme="http://leone.wang/categories/summarize/"/>
-    
-    
-      <category term="HTML5" scheme="http://leone.wang/tags/html5/"/>
-    
-      <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
     
   </entry>
   
