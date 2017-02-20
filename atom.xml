@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leone.wang/"/>
-  <updated>2016-11-27T16:53:37.000Z</updated>
+  <updated>2017-02-20T11:02:14.000Z</updated>
   <id>http://leone.wang/</id>
   
   <author>
@@ -14,6 +14,77 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Memory Management of Variables in Python</title>
+    <link href="http://leone.wang/2017/02/20/memory-management-of-variables-in-python/"/>
+    <id>http://leone.wang/2017/02/20/memory-management-of-variables-in-python/</id>
+    <published>2017-02-20T11:02:14.000Z</published>
+    <updated>2017-02-20T11:02:14.000Z</updated>
+    
+    <content type="html">&lt;p&gt;This article will not only expose the basic memory management in Python, but some mistaken tricks of passing argument to function.&lt;/p&gt;
+&lt;h2 id=&quot;Memory-management-of-variables&quot;&gt;&lt;a href=&quot;#Memory-management-of-variables&quot; class=&quot;headerlink&quot; title=&quot;Memory management of variables&quot;&gt;&lt;/a&gt;Memory management of variables&lt;/h2&gt;&lt;p&gt;There are variety of programming languages in which have quite different memory assignment strategies. &lt;strong&gt;When we do an assignment in C&lt;/strong&gt;:&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/c_memory_mngt_1.png?imageView/2/w/200&quot; alt=&quot;c_memory_mngt_1&quot;&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Let’s imagine the following situation: we put &lt;code&gt;1&lt;/code&gt; into a bottle which is created with name variable &lt;code&gt;a&lt;/code&gt; and used as a container. This statement creates a block of memory space so that it can hold the value for variables.&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/c_memory_mngt_2.png?imageView/2/w/300&quot; alt=&quot;c_memory_mngt_2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;If want to change the value in the bottle, just put another value in instead of the old one as the bottle will be updated.&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; b = a;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/c_memory_mngt_3.png?imageView/2/w/300&quot; alt=&quot;c_memory_mngt_3&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Assigning one variable to another will create a new block of memory and make a copy of the value, then put that into the new bottle.&lt;/p&gt;
+&lt;p&gt;Memory management in Python is much more weird since variables work more like tags. &lt;strong&gt;When do assignment in Python&lt;/strong&gt;:&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/python_memory_mngt_1.png?imageView/2/w/200&quot; alt=&quot;python_memory_mngt_1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Python will put a tag named &lt;code&gt;a&lt;/code&gt; bound to the value &lt;code&gt;2&lt;/code&gt;.&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/python_memory_mngt_2.png?imageView/2/w/250&quot; alt=&quot;python_memory_mngt_2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;As you can imagine, tag &lt;code&gt;a&lt;/code&gt; will be changed to the new value &lt;code&gt;2&lt;/code&gt; in memory.&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;b = a&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/python_memory_mngt_3.png?imageView/2/w/250&quot; alt=&quot;python_memory_mngt_3&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The statement can make a new tag called &lt;code&gt;b&lt;/code&gt; bound to the same value &lt;code&gt;2&lt;/code&gt;. Moreover, no worries about the former value &lt;code&gt;1&lt;/code&gt;, this kind of housekeeping job of freeing unuse memory will be done by &lt;strong&gt;Python’s Automatic Garbage Collection&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Mutable-assignment-and-passing-argument-of-function&quot;&gt;&lt;a href=&quot;#Mutable-assignment-and-passing-argument-of-function&quot; class=&quot;headerlink&quot; title=&quot;Mutable assignment and passing argument of function&quot;&gt;&lt;/a&gt;Mutable assignment and passing argument of function&lt;/h2&gt;&lt;p&gt;There are two different means to pass argument to function:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Call-by-value&lt;/strong&gt;: in call-by-value, the argument expression is evaluated and result of this evaluation is bound to the corresponding variable in the function. So if the expression is a variable, &lt;strong&gt;a local copy of its value will be used&lt;/strong&gt;. The variable in caller’s scope will be never changed when the function returns.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Call-by-reference&lt;/strong&gt;: A function gets a &lt;strong&gt;implicit reference&lt;/strong&gt; to the argument, rather than a copy of its value. As a consequence, the argument can be modified as variables can be accidently changed in a function call. However, this mean has the characteristics: greater time and space-efficiency because it do not need to copy the value of variables.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Python uses call-by-reference by default.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Look at one of the confusing example here:&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(the_list)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    print(&lt;span class=&quot;string&quot;&gt;&#39;Got&#39;&lt;/span&gt;, the_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    the_list.append(&lt;span class=&quot;string&quot;&gt;&#39;treats&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    print(&lt;span class=&quot;string&quot;&gt;&#39;Set to&#39;&lt;/span&gt;, the_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;outer_list = [&lt;span class=&quot;string&quot;&gt;&#39;Dogs&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;eats&#39;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&#39;Before, outer_list = &#39;&lt;/span&gt;, outer_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a(outer_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&#39;After, outer_list = &#39;&lt;/span&gt;, outer_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Outputs in terminal&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; Before, outer_list = [&#39;Dogs&#39;, &#39;eats&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; Got [&#39;Dogs&#39;, &#39;eats&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; Set to [&#39;Dogs&#39;, &#39;eats&#39;, &#39;treats&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; After, outer_list = [&#39;Dogs&#39;, &#39;eats&#39;, &#39;treats&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;How does this happen?&lt;/strong&gt; Parameter &lt;code&gt;the_list&lt;/code&gt; passed in is a reference of the &lt;code&gt;list[&amp;#39;Dogs&amp;#39;, &amp;#39;eats&amp;#39;]&lt;/code&gt;, rather than a copy of it. And that &lt;em&gt;Object list is mutable&lt;/em&gt;, so &lt;code&gt;append()&lt;/code&gt; can change the value in &lt;code&gt;the_list&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Considering a further example:&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(the_list)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     print(&lt;span class=&quot;string&quot;&gt;&#39;Got&#39;&lt;/span&gt;, the_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    the_list = [&lt;span class=&quot;string&quot;&gt;&#39;You&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;never&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;lie&#39;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    print(&lt;span class=&quot;string&quot;&gt;&#39;Set to&#39;&lt;/span&gt;, the_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;outer_list = [&lt;span class=&quot;string&quot;&gt;&#39;Dogs&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;eats&#39;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&#39;Before, outer_list = &#39;&lt;/span&gt;, outer_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;a(outer_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&#39;After, outer_list = &#39;&lt;/span&gt;, outer_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Outputs in terminal&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; Before, outer_list = [&#39;Dogs&#39;, &#39;eats&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; Got [&#39;Dogs&#39;, &#39;eats&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; Set to [&#39;You&#39;, &#39;never&#39;, &#39;lie&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# &amp;gt;&amp;gt;&amp;gt; After, outer_list = [&#39;Dogs&#39;, &#39;eats&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Why it doesn’t work now?&lt;/strong&gt; Althrough &lt;code&gt;the_list&lt;/code&gt; parameter was passed by reference, the parameter is not changed at all. As soon as a new value will be assigned to it, python create a seperate local variable called &lt;code&gt;the_list&lt;/code&gt; which is differ from the parameter &lt;code&gt;the_list&lt;/code&gt;. Due to we had &lt;code&gt;the_list&lt;/code&gt; bound to a new list&lt;code&gt;[&amp;#39;You&amp;#39;, &amp;#39;never&amp;#39;, &amp;#39;lie&amp;#39;]&lt;/code&gt;, there was no way to change where &lt;code&gt;outer_list&lt;/code&gt; pointed. If you can not understant this statement, thinking about Python’s memory management of variables above: &lt;strong&gt;the_list is like a tag, bouding to a new list&lt;code&gt;[&amp;#39;You&amp;#39;, &amp;#39;never&amp;#39;, &amp;#39;lie&amp;#39;]&lt;/code&gt;, so the_list is a totally new list)&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Reference&quot;&gt;&lt;a href=&quot;#Reference&quot; class=&quot;headerlink&quot; title=&quot;Reference&quot;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://docs.python.org/3/tutorial/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Python 3 Document: https://docs.python.org/3/tutorial/index.html&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This article will not only expose the basic memory management in Python, but some mistaken tricks of passing argument to function.&lt;/p&gt;
+&lt;h2 id=&quot;Memory-management-of-variables&quot;&gt;&lt;a href=&quot;#Memory-management-of-variables&quot; class=&quot;headerlink&quot; title=&quot;Memory management of variables&quot;&gt;&lt;/a&gt;Memory management of variables&lt;/h2&gt;&lt;p&gt;There are variety of programming languages in which have quite different memory assignment strategies. &lt;strong&gt;When we do an assignment in C&lt;/strong&gt;:&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xpp7u.com1.z0.glb.clouddn.com/c_memory_mngt_1.png?imageView/2/w/200&quot; alt=&quot;c_memory_mngt_1&quot;&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://leone.wang/categories/python/"/>
+    
+      <category term="Programming" scheme="http://leone.wang/categories/python/programming/"/>
+    
+      <category term="concept" scheme="http://leone.wang/categories/python/programming/concept/"/>
+    
+    
+      <category term="Python" scheme="http://leone.wang/tags/python/"/>
+    
+      <category term="memory management" scheme="http://leone.wang/tags/memory-management/"/>
+    
+      <category term="variables" scheme="http://leone.wang/tags/variables/"/>
+    
+  </entry>
   
   <entry>
     <title>Tips for Using Google Search Efficiently</title>
@@ -1874,39 +1945,6 @@
     
     
       <category term="JavaScript" scheme="http://leone.wang/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Question Shredder: Intellij IDEA 14 Tomcat Console Output Messy Code</title>
-    <link href="http://leone.wang/2015/08/04/q-intellij-idea-14/"/>
-    <id>http://leone.wang/2015/08/04/q-intellij-idea-14/</id>
-    <published>2015-08-04T07:04:48.000Z</published>
-    <updated>2015-08-04T07:04:48.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;Q-description&quot;&gt;&lt;a href=&quot;#Q-description&quot; class=&quot;headerlink&quot; title=&quot;Q.description&quot;&gt;&lt;/a&gt;Q.description&lt;/h2&gt;&lt;p&gt;Tomcat 7 控制台输出日志乱码&lt;/p&gt;
-&lt;h2 id=&quot;Q-resolvent&quot;&gt;&lt;a href=&quot;#Q-resolvent&quot; class=&quot;headerlink&quot; title=&quot;Q.resolvent&quot;&gt;&lt;/a&gt;Q.resolvent&lt;/h2&gt;&lt;p&gt;Intellij IDEA 中设置 Web Server 的虚拟机编码，这样 IDE 的编码（控制台编码受IDE影响）和 Web Server 输出的编码一致，问题解决。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xkj8o.com1.z0.glb.clouddn.com/wp-content/uploads/2015/08/屏幕快照-2015-08-04-14.59.16-632x252.png&quot; alt=&quot;屏幕快照 2015-08-04 14.59.16&quot;&gt;&lt;/p&gt;
-&lt;p&gt;启动 Web Server之后再分析 JVM 的参数可以看到 -Dfile.encoding=UTF-8。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;遇见性更新&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Q-description&quot;&gt;&lt;a href=&quot;#Q-description&quot; class=&quot;headerlink&quot; title=&quot;Q.description&quot;&gt;&lt;/a&gt;Q.description&lt;/h2&gt;&lt;p&gt;Tomcat 7 控制台输出日志乱码&lt;/p&gt;
-&lt;h2 id=&quot;Q-resolvent&quot;&gt;&lt;a href=&quot;#Q-resolvent&quot; class=&quot;headerlink&quot; title=&quot;Q.resolvent&quot;&gt;&lt;/a&gt;Q.resolvent&lt;/h2&gt;&lt;p&gt;Intellij IDEA 中设置 Web Server 的虚拟机编码，这样 IDE 的编码（控制台编码受IDE影响）和 Web Server 输出的编码一致，问题解决。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Develop" scheme="http://leone.wang/categories/develop/"/>
-    
-    
-      <category term="IDE" scheme="http://leone.wang/tags/ide/"/>
-    
-      <category term="Question" scheme="http://leone.wang/tags/question/"/>
     
   </entry>
   

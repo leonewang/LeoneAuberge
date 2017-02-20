@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leone.wang/2017/02/20/memory-management-of-variables-in-python/</loc>
+    
+    <lastmod>2017-02-20T11:02:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leone.wang/share/index.html</loc>
     
     <lastmod>2017-01-26T16:44:15.000Z</lastmod>
